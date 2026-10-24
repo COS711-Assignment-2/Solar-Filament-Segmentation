@@ -14,6 +14,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+from tqdm import tqdm
+
 
 def _hash(path: Path) -> str:
     digest = hashlib.sha256()
@@ -31,7 +33,9 @@ def duplicate_report(
     root_path = Path(root)
     by_name: defaultdict[str, list[str]] = defaultdict(list)
     by_hash: defaultdict[str, list[str]] = defaultdict(list)
-    for path in root_path.rglob("*"):
+    paths = [path for path in root_path.rglob("*") if path.is_file()]
+    for path in tqdm(paths, desc="Hashing files", unit="file",
+                     dynamic_ncols=True):
         if path.is_file():
             by_name[path.name].append(str(path.relative_to(root_path)))
             by_hash[_hash(path)].append(str(path.relative_to(root_path)))

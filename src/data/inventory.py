@@ -14,6 +14,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from tqdm import tqdm
+
 
 def _sha256(path: Path, chunk_size: int = 1024 * 1024) -> str:
     digest = hashlib.sha256()
@@ -30,7 +32,9 @@ def build_inventory(
     """Return an inventory dictionary for every file below ``root``."""
     root_path = Path(root)
     records: list[dict[str, Any]] = []
-    for path in sorted(item for item in root_path.rglob("*") if item.is_file()):
+    paths = sorted(item for item in root_path.rglob("*") if item.is_file())
+    for path in tqdm(paths, desc="Building inventory", unit="file",
+                      dynamic_ncols=True):
         record: dict[str, Any] = {
             "path": str(path.relative_to(root_path)),
             "name": path.name,

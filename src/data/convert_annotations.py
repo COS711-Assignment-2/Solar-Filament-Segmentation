@@ -61,7 +61,7 @@ def save_targets(
     Image.fromarray(instance.astype(np.int32), mode="I").save(
         destination / f"{stem}_instances.png"
     )
-    Image.fromarray(category.astype(np.uint16), mode="I").save(
+    Image.fromarray(category.astype(np.int32), mode="I").save(
         destination / f"{stem}_categories.png"
     )
     with (destination / f"{stem}_metadata.json").open("w", encoding="utf-8") as handle:

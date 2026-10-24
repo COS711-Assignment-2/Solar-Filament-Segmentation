@@ -3,3 +3,5 @@ numpy
 Pillow
 PyYAML
 pytest
+tqdm
+ultralytics

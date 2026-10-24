@@ -1,0 +1,12 @@
+{
+  "seed": 42,
+  "validation_ratio": 0.2,
+  "grouping_rule": "normalised physical filename basename",
+  "total_image_records": 1154,
+  "total_groups": 707,
+  "train_groups": 566,
+  "validation_groups": 141,
+  "shared_groups": [],
+  "train_records": 937,
+  "validation_records": 217
+}

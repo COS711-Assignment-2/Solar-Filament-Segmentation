@@ -23,6 +23,7 @@ def preprocess_pair(
     output_dir: str | Path,
     size: tuple[int, int] | None = None,
     normalize: bool = False,
+    output_stem: str | None = None,
 ) -> dict[str, Any]:
     """Preprocess and save one image and its aligned target masks."""
     image = Image.open(image_path).convert("L")
@@ -34,13 +35,13 @@ def preprocess_pair(
         categories = categories.resize(size, Image.Resampling.NEAREST)
     destination = Path(output_dir)
     destination.mkdir(parents=True, exist_ok=True)
-    stem = Path(image_path).stem
+    stem = output_stem or Path(image_path).stem
     image.save(destination / f"{stem}.png")
-    instances.save(destination / f"{stem}_instances.png")
-    categories.save(destination / f"{stem}_categories.png")
+    instances.save(destination / f"{stem}.png")
+    categories.save(destination / f"{stem}.png")
     result = {"image": str(destination / f"{stem}.png"),
-            "instances": str(destination / f"{stem}_instances.png"),
-            "categories": str(destination / f"{stem}_categories.png"),
+            "instances": str(destination / f"{stem}.png"),
+            "categories": str(destination / f"{stem}.png"),
             "size": image.size}
     if normalize:
         normalized_path = destination / f"{stem}.npy"
