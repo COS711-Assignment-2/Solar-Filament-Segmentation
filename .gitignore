@@ -8,6 +8,7 @@ venv/
 !.env.example
 data/raw/
 data/processed/
+data/yolo26/
 outputs/
 *.ckpt
 *.pt

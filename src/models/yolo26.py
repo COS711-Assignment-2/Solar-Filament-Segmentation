@@ -12,6 +12,39 @@ from pathlib import Path
 from typing import Any
 
 
+def resolve_device(requested: str = "auto") -> str:
+    """Resolve a portable device setting to an Ultralytics device value.
+
+    Supported values are ``auto``, ``cpu``, ``gpu``/``cuda``, ``mps``, a CUDA
+    device expression such as ``0`` or ``0,1``, and ``tpu``.  Ultralytics'
+    standard ``YOLO.train`` interface does not support TPU execution through
+    its ``device`` argument, so TPU requests fail explicitly rather than
+    silently falling back to CPU.
+    """
+    normalized = requested.strip().lower()
+    if normalized == "tpu":
+        raise RuntimeError(
+            "TPU training is not supported by the standard Ultralytics "
+            "YOLO.train interface. Use a TPU-specific PyTorch/XLA training "
+            "implementation rather than passing tpu as an Ultralytics device."
+        )
+    if normalized in {"cpu", "mps"}:
+        return normalized
+    if normalized in {"gpu", "cuda"}:
+        return "0"
+    if normalized not in {"auto", ""}:
+        return requested
+    try:
+        import torch
+    except ImportError:
+        return "cpu"
+    if torch.cuda.is_available():
+        return "0"
+    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
+
+
 def build_yolo26n(model_yaml: str | Path) -> Any:
     """Construct YOLO26n-seg from YAML with random initialisation."""
     try:
@@ -32,4 +65,5 @@ def train_yolo26n(
     model = build_yolo26n(model_yaml)
     options = {"data": str(data_yaml), "pretrained": False}
     options.update(train_options)
+    options["device"] = resolve_device(str(options.get("device", "auto")))
     return model.train(**options)

@@ -143,6 +143,87 @@ python scripts/prepare_data.py --stage process `
   --processed-dir data/processed
 ```
 
+## YOLO26n instance segmentation baseline
+
+The project includes the public Ultralytics YOLO26-seg architecture in
+[configs/yolo26n-seg.yaml](configs/yolo26n-seg.yaml). It is configured for the
+four categories in the supplied annotations and is built from random
+initialisation. No pretrained weights are downloaded or loaded.
+
+Install the additional training dependency after reviewing the Ultralytics
+AGPL-3.0 licence:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+Convert the validated COCO records into Ultralytics polygon-label format:
+
+```powershell
+python scripts/prepare_yolo_dataset.py `
+  --annotations data/raw/MAGFiLO_1.0_Kaggle_2026/train/MAGFiLO_1.0_Annotations_kaggle2026_train.json `
+  --source-images data/raw/MAGFiLO_1.0_Kaggle_2026/train/train_images `
+  --split-dir data/splits `
+  --output-dir data/yolo26
+```
+
+The converter preserves multiple annotation records for the same physical
+filename by naming outputs with their JSON `image_id`. It writes:
+
+```text
+data/yolo26/
+├── images/train/
+├── images/val/
+├── labels/train/
+├── labels/val/
+└── preparation_summary.json
+```
+
+Start a from-scratch YOLO26n-seg training run:
+
+```powershell
+python scripts/train_yolo.py `
+  --model configs/yolo26n-seg.yaml `
+  --data configs/yolo26_dataset.yaml `
+  --epochs 100 `
+  --imgsz 1024 `
+  --batch 4 `
+  --project outputs/yolo26 `
+  --name yolo26n-seg-from-scratch
+```
+
+The training script is portable across devices:
+
+```powershell
+# Automatically choose CUDA GPU, Apple MPS, or CPU
+python scripts/train_yolo.py --device auto
+
+# Force CPU
+python scripts/train_yolo.py --device cpu
+
+# Use the first CUDA GPU
+python scripts/train_yolo.py --device gpu
+
+# Use selected CUDA GPUs
+python scripts/train_yolo.py --device 0,1
+
+# Use Apple Silicon GPU
+python scripts/train_yolo.py --device mps
+```
+
+`auto` detects the available PyTorch backend at runtime. The standard
+Ultralytics `YOLO.train` interface does not support TPU execution through its
+`device` parameter, so `--device tpu` is rejected with an explicit message
+instead of silently running on CPU. TPU training requires a separate
+PyTorch/XLA-specific implementation and is not enabled by this baseline.
+
+The default input size is `1024`, which is a configurable starting point.
+Because filaments are thin and the source images are approximately 2048x2048,
+compare this baseline with a tiled strategy before selecting a final model.
+Training outputs are written under `outputs/yolo26/`. The official PQ rules,
+category treatment, and submission schema must still be confirmed before
+competition evaluation.
+
 Run tests with:
 
 ```powershell

@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from src.models.yolo26 import train_yolo26n
+from src.models.yolo26 import resolve_device, train_yolo26n
 
 
 def main() -> int:
@@ -25,19 +25,24 @@ def main() -> int:
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--imgsz", type=int, default=1024)
     parser.add_argument("--batch", type=int, default=4)
-    parser.add_argument("--device", default=None)
+    parser.add_argument(
+        "--device",
+        default="auto",
+        help="auto, cpu, gpu/cuda, mps, tpu (unsupported), or CUDA IDs such as 0,1.",
+    )
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--project", default="outputs/yolo26")
     parser.add_argument("--name", default="yolo26n-seg-from-scratch")
     parser.add_argument("--cache", action="store_true")
     args = parser.parse_args()
+    resolved_device = resolve_device(args.device)
+    print(f"Requested device: {args.device}; using: {resolved_device}")
     options = {
         "epochs": args.epochs, "imgsz": args.imgsz, "batch": args.batch,
         "workers": args.workers, "project": args.project, "name": args.name,
         "cache": args.cache,
+        "device": resolved_device,
     }
-    if args.device is not None:
-        options["device"] = args.device
     train_yolo26n(args.model, args.data, **options)
     return 0
 
