@@ -1,0 +1,5 @@
+kagglehub
+numpy
+Pillow
+PyYAML
+pytest

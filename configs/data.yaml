@@ -1,0 +1,26 @@
+dataset:
+  name: filament-segmentation-2026
+  raw_dir: data/raw
+  train_images: null
+  test_images: null
+  annotations: null
+paths:
+  splits: data/splits
+  processed: data/processed
+  audit: outputs/data_audit
+split:
+  seed: 42
+  validation_ratio: 0.20
+  grouping: physical_filename_basename
+preprocessing:
+  target_size: null
+  grayscale: true
+  normalize: false
+  mask_interpolation: nearest
+annotations:
+  out_of_bounds: report_and_clip
+  overlap_policy: annotation_order_last_wins
+  mask_format: png
+reports:
+  visualizations: false
+  stop_on_critical_errors: true
