@@ -3,4 +3,7 @@ numpy
 Pillow
 PyYAML
 pytest
+scikit-image
+scipy
+torch
 tqdm

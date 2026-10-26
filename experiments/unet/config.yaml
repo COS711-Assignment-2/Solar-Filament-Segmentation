@@ -1,0 +1,33 @@
+data:
+  processed_dir: data/processed
+  splits_dir: data/splits
+  resolution: 512 # 512, 1024, or tiled
+  tile_size: 512
+
+model:
+  name: unet # unique registered model name; see src/models/
+  base_channels: 32
+
+experiment:
+  name: unet-baseline
+
+loss:
+  bce_weight: 1.0
+  dice_weight: 1.0
+  boundary_weight: 0.25
+
+training:
+  max_epochs: 50
+  patience: 10 # stop if validation PQ has not improved for this many epochs
+  batch_size: 4
+  workers: 0
+  learning_rate: 0.001
+  seed: 42
+  device: auto # auto prefers TPU, then CUDA, then CPU; or choose cpu/cuda/tpu
+  output_dir: runs
+
+evaluation:
+  postprocessing: connected_components # connected_components or watershed
+  thresholds: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+  min_instance_size: 1
+  watershed_min_distance: 5
