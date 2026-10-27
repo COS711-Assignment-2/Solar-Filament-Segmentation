@@ -110,6 +110,19 @@ def test_condinst_dynamic_masks_train_and_predict_instances():
     assert all(mask.shape == (32, 32) for _, mask in predictions[0])
 
 
+def test_condinst_uses_higher_resolution_masks_and_soft_center_targets():
+    model = CondInst(base_channels=4, mask_channels=8)
+    output = model(torch.rand((1, 1, 32, 32)))
+    assert output["mask_features"].shape[-2:] == (16, 16)
+    assert output["center_logits"].shape[-2:] == (8, 8)
+
+    center_target = torch.zeros((16, 16))
+    model._draw_center_gaussian(center_target, 8, 8, radius=2)
+    assert center_target[8, 8] == 1.0
+    assert 0.0 < center_target[8, 9] < 1.0
+    assert center_target[0, 0] == 0.0
+
+
 def test_condinst_labeling_handles_empty_and_overlapping_predictions():
     empty = train._label_instance_predictions([], 0.2, 1, (4, 4))
     assert empty.shape == (4, 4)

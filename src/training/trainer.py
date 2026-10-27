@@ -508,10 +508,16 @@ def train(
         else:
             stale_epochs += 1
         best_marker = " (best)" if improved else ""
+        instance_counts = ""
+        if getattr(model, "is_instance_model", False):
+            counts = threshold_metrics[str(threshold)]
+            instance_counts = (
+                f" | TP={counts['tp']} FP={counts['fp']} FN={counts['fn']}"
+            )
         tqdm.write(
             f"Epoch {epoch:03d}/{max_epochs:03d} | "
             f"train_loss={train_loss:.4f} | val_pq={val_pq:.4f} | "
-            f"threshold={threshold:.3f}{best_marker}"
+            f"threshold={threshold:.3f}{best_marker}{instance_counts}"
         )
         if should_stop_early(stale_epochs, patience):
             print(

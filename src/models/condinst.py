@@ -35,6 +35,7 @@ class CondInst(nn.Module):
 
     is_instance_model = True
     output_stride = 4
+    mask_stride = 2
     dynamic_hidden_channels = 8
 
     def __init__(
@@ -65,6 +66,7 @@ class CondInst(nn.Module):
         self.stage2 = ConvBlock(base_channels, base_channels * 2, stride=2)
         self.stage3 = ConvBlock(base_channels * 2, base_channels * 4, stride=2)
         self.stage4 = ConvBlock(base_channels * 4, base_channels * 8, stride=2)
+        self.mask_lateral1 = nn.Conv2d(base_channels, mask_channels, 1)
         self.lateral2 = nn.Conv2d(base_channels * 2, mask_channels, 1)
         self.lateral3 = nn.Conv2d(base_channels * 4, mask_channels, 1)
         self.lateral4 = nn.Conv2d(base_channels * 8, mask_channels, 1)
@@ -86,17 +88,25 @@ class CondInst(nn.Module):
 
     def forward(self, images: torch.Tensor) -> dict[str, torch.Tensor]:
         """Return shared mask features, center logits, and dynamic parameters."""
-        features2 = self.stage2(self.stem(images))
+        features1 = self.stem(images)
+        features2 = self.stage2(features1)
         features3 = self.stage3(features2)
         features4 = self.stage4(features3)
-        target_size = features2.shape[-2:]
-        pyramid = (
-            self.lateral2(features2)
-            + F.interpolate(self.lateral3(features3), size=target_size, mode="bilinear", align_corners=False)
-            + F.interpolate(self.lateral4(features4), size=target_size, mode="bilinear", align_corners=False)
+        center_size = features2.shape[-2:]
+        pyramid = self.mask_lateral1(features1)
+        pyramid = pyramid + F.interpolate(
+            self.lateral2(features2), size=features1.shape[-2:], mode="bilinear", align_corners=False
+        )
+        pyramid = pyramid + F.interpolate(
+            self.lateral3(features3), size=features1.shape[-2:], mode="bilinear", align_corners=False
+        )
+        pyramid = pyramid + F.interpolate(
+            self.lateral4(features4), size=features1.shape[-2:], mode="bilinear", align_corners=False
         )
         mask_features = self.mask_tower(pyramid)
-        controller_features = self.controller_tower(mask_features)
+        controller_features = self.controller_tower(
+            F.interpolate(mask_features, size=center_size, mode="bilinear", align_corners=False)
+        )
         return {
             "mask_features": mask_features,
             "center_logits": self.center_head(controller_features),
@@ -117,6 +127,27 @@ class CondInst(nn.Module):
             * negative
         )
         return -(positive_loss.sum() + negative_loss.sum()) / positive.sum().clamp_min(1.0)
+
+    @staticmethod
+    def _draw_center_gaussian(
+        target: torch.Tensor, center_y: int, center_x: int, radius: int
+    ) -> None:
+        """Draw a CenterNet-style soft target around an object center."""
+        diameter = 2 * radius + 1
+        coordinates = torch.arange(
+            -radius, radius + 1, device=target.device, dtype=target.dtype
+        )
+        yy, xx = torch.meshgrid(coordinates, coordinates, indexing="ij")
+        sigma = diameter / 6.0
+        gaussian = torch.exp(-(xx.square() + yy.square()) / (2.0 * sigma * sigma))
+        height, width = target.shape
+        y0, y1 = max(0, center_y - radius), min(height, center_y + radius + 1)
+        x0, x1 = max(0, center_x - radius), min(width, center_x + radius + 1)
+        gy0, gx0 = y0 - (center_y - radius), x0 - (center_x - radius)
+        gy1, gx1 = gy0 + (y1 - y0), gx0 + (x1 - x0)
+        target[y0:y1, x0:x1] = torch.maximum(
+            target[y0:y1, x0:x1], gaussian[gy0:gy1, gx0:gx1]
+        )
 
     def _dynamic_mask(self, features: torch.Tensor, parameters: torch.Tensor) -> torch.Tensor:
         """Apply one controller-generated three-layer 1x1 mask network."""
@@ -165,8 +196,14 @@ class CondInst(nn.Module):
                 rows, columns = torch.where(instance_targets[batch_index] == instance_id)
                 if rows.numel() == 0:
                     continue
-                center_y = int(torch.round(rows.float().mean()).item())
-                center_x = int(torch.round(columns.float().mean()).item())
+                mean_y = rows.float().mean()
+                mean_x = columns.float().mean()
+                center_index = torch.argmin(
+                    (rows.float() - mean_y).square()
+                    + (columns.float() - mean_x).square()
+                )
+                center_y = int(rows[center_index].item())
+                center_x = int(columns[center_index].item())
                 grid_y = min(max(center_y // self.output_stride, 0), height - 1)
                 grid_x = min(max(center_x // self.output_stride, 0), width - 1)
                 if occupied_centers[grid_y, grid_x]:
@@ -178,19 +215,29 @@ class CondInst(nn.Module):
                     nearest = available[torch.argmin(distances)]
                     grid_y, grid_x = int(nearest[0]), int(nearest[1])
                 occupied_centers[grid_y, grid_x] = True
-                center_targets[batch_index, 0, grid_y, grid_x] = 1.0
+                object_height = int(rows.max() - rows.min() + 1)
+                object_width = int(columns.max() - columns.min() + 1)
+                radius = min(4, max(1, min(object_height, object_width) // 24))
+                self._draw_center_gaussian(
+                    center_targets[batch_index, 0], grid_y, grid_x, radius
+                )
 
                 target_mask = F.interpolate(
                     (instance_targets[batch_index] == instance_id)
                     .float()[None, None],
-                    size=(height, width),
+                    size=mask_features.shape[-2:],
                     mode="nearest",
                 )[0, 0]
                 if not torch.any(target_mask):
                     continue
                 params = dynamic_parameters[batch_index, :, grid_y, grid_x]
                 mask_logits = self._dynamic_mask(mask_features[batch_index], params)
-                bce = F.binary_cross_entropy_with_logits(mask_logits, target_mask)
+                positive_weight = float(loss_config.get("mask_positive_weight", 4.0))
+                bce_map = F.binary_cross_entropy_with_logits(
+                    mask_logits, target_mask, reduction="none"
+                )
+                pixel_weights = 1.0 + (positive_weight - 1.0) * target_mask
+                bce = (bce_map * pixel_weights).sum() / pixel_weights.sum().clamp_min(1.0)
                 probabilities = torch.sigmoid(mask_logits)
                 intersection = (probabilities * target_mask).sum()
                 dice = 1.0 - (2.0 * intersection + 1.0) / (

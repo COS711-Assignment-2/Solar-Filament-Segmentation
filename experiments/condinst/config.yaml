@@ -1,7 +1,7 @@
 data:
   processed_dir: data/processed
   splits_dir: data/splits
-  resolution: 512 # 512, 1024, or tiled; 512 is a practical Colab starting point
+  resolution: 1024 # preserves more filament detail than 512; reduce if GPU memory is limited
   tile_size: 512
 
 model:
@@ -19,11 +19,12 @@ loss:
   center_weight: 1.0
   mask_bce_weight: 1.0
   mask_dice_weight: 1.0
+  mask_positive_weight: 4.0
 
 training:
   max_epochs: 50
   patience: 10
-  batch_size: 2
+  batch_size: 1
   workers: 0
   learning_rate: 0.0003
   seed: 42
