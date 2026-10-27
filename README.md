@@ -251,17 +251,39 @@ import os
 os.environ["KAGGLE_API_TOKEN"] = userdata.get("KAGGLE_API_TOKEN")
 ```
 
-```bash
-!python scripts/download_data.py
-!python scripts/prepare_data.py --stage all \
-  --train-images data/raw/MAGFiLO_1.0_Kaggle_2026/train/train_images \
-  --annotations data/raw/MAGFiLO_1.0_Kaggle_2026/train/MAGFiLO_1.0_Annotations_kaggle2026_train.json \
-  --split-dir data/splits --processed-dir data/processed
+Run the download and preparation using the paths discovered by the downloader
+instead of assuming a fixed Kaggle folder structure:
+
+```python
+import subprocess
+import sys
+from src.data.download import download_dataset
+
+paths = download_dataset()
+subprocess.run(
+    [
+        sys.executable, "scripts/prepare_data.py", "--stage", "all",
+        "--train-images", str(paths.train_images),
+        "--annotations", str(paths.annotations),
+        "--split-dir", "data/splits",
+        "--processed-dir", "data/processed",
+    ],
+    check=True,
+)
 ```
 
-The Kaggle account must have access to the competition. If the download script
-prints different extracted paths, use those paths in the preparation command.
-Then train CondInst on the GPU:
+This step is required for a fresh clone: `data/raw/` and `data/processed/`
+are excluded from Git, so the tracked split manifests alone are not sufficient
+to train. If training reports a missing file under
+`data/processed/train/images/` or `data/processed/val/images/`, complete this
+preparation cell in the current Colab runtime before retrying.
+
+```bash
+!python scripts/verify_prepared_data.py --split-dir data/splits --processed-dir data/processed
+```
+
+The Kaggle account must have access to the competition. After verifying the
+prepared outputs, train CondInst on the GPU:
 
 ```bash
 !python scripts/train.py --experiment condinst --device cuda

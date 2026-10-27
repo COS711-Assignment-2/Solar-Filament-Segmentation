@@ -390,6 +390,22 @@ experiment:
         raise AssertionError("Expected unsafe experiment names to be rejected")
 
 
+def test_training_preflight_reports_missing_processed_data(tmp_path):
+    try:
+        train._validate_processed_records(
+            tmp_path,
+            "train",
+            [{"image_id": "sample-1"}],
+        )
+    except FileNotFoundError as error:
+        message = str(error)
+        assert "data is incomplete" in message
+        assert "prepare_data.py --stage all" in message
+        assert "sample-1.png" in message
+    else:
+        raise AssertionError("Expected missing processed data to fail preflight")
+
+
 def test_early_stopping_uses_validation_patience():
     assert train.should_stop_early(stale_epochs=4, patience=4)
     assert not train.should_stop_early(stale_epochs=3, patience=4)

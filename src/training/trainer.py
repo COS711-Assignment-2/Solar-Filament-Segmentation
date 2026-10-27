@@ -31,6 +31,37 @@ from src.training.metrics import PQCounts, panoptic_quality
 from src.training.postprocessing import postprocess_probability
 
 
+def _validate_processed_records(
+    processed_dir: str | Path,
+    split: str,
+    records: list[dict[str, str]],
+) -> None:
+    """Fail before training if the prepared images or instance masks are missing."""
+    root = Path(processed_dir) / split
+    missing: list[Path] = []
+    for record in records:
+        stem = "".join(
+            char if char.isalnum() or char in "-_." else "_"
+            for char in record["image_id"]
+        )
+        for path in (
+            root / "images" / f"{stem}.png",
+            root / "masks" / "instances" / f"{stem}.png",
+        ):
+            if not path.is_file():
+                missing.append(path)
+    if missing:
+        examples = "\n".join(f"  - {path}" for path in missing[:5])
+        more = f"\n  ... and {len(missing) - 5} more" if len(missing) > 5 else ""
+        raise FileNotFoundError(
+            f"Prepared {split} data is incomplete under '{root}'. Missing "
+            f"{len(missing)} required file(s):\n{examples}{more}\n"
+            "On a fresh Colab clone, raw/processed data is not included in Git. "
+            "Run scripts/prepare_data.py --stage all with the downloaded "
+            "--train-images and --annotations paths, then retry training."
+        )
+
+
 def load_config(path: str | Path) -> dict[str, Any]:
     """Read a YAML config and validate experiment-critical options."""
     with Path(path).open(encoding="utf-8") as handle:
@@ -437,6 +468,8 @@ def train(
     processed_dir = Path(data_config["processed_dir"])
     train_records = read_manifest(Path(data_config["splits_dir"]) / "train.csv")
     val_records = read_manifest(Path(data_config["splits_dir"]) / "val.csv")
+    _validate_processed_records(processed_dir, "train", train_records)
+    _validate_processed_records(processed_dir, "val", val_records)
     train_data = FilamentDataset(
         processed_dir,
         "train",
