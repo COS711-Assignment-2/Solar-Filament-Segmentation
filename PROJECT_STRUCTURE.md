@@ -1,7 +1,5 @@
 # Project Structure and Training Workflow
 
-
-
 ## Repository layout
 
 ```text
@@ -9,8 +7,10 @@ Solar-Filament-Segmentation/
 ├── configs/
 │   └── data.yaml                 # data-preparation settings
 ├── experiments/
+│   ├── condinst/
+│   │   └── config.yaml           # CondInst primary baseline
 │   ├── unet/
-│   │   └── config.yaml           # complete U-Net baseline experiment
+│   │   └── config.yaml           # U-Net comparison experiment
 │   └── boundary_aware_unet/
 │       └── config.yaml           # complete boundary-aware experiment
 ├── data/
@@ -38,6 +38,12 @@ Solar-Filament-Segmentation/
 └── tests/
 ```
 
+The primary baseline is CondInst, implemented in
+`src/models/condinst.py` with an anchor-free center controller and dynamic
+per-instance mask heads. It uses the existing processed instance-ID masks and
+the trainer's PQ-based validation/checkpoint selection. The U-Net variants
+remain available for comparisons.
+
 Add an experiment by making a directory under `experiments/` with a
 `config.yaml`. Set its `model.name`, unique `experiment.name`, data/loss
 settings (including maximum epochs and early-stopping patience), and validation
@@ -48,15 +54,16 @@ architectures as separate modules under `src/models/` and register them in
 ## Start one training run
 
 Use Python 3.8 or newer. On systems where `python` points to Python 2, use
-`python3` for all commands. From the repository root, run the U-Net baseline:
+`python3` for all commands. From the repository root, run the CondInst baseline:
+
+```bash
+python3 scripts/train.py --experiment condinst --device cuda
+```
+
+Run the U-Net comparison models:
 
 ```bash
 python3 scripts/train.py --experiment unet
-```
-
-Run the boundary-aware model:
-
-```bash
 python3 scripts/train.py --experiment boundary_aware_unet
 ```
 

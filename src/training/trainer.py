@@ -202,18 +202,21 @@ def _run_epoch(
         masks = batch["mask"].to(device)
         instances = batch["instances"].to(device)
         optimizer.zero_grad(set_to_none=True)
-        segmentation, boundary = _model_output(model(images))
-        loss = segmentation_loss(
-            segmentation,
-            masks,
-            float(loss_config["bce_weight"]),
-            float(loss_config["dice_weight"]),
-        )
-        if boundary is not None:
-            boundary_loss = torch.nn.functional.binary_cross_entropy_with_logits(
-                boundary, boundary_target(instances)
+        if hasattr(model, "compute_loss"):
+            loss = model.compute_loss(images, instances, loss_config)["total"]
+        else:
+            segmentation, boundary = _model_output(model(images))
+            loss = segmentation_loss(
+                segmentation,
+                masks,
+                float(loss_config["bce_weight"]),
+                float(loss_config["dice_weight"]),
             )
-            loss = loss + float(loss_config["boundary_weight"]) * boundary_loss
+            if boundary is not None:
+                boundary_loss = torch.nn.functional.binary_cross_entropy_with_logits(
+                    boundary, boundary_target(instances)
+                )
+                loss = loss + float(loss_config["boundary_weight"]) * boundary_loss
         loss.backward()
         if xla_model is None:
             optimizer.step()
@@ -263,6 +266,73 @@ def _predict_image(
     return probability, target
 
 
+def _predict_instance_image(
+    model: torch.nn.Module,
+    processed_dir: str | Path,
+    record: dict[str, str],
+    config: dict[str, Any],
+    device: torch.device,
+) -> tuple[list[tuple[float, np.ndarray]], np.ndarray]:
+    """Predict scored instance masks and place tiled results in image space."""
+    resolution = config["data"]["resolution"]
+    image, target = load_validation_image(processed_dir, record, resolution)
+    image_array = np.asarray(image, dtype=np.float32) / 255.0
+    if resolution == "tiled":
+        tile_size = int(config["data"]["tile_size"])
+        origins = tile_origins(image.width, image.height, tile_size)
+    else:
+        tile_size = int(resolution)
+        origins = [(0, 0)]
+    batch_size = int(config["training"]["batch_size"])
+    minimum_score = min(float(value) for value in config["evaluation"]["thresholds"])
+    min_instance_size = int(config["evaluation"]["min_instance_size"])
+    max_instances = int(config["model"].get("max_instances", 100))
+    candidates: list[tuple[float, np.ndarray]] = []
+
+    for start in range(0, len(origins), batch_size):
+        batch_origins = origins[start:start + batch_size]
+        tiles = np.stack([
+            crop_tile(image_array, x, y, tile_size) for x, y in batch_origins
+        ])
+        inputs = torch.from_numpy(tiles).unsqueeze(1).to(device)
+        predictions = model.predict_instances(
+            inputs,
+            score_threshold=minimum_score,
+            max_instances=max_instances,
+            min_instance_size=min_instance_size,
+        )
+        for (x, y), tile_predictions in zip(batch_origins, predictions):
+            valid_height = min(tile_size, target.shape[0] - y)
+            valid_width = min(tile_size, target.shape[1] - x)
+            for score, tile_mask in tile_predictions:
+                full_mask = np.zeros(target.shape, dtype=bool)
+                full_mask[y:y + valid_height, x:x + valid_width] = tile_mask[
+                    :valid_height, :valid_width
+                ]
+                candidates.append((float(score), full_mask))
+    return candidates, target
+
+
+def _label_instance_predictions(
+    candidates: list[tuple[float, np.ndarray]],
+    score_threshold: float,
+    min_instance_size: int,
+    output_shape: tuple[int, int],
+) -> np.ndarray:
+    """Resolve mask overlaps by confidence and produce a labeled instance map."""
+    if not candidates:
+        return np.zeros(output_shape, dtype=np.int32)
+    labels = np.zeros(output_shape, dtype=np.int32)
+    for score, mask in sorted(candidates, key=lambda candidate: candidate[0], reverse=True):
+        if score < score_threshold:
+            continue
+        available = np.asarray(mask, dtype=bool) & (labels == 0)
+        if int(available.sum()) < min_instance_size:
+            continue
+        labels[available] = int(labels.max()) + 1
+    return labels
+
+
 def evaluate_thresholds(
     model: torch.nn.Module,
     processed_dir: str | Path,
@@ -278,18 +348,31 @@ def evaluate_thresholds(
     }
     model.eval()
     for record in tqdm(records, desc="Validation images", unit="image", leave=False):
-        probability, target = _predict_image(
-            model, processed_dir, record, config, device, xla_model
-        )
-        for threshold, aggregate in counts.items():
-            prediction = postprocess_probability(
-                probability,
-                threshold,
-                config["evaluation"]["postprocessing"],
-                int(config["evaluation"]["min_instance_size"]),
-                int(config["evaluation"]["watershed_min_distance"]),
+        if getattr(model, "is_instance_model", False):
+            candidates, target = _predict_instance_image(
+                model, processed_dir, record, config, device
             )
-            aggregate.add(panoptic_quality(target, prediction))
+            for threshold, aggregate in counts.items():
+                prediction = _label_instance_predictions(
+                    candidates,
+                    threshold,
+                    int(config["evaluation"]["min_instance_size"]),
+                    target.shape,
+                )
+                aggregate.add(panoptic_quality(target, prediction))
+        else:
+            probability, target = _predict_image(
+                model, processed_dir, record, config, device, xla_model
+            )
+            for threshold, aggregate in counts.items():
+                prediction = postprocess_probability(
+                    probability,
+                    threshold,
+                    config["evaluation"]["postprocessing"],
+                    int(config["evaluation"]["min_instance_size"]),
+                    int(config["evaluation"]["watershed_min_distance"]),
+                )
+                aggregate.add(panoptic_quality(target, prediction))
     details = {
         str(threshold): {
             "pq": aggregate.pq,
@@ -369,10 +452,10 @@ def train(
         num_workers=int(config["training"]["workers"]),
         pin_memory=device.type == "cuda",
     )
-    model = create_model(
-        config["model"]["name"],
-        base_channels=int(config["model"]["base_channels"]),
-    ).to(device)
+    model_options = {
+        key: value for key, value in config["model"].items() if key != "name"
+    }
+    model = create_model(config["model"]["name"], **model_options).to(device)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=float(config["training"]["learning_rate"])
     )
