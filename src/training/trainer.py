@@ -428,7 +428,7 @@ def train(
         tqdm.write(
             f"Epoch {epoch:03d}/{max_epochs:03d} | "
             f"train_loss={train_loss:.4f} | val_pq={val_pq:.4f} | "
-            f"threshold={threshold:.3f}{best_marker}"
+            f"threshold={threshold:.3f}{best_marker}",
         )
         if should_stop_early(stale_epochs, patience):
             print(
