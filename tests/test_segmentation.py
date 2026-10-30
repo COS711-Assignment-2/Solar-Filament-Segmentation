@@ -7,7 +7,14 @@ import torch
 from PIL import Image
 
 from src.data.preprocess_images import preprocess_pair
-from src.models import BoundaryAwareUNet, MODEL_REGISTRY, UNet, create_model, register_model
+from src.models import (
+    BoundaryAwareUNet,
+    CondInst,
+    MODEL_REGISTRY,
+    UNet,
+    create_model,
+    register_model,
+)
 from src.training import trainer as train
 from src.training.losses import boundary_target, segmentation_loss
 from src.training.metrics import panoptic_quality
@@ -23,7 +30,7 @@ def test_preprocessing_keeps_image_separate_from_target_masks(tmp_path):
     instances = np.zeros((8, 8), dtype=np.uint8)
     instances[2:6, 2:6] = 3
     Image.fromarray(instances).save(instance_path)
-    Image.fromarray(instances > 0).convert("I").save(category_path)
+    Image.fromarray((instances > 0).astype(np.uint8)).save(category_path)
 
     result = preprocess_pair(
         image_path, instance_path, category_path, output_dir, size=(4, 4)
@@ -78,6 +85,60 @@ def test_boundary_aware_unet_returns_both_prediction_heads():
     assert output["boundary"].shape == (1, 1, 32, 32)
 
 
+def test_condinst_dynamic_masks_train_and_predict_instances():
+    model = CondInst(base_channels=4, mask_channels=8, max_instances=3)
+    images = torch.rand((1, 1, 32, 32))
+    instances = torch.zeros((1, 32, 32), dtype=torch.long)
+    instances[0, 5:18, 6:20] = 1
+    instances[0, 20:29, 21:30] = 2
+
+    losses = model.compute_loss(
+        images,
+        instances,
+        {"center_weight": 1.0, "mask_bce_weight": 1.0, "mask_dice_weight": 1.0},
+    )
+    assert set(losses) == {"total", "center", "mask"}
+    assert torch.isfinite(losses["total"])
+    losses["total"].backward()
+    assert model.controller.weight.grad is not None
+
+    model.eval()
+    predictions = model.predict_instances(
+        images, score_threshold=0.0, max_instances=3, min_instance_size=1
+    )
+    assert len(predictions) == 1
+    assert all(mask.shape == (32, 32) for _, mask in predictions[0])
+
+
+def test_condinst_uses_higher_resolution_masks_and_soft_center_targets():
+    model = CondInst(base_channels=4, mask_channels=8)
+    output = model(torch.rand((1, 1, 32, 32)))
+    assert output["mask_features"].shape[-2:] == (16, 16)
+    assert output["center_logits"].shape[-2:] == (8, 8)
+
+    center_target = torch.zeros((16, 16))
+    model._draw_center_gaussian(center_target, 8, 8, radius=2)
+    assert center_target[8, 8] == 1.0
+    assert 0.0 < center_target[8, 9] < 1.0
+    assert center_target[0, 0] == 0.0
+
+
+def test_condinst_labeling_handles_empty_and_overlapping_predictions():
+    empty = train._label_instance_predictions([], 0.2, 1, (4, 4))
+    assert empty.shape == (4, 4)
+    assert not empty.any()
+
+    first = np.zeros((4, 4), dtype=bool)
+    first[:3, :3] = True
+    second = np.zeros((4, 4), dtype=bool)
+    second[1:, 1:] = True
+    labels = train._label_instance_predictions(
+        [(0.8, first), (0.6, second)], 0.2, 1, (4, 4)
+    )
+    assert set(np.unique(labels)) == {0, 1, 2}
+    assert labels[1, 1] == 1
+
+
 def test_validation_threshold_is_selected_by_pq(monkeypatch):
     class DummyModel:
         def eval(self):
@@ -107,6 +168,36 @@ def test_validation_threshold_is_selected_by_pq(monkeypatch):
     )
 
     assert threshold == 0.7
+    assert pq == 1.0
+
+
+def test_condinst_validation_selects_center_score_threshold(monkeypatch):
+    class DummyInstanceModel:
+        is_instance_model = True
+
+        def eval(self):
+            return self
+
+    target = np.zeros((8, 8), dtype=np.int32)
+    target[2:5, 2:5] = 1
+    predicted_mask = target > 0
+    monkeypatch.setattr(
+        train,
+        "_predict_instance_image",
+        lambda *args: ([(0.8, predicted_mask)], target),
+    )
+    config = {
+        "evaluation": {
+            "thresholds": [0.5, 0.9],
+            "min_instance_size": 1,
+        }
+    }
+
+    threshold, pq, _ = train.evaluate_thresholds(
+        DummyInstanceModel(), ".", [{}], config, torch.device("cpu")
+    )
+
+    assert threshold == 0.5
     assert pq == 1.0
 
 
@@ -244,9 +335,12 @@ def test_xla_training_step_flushes_each_optimizer_step():
 
 
 def test_models_are_separate_registered_architectures():
-    assert set(MODEL_REGISTRY) >= {"unet", "boundary_aware_unet"}
+    assert set(MODEL_REGISTRY) >= {"condinst", "unet", "boundary_aware_unet"}
     assert isinstance(create_model("unet", base_channels=2), UNet)
     assert isinstance(create_model("boundary_aware_unet", base_channels=2), BoundaryAwareUNet)
+    assert isinstance(
+        create_model("condinst", base_channels=4, mask_channels=8), CondInst
+    )
 
     class TestModel(torch.nn.Module):
         def __init__(self, channels=1):
@@ -294,6 +388,22 @@ experiment:
         assert "path-safe" in str(error)
     else:
         raise AssertionError("Expected unsafe experiment names to be rejected")
+
+
+def test_training_preflight_reports_missing_processed_data(tmp_path):
+    try:
+        train._validate_processed_records(
+            tmp_path,
+            "train",
+            [{"image_id": "sample-1"}],
+        )
+    except FileNotFoundError as error:
+        message = str(error)
+        assert "data is incomplete" in message
+        assert "prepare_data.py --stage all" in message
+        assert "sample-1.png" in message
+    else:
+        raise AssertionError("Expected missing processed data to fail preflight")
 
 
 def test_early_stopping_uses_validation_patience():

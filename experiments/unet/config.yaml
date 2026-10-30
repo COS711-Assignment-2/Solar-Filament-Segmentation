@@ -9,7 +9,7 @@ model:
   base_channels: 32
 
 experiment:
-  name: unet-baseline
+  name: unet-reference
 
 loss:
   bce_weight: 1.0
