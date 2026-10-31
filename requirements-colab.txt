@@ -1,5 +1,6 @@
 # Keep Colab's preinstalled CUDA-enabled PyTorch; do not reinstall torch here.
 kagglehub
+matplotlib
 numpy
 Pillow
 PyYAML

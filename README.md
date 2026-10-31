@@ -190,6 +190,18 @@ The comparison image is written to
 `outputs/qualitative/validation_seed43.png`. Green marks correctly predicted
 foreground, red false positives, and blue missed ground truth.
 
+Plot the seed-43 training loss trends, validation PQ curves, and best-model
+instance counts (TP/FP/FN):
+
+```bash
+python3 scripts/visualize_predictions.py --analysis
+```
+
+Graphs are written under `outputs/analysis/`. Training loss is normalized to
+each model's first logged loss because the model-specific loss functions have
+different scales. CondInst's resumed history begins at epoch 4, so its earlier
+epochs are not present in the curve.
+
 ```powershell
 python3 scripts/train.py --experiment unet
 ```

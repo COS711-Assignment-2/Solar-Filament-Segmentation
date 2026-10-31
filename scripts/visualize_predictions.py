@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -30,6 +31,18 @@ CHECKPOINTS = {
     "CondInst (seed 43, epoch 100 run)": Path(
         "runs/condinst/condinst-comparison/seed43/best_model.pt"
     ),
+}
+METRICS = {
+    "U-Net": Path("runs/unet/unet-baseline/seed43/metrics.json"),
+    "Boundary-aware U-Net": Path(
+        "runs/boundary_aware_unet/boundary-aware-unet/seed43/metrics.json"
+    ),
+    "CondInst": Path("runs/condinst/condinst-comparison/seed43/metrics.json"),
+}
+MODEL_COLORS = {
+    "U-Net": "#2563eb",
+    "Boundary-aware U-Net": "#059669",
+    "CondInst": "#d97706",
 }
 
 PANEL_SIZE = 300
@@ -234,8 +247,167 @@ def create_comparison(output_path: Path, sample_count: int = 3) -> None:
     print(f"Saved qualitative comparison to {output_path}")
 
 
+def create_analysis(output_dir: Path) -> None:
+    """Plot training trends and best-checkpoint validation metrics for seed 43."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    metrics_by_model = {}
+    for model_name, relative_path in METRICS.items():
+        path = ROOT / relative_path
+        if not path.is_file():
+            raise FileNotFoundError(f"Training metrics are missing: {path}")
+        metrics = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(metrics, dict) or not metrics.get("history"):
+            raise ValueError(f"Training metrics have no history: {path}")
+        metrics_by_model[model_name] = metrics
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    fig, axis = plt.subplots(figsize=(10, 6), constrained_layout=True)
+    for name, metrics in metrics_by_model.items():
+        history = metrics["history"]
+        epochs = [row["epoch"] for row in history]
+        losses = np.asarray([row["train_loss"] for row in history], dtype=float)
+        if losses[0] == 0:
+            raise ValueError(f"Initial training loss is zero for {name}")
+        axis.plot(
+            epochs,
+            losses / losses[0],
+            color=MODEL_COLORS[name],
+            linewidth=1.8,
+            label=f"{name} (start = 1)",
+        )
+    axis.set(
+        title="Seed 43 training-loss trend",
+        xlabel="Epoch",
+        ylabel="Training loss / first recorded loss",
+    )
+    axis.grid(True, alpha=0.25)
+    axis.legend()
+    fig.savefig(output_dir / "seed43_loss_trends.png", dpi=160)
+    plt.close(fig)
+
+    fig, axis = plt.subplots(figsize=(10, 6), constrained_layout=True)
+    for name, metrics in metrics_by_model.items():
+        history = metrics["history"]
+        epochs = [row["epoch"] for row in history]
+        scores = [row["val_pq"] for row in history]
+        best_epoch = metrics["best_epoch"]
+        best_pq = metrics["best_val_pq"]
+        axis.plot(
+            epochs,
+            scores,
+            color=MODEL_COLORS[name],
+            linewidth=1.8,
+            label=name,
+        )
+        axis.scatter(
+            [best_epoch],
+            [best_pq],
+            color=MODEL_COLORS[name],
+            edgecolor="white",
+            linewidth=0.8,
+            zorder=3,
+        )
+    axis.set(
+        title="Seed 43 validation Panoptic Quality by epoch",
+        xlabel="Epoch",
+        ylabel="Validation PQ",
+        ylim=(0, 1),
+    )
+    axis.grid(True, alpha=0.25)
+    axis.legend()
+    fig.savefig(output_dir / "seed43_validation_pq.png", dpi=160)
+    plt.close(fig)
+
+    names = list(metrics_by_model)
+    best_pqs = [metrics_by_model[name]["best_val_pq"] for name in names]
+    best_epochs = [metrics_by_model[name]["best_epoch"] for name in names]
+    counts = {"TP": [], "FP": [], "FN": []}
+    for name in names:
+        metrics = metrics_by_model[name]
+        best_epoch_row = next(
+            (
+                row for row in metrics["history"]
+                if row["epoch"] == metrics["best_epoch"]
+            ),
+            None,
+        )
+        if best_epoch_row is None:
+            raise ValueError(f"Best epoch is absent from {name} metric history")
+        threshold_metrics = best_epoch_row["threshold_metrics"].get(
+            str(metrics["best_threshold"])
+        )
+        if threshold_metrics is None:
+            raise ValueError(f"Best-threshold metrics are absent for {name}")
+        for key, label in (("tp", "TP"), ("fp", "FP"), ("fn", "FN")):
+            counts[label].append(threshold_metrics[key])
+
+    fig, (pq_axis, count_axis) = plt.subplots(
+        2, 1, figsize=(10, 8), gridspec_kw={"height_ratios": [1, 1.4]},
+        constrained_layout=True,
+    )
+    bars = pq_axis.bar(
+        names, best_pqs, color=[MODEL_COLORS[name] for name in names]
+    )
+    pq_axis.set(
+        title="Best validation metrics (seed 43)",
+        ylabel="Best validation PQ",
+        ylim=(0, 1),
+    )
+    pq_axis.grid(axis="y", alpha=0.25)
+    for bar, score, epoch in zip(bars, best_pqs, best_epochs):
+        pq_axis.text(
+            bar.get_x() + bar.get_width() / 2,
+            score + 0.02,
+            f"{score:.3f} (epoch {epoch})",
+            ha="center",
+            va="bottom",
+            fontsize=9,
+        )
+
+    x = np.arange(len(names))
+    bar_width = 0.24
+    for offset, label, color in (
+        (-bar_width, "TP", "#16a34a"),
+        (0, "FP", "#dc2626"),
+        (bar_width, "FN", "#2563eb"),
+    ):
+        count_axis.bar(
+            x + offset, counts[label], bar_width, label=label, color=color
+        )
+    count_axis.set_xticks(x, names)
+    count_axis.set_ylabel("Instance count")
+    count_axis.grid(axis="y", alpha=0.25)
+    count_axis.legend()
+    fig.savefig(output_dir / "seed43_best_instance_counts.png", dpi=160)
+    plt.close(fig)
+
+    print(f"Saved analysis graphs under {output_dir}")
+    for name, metrics in metrics_by_model.items():
+        print(
+            f"{name}: best PQ={metrics['best_val_pq']:.4f} "
+            f"at epoch {metrics['best_epoch']}, "
+            f"threshold={metrics['best_threshold']}"
+        )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--analysis",
+        action="store_true",
+        help="Plot seed-43 training trends and best-checkpoint comparison graphs.",
+    )
+    parser.add_argument(
+        "--analysis-dir",
+        type=Path,
+        default=ROOT / "outputs/analysis",
+        help="Directory for analysis graphs.",
+    )
     parser.add_argument(
         "--output",
         type=Path,
@@ -251,6 +423,9 @@ def main() -> int:
     args = parser.parse_args()
     if args.samples < 1:
         parser.error("--samples must be at least 1")
+    if args.analysis:
+        create_analysis(args.analysis_dir)
+        return 0
     create_comparison(args.output, args.samples)
     return 0
 
