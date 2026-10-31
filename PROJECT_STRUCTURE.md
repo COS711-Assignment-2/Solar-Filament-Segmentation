@@ -1,7 +1,5 @@
 # Project Structure and Training Workflow
 
-
-
 ## Repository layout
 
 ```text
@@ -9,8 +7,10 @@ Solar-Filament-Segmentation/
 ├── configs/
 │   └── data.yaml                 # data-preparation settings
 ├── experiments/
+│   ├── condinst/
+│   │   └── config.yaml           # CondInst comparison experiment
 │   ├── unet/
-│   │   └── config.yaml           # complete U-Net baseline experiment
+│   │   └── config.yaml           # sole U-Net baseline
 │   └── boundary_aware_unet/
 │       └── config.yaml           # complete boundary-aware experiment
 ├── data/
@@ -38,6 +38,12 @@ Solar-Filament-Segmentation/
 └── tests/
 ```
 
+The standard U-Net is the project's sole baseline. CondInst, implemented in
+`src/models/condinst.py` with an anchor-free center controller and dynamic
+per-instance mask heads, and boundary-aware U-Net are comparison experiments.
+CondInst uses the existing processed instance-ID masks and the trainer's
+PQ-based validation/checkpoint selection.
+
 Add an experiment by making a directory under `experiments/` with a
 `config.yaml`. Set its `model.name`, unique `experiment.name`, data/loss
 settings (including maximum epochs and early-stopping patience), and validation
@@ -54,9 +60,10 @@ Use Python 3.8 or newer. On systems where `python` points to Python 2, use
 python3 scripts/train.py --experiment unet
 ```
 
-Run the boundary-aware model:
+Run the comparison experiments:
 
 ```bash
+python3 scripts/train.py --experiment condinst --device cuda
 python3 scripts/train.py --experiment boundary_aware_unet
 ```
 
@@ -79,19 +86,20 @@ maximum epoch count.
 Run on TPU explicitly:
 
 ```bash
-python3 scripts/train.py --experiment unet --device xla
+python3 scripts/train.py --experiment condinst --device xla
 ```
 
 `--device xla` uses PyTorch/XLA. The equivalent environment setting is
 `GLS_DEVICE=xla`; `auto` (the config default) selects TPU, then CUDA, then CPU.
-Use the TPU runtime's compatible PyTorch/XLA installation.
+CondInst training, validation, and checkpoint saving support the shared TPU
+path. Use the TPU runtime's compatible PyTorch/XLA installation.
 Before importing PyTorch/XLA, the trainer explicitly sets `PJRT_DEVICE=TPU`
 when the backend is not already selected. It then checks access to
 `/dev/accel*`; permission errors are reported without triggering an XLA process
 abort. You can also select PJRT before Python starts:
 
 ```bash
-PJRT_DEVICE=TPU GLS_DEVICE=xla python3 scripts/train.py --experiment unet
+PJRT_DEVICE=TPU GLS_DEVICE=xla python3 scripts/train.py --experiment condinst
 ```
 
 Training displays an epoch progress bar, batch progress during training, and
@@ -99,10 +107,23 @@ validation-image progress. `training.max_epochs` is the upper bound;
 `training.patience` stops training when validation PQ has not improved for the
 configured number of consecutive epochs. The best-PQ checkpoint is retained.
 
+Interrupted runs can continue from their latest checkpoint, which stores the
+model and optimizer state, completed epoch, and early-stopping history:
+
+```bash
+python3 scripts/train.py --experiment condinst --seed 43 --output-tag seed43 \
+  --resume-from runs/condinst/condinst-comparison/seed43/last_checkpoint.pt \
+  --device xla
+```
+
+Use the same experiment, seed, and output tag as the original run. Older
+`best_model.pt` files can warm-start training, but do not include optimizer
+state and therefore cannot restore an exact continuation.
+
 The previous environment-variable style also works:
 
 ```bash
-GLS_DEVICE=xla python3 scripts/train.py --experiment unet
+GLS_DEVICE=xla python3 scripts/train.py --experiment condinst
 ```
 
 ## Run every experiment for multiple seeds

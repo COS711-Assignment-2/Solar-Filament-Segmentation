@@ -7,7 +7,14 @@ import torch
 from PIL import Image
 
 from src.data.preprocess_images import preprocess_pair
-from src.models import BoundaryAwareUNet, MODEL_REGISTRY, UNet, create_model, register_model
+from src.models import (
+    BoundaryAwareUNet,
+    CondInst,
+    MODEL_REGISTRY,
+    UNet,
+    create_model,
+    register_model,
+)
 from src.training import trainer as train
 from src.training.losses import boundary_target, segmentation_loss
 from src.training.metrics import panoptic_quality
@@ -23,7 +30,7 @@ def test_preprocessing_keeps_image_separate_from_target_masks(tmp_path):
     instances = np.zeros((8, 8), dtype=np.uint8)
     instances[2:6, 2:6] = 3
     Image.fromarray(instances).save(instance_path)
-    Image.fromarray(instances > 0).convert("I").save(category_path)
+    Image.fromarray((instances > 0).astype(np.uint8)).save(category_path)
 
     result = preprocess_pair(
         image_path, instance_path, category_path, output_dir, size=(4, 4)
@@ -78,6 +85,156 @@ def test_boundary_aware_unet_returns_both_prediction_heads():
     assert output["boundary"].shape == (1, 1, 32, 32)
 
 
+def test_condinst_dynamic_masks_train_and_predict_instances():
+    model = CondInst(base_channels=4, mask_channels=8, max_instances=3)
+    images = torch.rand((1, 1, 32, 32))
+    instances = torch.zeros((1, 32, 32), dtype=torch.long)
+    instances[0, 5:18, 6:20] = 1
+    instances[0, 20:29, 21:30] = 2
+
+    losses = model.compute_loss(
+        images,
+        instances,
+        {"center_weight": 1.0, "mask_bce_weight": 1.0, "mask_dice_weight": 1.0},
+    )
+    assert set(losses) == {"total", "center", "mask"}
+    assert torch.isfinite(losses["total"])
+    losses["total"].backward()
+    assert model.controller.weight.grad is not None
+
+    model.eval()
+    mark_steps = []
+    predictions = model.predict_instances(
+        images,
+        score_threshold=0.0,
+        max_instances=3,
+        min_instance_size=1,
+        mark_step=lambda: mark_steps.append(True),
+    )
+    assert mark_steps == [True, True]
+    assert len(predictions) == 1
+    assert all(mask.shape == (32, 32) for _, mask in predictions[0])
+
+
+def test_condinst_batched_instance_prediction_matches_per_instance_reference():
+    model = CondInst(base_channels=4, mask_channels=8, max_instances=3).eval()
+    images = torch.zeros((2, 1, 32, 32))
+    center_logits = torch.full((2, 1, 8, 8), -10.0)
+    center_logits[0, 0, 1, 1] = 4.0
+    center_logits[0, 0, 5, 5] = 3.0
+    center_logits[1, 0, 2, 5] = 4.0
+    mask_features = torch.rand((2, 8, 16, 16))
+    dynamic_parameters = torch.rand(
+        (2, model.dynamic_parameter_count, 8, 8)
+    )
+    outputs = {
+        "center_logits": center_logits,
+        "mask_features": mask_features,
+        "dynamic_parameters": dynamic_parameters,
+    }
+    model.forward = lambda _: outputs
+
+    actual = model.predict_instances(
+        images, score_threshold=0.1, max_instances=3, min_instance_size=1
+    )
+    expected = []
+    center_scores = torch.sigmoid(center_logits)
+    pooled = torch.nn.functional.max_pool2d(
+        center_scores, kernel_size=3, stride=1, padding=1
+    )
+    peaks = (center_scores >= pooled) & (center_scores >= 0.1)
+    for batch_index in range(len(images)):
+        peak_indices = torch.nonzero(peaks[batch_index, 0], as_tuple=False)
+        peak_scores = center_scores[
+            batch_index, 0, peak_indices[:, 0], peak_indices[:, 1]
+        ]
+        order = torch.argsort(peak_scores, descending=True)
+        selected = []
+        for position in order.tolist():
+            y, x = peak_indices[position].tolist()
+            if any(
+                (y - previous_y) ** 2 + (x - previous_x) ** 2
+                < model.nms_distance**2
+                for previous_y, previous_x, _ in selected
+            ):
+                continue
+            selected.append((y, x, float(peak_scores[position].item())))
+            if len(selected) >= 3:
+                break
+        image_predictions = []
+        for y, x, score in selected:
+            logits = model._dynamic_mask(
+                mask_features[batch_index],
+                dynamic_parameters[batch_index, :, y, x],
+            )
+            probability = torch.sigmoid(
+                torch.nn.functional.interpolate(
+                    logits[None, None],
+                    size=images.shape[-2:],
+                    mode="bilinear",
+                    align_corners=False,
+                )[0, 0]
+            )
+            mask = (probability >= model.mask_threshold).numpy()
+            if int(mask.sum()) >= 1:
+                image_predictions.append((score, mask))
+        expected.append(image_predictions)
+
+    assert [len(predictions) for predictions in actual] == [
+        len(predictions) for predictions in expected
+    ]
+    for actual_image, expected_image in zip(actual, expected):
+        for (actual_score, actual_mask), (expected_score, expected_mask) in zip(
+            actual_image, expected_image
+        ):
+            np.testing.assert_allclose(actual_score, expected_score, rtol=0, atol=1e-7)
+            np.testing.assert_array_equal(actual_mask, expected_mask)
+
+
+def test_condinst_grouped_dynamic_masks_match_per_instance_masks():
+    model = CondInst(base_channels=4, mask_channels=8)
+    instance_count, channels, height, width = 3, 8, 8, 8
+    features = torch.rand(instance_count, channels, height, width)
+    parameters = torch.rand(instance_count, model.dynamic_parameter_count)
+
+    grouped = model._dynamic_masks(features, parameters)
+    separate = torch.stack([
+        model._dynamic_mask(features[index], parameters[index])
+        for index in range(instance_count)
+    ])
+
+    torch.testing.assert_close(grouped, separate)
+
+
+def test_condinst_uses_higher_resolution_masks_and_soft_center_targets():
+    model = CondInst(base_channels=4, mask_channels=8)
+    output = model(torch.rand((1, 1, 32, 32)))
+    assert output["mask_features"].shape[-2:] == (16, 16)
+    assert output["center_logits"].shape[-2:] == (8, 8)
+
+    center_target = torch.zeros((16, 16))
+    model._draw_center_gaussian(center_target, 8, 8, radius=2)
+    assert center_target[8, 8] == 1.0
+    assert 0.0 < center_target[8, 9] < 1.0
+    assert center_target[0, 0] == 0.0
+
+
+def test_condinst_labeling_handles_empty_and_overlapping_predictions():
+    empty = train._label_instance_predictions([], 0.2, 1, (4, 4))
+    assert empty.shape == (4, 4)
+    assert not empty.any()
+
+    first = np.zeros((4, 4), dtype=bool)
+    first[:3, :3] = True
+    second = np.zeros((4, 4), dtype=bool)
+    second[1:, 1:] = True
+    labels = train._label_instance_predictions(
+        [(0.8, first), (0.6, second)], 0.2, 1, (4, 4)
+    )
+    assert set(np.unique(labels)) == {0, 1, 2}
+    assert labels[1, 1] == 1
+
+
 def test_validation_threshold_is_selected_by_pq(monkeypatch):
     class DummyModel:
         def eval(self):
@@ -108,6 +265,42 @@ def test_validation_threshold_is_selected_by_pq(monkeypatch):
 
     assert threshold == 0.7
     assert pq == 1.0
+
+
+def test_condinst_validation_selects_center_score_threshold(monkeypatch):
+    class DummyInstanceModel:
+        is_instance_model = True
+
+        def eval(self):
+            return self
+
+    class FakeXla:
+        pass
+
+    target = np.zeros((8, 8), dtype=np.int32)
+    target[2:5, 2:5] = 1
+    predicted_mask = target > 0
+    prediction_args = []
+
+    def predict_instance_image(*args):
+        prediction_args.extend(args)
+        return [(0.8, predicted_mask)], target
+
+    monkeypatch.setattr(train, "_predict_instance_image", predict_instance_image)
+    config = {
+        "evaluation": {
+            "thresholds": [0.5, 0.9],
+            "min_instance_size": 1,
+        }
+    }
+
+    threshold, pq, _ = train.evaluate_thresholds(
+        DummyInstanceModel(), ".", [{}], config, torch.device("cpu"), FakeXla
+    )
+
+    assert threshold == 0.5
+    assert pq == 1.0
+    assert prediction_args[-1] is FakeXla
 
 
 def test_device_selection_supports_cpu_cuda_and_tpu(monkeypatch):
@@ -244,9 +437,12 @@ def test_xla_training_step_flushes_each_optimizer_step():
 
 
 def test_models_are_separate_registered_architectures():
-    assert set(MODEL_REGISTRY) >= {"unet", "boundary_aware_unet"}
+    assert set(MODEL_REGISTRY) >= {"condinst", "unet", "boundary_aware_unet"}
     assert isinstance(create_model("unet", base_channels=2), UNet)
     assert isinstance(create_model("boundary_aware_unet", base_channels=2), BoundaryAwareUNet)
+    assert isinstance(
+        create_model("condinst", base_channels=4, mask_channels=8), CondInst
+    )
 
     class TestModel(torch.nn.Module):
         def __init__(self, channels=1):
@@ -296,10 +492,43 @@ experiment:
         raise AssertionError("Expected unsafe experiment names to be rejected")
 
 
+def test_training_preflight_reports_missing_processed_data(tmp_path):
+    try:
+        train._validate_processed_records(
+            tmp_path,
+            "train",
+            [{"image_id": "sample-1"}],
+        )
+    except FileNotFoundError as error:
+        message = str(error)
+        assert "data is incomplete" in message
+        assert "prepare_data.py --stage all" in message
+        assert "sample-1.png" in message
+    else:
+        raise AssertionError("Expected missing processed data to fail preflight")
+
+
 def test_early_stopping_uses_validation_patience():
     assert train.should_stop_early(stale_epochs=4, patience=4)
     assert not train.should_stop_early(stale_epochs=3, patience=4)
     assert not train.should_stop_early(stale_epochs=100, patience=None)
+
+
+def test_rng_restore_accepts_listified_python_state():
+    state = train._capture_rng_state()
+    expected_random = train.random.Random()
+    expected_random.setstate(state["python"])
+    expected_value = expected_random.random()
+
+    def listify(value):
+        if isinstance(value, (tuple, list)):
+            return [listify(item) for item in value]
+        return value
+
+    state["python"] = listify(state["python"])
+    train._restore_rng_state(state)
+
+    assert train.random.random() == expected_value
 
 
 def test_config_requires_max_epochs_and_valid_patience(tmp_path):
@@ -406,7 +635,19 @@ def test_training_stops_after_validation_pq_patience(tmp_path, monkeypatch, caps
     assert "val_pq=0.4000 | threshold=0.500\n" in output
     run_dir = tmp_path / "runs" / "unet" / "early-stop-check" / "seed42"
     assert (run_dir / "best_model.pt").is_file()
+    last_checkpoint_path = run_dir / "last_checkpoint.pt"
+    assert last_checkpoint_path.is_file()
+    last_checkpoint = torch.load(last_checkpoint_path, map_location="cpu")
+    assert last_checkpoint["epoch"] == 3
+    assert last_checkpoint["stale_epochs"] == 2
+    assert "optimizer_state_dict" in last_checkpoint
+    assert len(last_checkpoint["history"]) == 3
     assert (run_dir / "metrics.json").is_file()
+
+    resumed = train.train(config, resume_from=last_checkpoint_path)
+    assert resumed["best_epoch"] == 1
+    assert resumed["epochs_completed"] == 4
+    assert [entry["epoch"] for entry in resumed["history"]] == [1, 2, 3, 4]
 
 
 def test_cli_epoch_and_patience_overrides(monkeypatch):
@@ -439,9 +680,18 @@ def test_cli_epoch_and_patience_overrides(monkeypatch):
             "20",
             "--device",
             "xla",
+            "--resume-from",
+            "runs/condinst/last_checkpoint.pt",
         ],
     )
 
     train.main()
 
-    assert captured["args"] == (None, None, "tpu", 100, 20)
+    assert captured["args"] == (
+        None,
+        None,
+        "tpu",
+        100,
+        20,
+        "runs/condinst/last_checkpoint.pt",
+    )

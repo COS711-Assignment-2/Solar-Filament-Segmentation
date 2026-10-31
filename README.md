@@ -145,32 +145,70 @@ python scripts/prepare_data.py --stage process `
 
 ## Model training and experiments
 
-The segmentation trainer reads the processed train/validation manifests and
-instance masks. Before training, regenerate prepared data with the command
-above if it was created by an earlier version of this repository; image
-preprocessing previously could overwrite generated images with mask pixels.
-Training output reports the training loss and validation panoptic quality
-(PQ), along with the selected postprocessing threshold. PQ is the validation
-selection metric for this instance-segmentation task; the output does not
-report pixel-level Dice or IoU.
+The standard U-Net is the project's sole baseline. CondInst is a compact
+anchor-free instance-segmentation comparison model with a shared multi-scale
+feature map and per-instance dynamic mask heads. It trains directly from the
+generated instance-ID masks and uses the project's validation PQ selection
+loop. Boundary-aware U-Net is also a comparison experiment, not a baseline.
+The three experiment configs use the same 512-pixel resolution, batch size,
+learning rate, seed, epoch limit, early-stopping patience, validation split,
+and threshold candidates for a controlled starting comparison. Architecture-
+specific model and loss settings remain distinct; threshold meanings differ
+between CondInst center confidence and U-Net foreground probability.
+Before training, regenerate prepared data with the command above if it was
+created by an earlier version of this repository; image preprocessing
+previously could overwrite generated images with mask pixels.
+
+Training output reports training loss and validation panoptic quality (PQ),
+along with the selected score threshold. For CondInst, thresholds are
+instance-center confidence thresholds; for U-Net models, they are foreground
+probability thresholds. PQ is the validation selection metric for this
+instance-segmentation task; the output does not report pixel-level Dice or IoU.
+
+To continue an interrupted run, pass its `last_checkpoint.pt` together with
+the same experiment, seed, and output tag. The checkpoint restores the model,
+optimizer, completed epoch, and early-stopping state:
+
+```bash
+python3 scripts/train.py --experiment condinst --seed 43 --output-tag seed43 \
+  --resume-from runs/condinst/condinst-comparison/seed43/last_checkpoint.pt \
+  --device xla
+```
+
+Older `best_model.pt` checkpoints can also be used with `--resume-from`, but
+they contain model weights only, so the optimizer is restarted and the run is
+a warm restart rather than an exact continuation.
+
+Generate a qualitative comparison of the saved seed-43 models on validation
+images using each checkpoint's selected threshold:
+
+```bash
+python3 scripts/visualize_predictions.py
+```
+
+The comparison image is written to
+`outputs/qualitative/validation_seed43.png`. Green marks correctly predicted
+foreground, red false positives, and blue missed ground truth.
 
 ```powershell
 python3 scripts/train.py --experiment unet
 ```
 
 Keep one clearly named configuration under `experiments/<name>/config.yaml`.
-The repository includes a U-Net baseline and a separate boundary-aware U-Net
-example. Copy an experiment folder for each new run, give it a unique
-`experiment.name`, then train it by folder name. For example:
+The repository includes the standard U-Net baseline and CondInst and
+boundary-aware U-Net comparison experiments. Copy an experiment folder for
+each new run, give it a unique `experiment.name`, then train it by folder
+name. For example:
 
 ```powershell
+python3 scripts/train.py --experiment condinst
 python3 scripts/train.py --experiment boundary_aware_unet
 ```
 
 Override maximum epochs and early-stopping patience for a run:
 
 ```bash
-python3 scripts/train.py --experiment unet --max-epochs 100 --patience 15
+python3 scripts/train.py --experiment condinst --max-epochs 100 --patience 15
 ```
 
 Use `--patience 0` to disable early stopping and train for the full maximum
@@ -178,7 +216,11 @@ epoch count.
 
 Configuration options:
 
-- `model.name`: a registered architecture (`unet` or `boundary_aware_unet`).
+- `model.name`: a registered architecture (`condinst`, `unet`, or
+  `boundary_aware_unet`). CondInst uses `center_weight`, `mask_bce_weight`,
+  and `mask_dice_weight`; its thresholds are candidate-center confidence
+  scores and it predicts instance masks directly without connected-component
+  or watershed postprocessing.
   Each architecture has its own module under `src/models/`; register future
   architectures with `register_model` in `src/models/__init__.py`. The trainer
   depends on the model registry, not on model-specific imports or conditionals.
@@ -189,7 +231,9 @@ Configuration options:
 - `data.resolution`: resize images and masks to `512` or `1024`, or use
   `tiled` with `data.tile_size` for fixed-size non-overlapping crops.
 - `loss.bce_weight` and `loss.dice_weight`: independently weight BCE and soft
-  Dice loss; `loss.boundary_weight` controls the auxiliary boundary loss.
+  Dice loss for the U-Net models; `loss.boundary_weight` controls the
+  boundary-aware U-Net auxiliary loss. CondInst instead uses the three loss
+  weights described above.
 - `evaluation.postprocessing`: `connected_components` or `watershed`.
 - `evaluation.thresholds`: candidate foreground thresholds. Each epoch scores
   every candidate using instance-level validation PQ and records the best one
@@ -200,14 +244,92 @@ Configuration options:
   Install a `torch_xla` release compatible with the PyTorch version supplied by
   the TPU runtime; avoid replacing the runtime's PyTorch/XLA packages with
   unrelated versions from `requirements.txt`.
-- TPU launch can set the PJRT backend before Python starts:
-  `PJRT_DEVICE=TPU GLS_DEVICE=xla python3 scripts/train.py --experiment unet
-  --device xla`. The trainer also sets `PJRT_DEVICE=TPU` before importing
-  PyTorch/XLA when no PJRT backend was explicitly configured.
+- Run CondInst explicitly on TPU with `--device xla` (or `--device tpu`):
+
+  ```bash
+  PJRT_DEVICE=TPU python3 scripts/train.py --experiment condinst --device xla
+  ```
+
+  The trainer sets `PJRT_DEVICE=TPU` before importing PyTorch/XLA when no PJRT
+  backend was explicitly configured.
 - `training.max_epochs` sets the maximum number of epochs. `training.patience`
   enables early stopping when validation PQ stops improving. Progress bars
   show epoch, training-batch, and validation-image progress; the best-PQ
   checkpoint is kept.
+
+### Train on Google Colab
+
+Use a Colab runtime with a GPU (Runtime → Change runtime type → T4 GPU or
+another available accelerator). First push the CondInst changes to the
+`feat/condinst-instance-seg` branch, then clone that branch into the runtime
+and run the following in a notebook cell:
+
+```bash
+!git clone -b feat/condinst-instance-seg https://github.com/COS711-Assignment-2/Solar-Filament-Segmentation.git
+%cd Solar-Filament-Segmentation
+!python -m pip install -r requirements-colab.txt
+!python -c "import torch; print('CUDA available:', torch.cuda.is_available())"
+```
+
+`requirements-colab.txt` intentionally leaves Colab's preinstalled PyTorch
+untouched so its CUDA build is not replaced. If CUDA reports `False`, select a
+GPU runtime and reconnect before training.
+
+If the processed dataset is not already in the repository runtime, authenticate
+to Kaggle using a Colab Secret named `KAGGLE_API_TOKEN` (or another supported
+KaggleHub credential method), then download and prepare the competition data:
+
+```python
+from google.colab import userdata
+import os
+os.environ["KAGGLE_API_TOKEN"] = userdata.get("KAGGLE_API_TOKEN")
+```
+
+Run the download and preparation using the paths discovered by the downloader
+instead of assuming a fixed Kaggle folder structure:
+
+```python
+import subprocess
+import sys
+from src.data.download import download_dataset
+
+paths = download_dataset()
+subprocess.run(
+    [
+        sys.executable, "scripts/prepare_data.py", "--stage", "all",
+        "--train-images", str(paths.train_images),
+        "--annotations", str(paths.annotations),
+        "--split-dir", "data/splits",
+        "--processed-dir", "data/processed",
+    ],
+    check=True,
+)
+```
+
+This step is required for a fresh clone: `data/raw/` and `data/processed/`
+are excluded from Git, so the tracked split manifests alone are not sufficient
+to train. If training reports a missing file under
+`data/processed/train/images/` or `data/processed/val/images/`, complete this
+preparation cell in the current Colab runtime before retrying.
+
+```bash
+!python scripts/verify_prepared_data.py --split-dir data/splits --processed-dir data/processed
+```
+
+The Kaggle account must have access to the competition. After verifying the
+prepared outputs, train CondInst on the GPU:
+
+```bash
+!python scripts/train.py --experiment condinst --device cuda
+```
+
+Training results are written under `runs/condinst/condinst-comparison/`. Colab
+runtime files are temporary; copy the processed data and desired run/checkpoint
+to Google Drive if they need to persist after the runtime disconnects. Reduce
+`data.resolution` or `training.batch_size` in
+`experiments/condinst/config.yaml` if the selected GPU runs out of memory.
+The normal training command also includes `--max-epochs` and `--patience`
+overrides if you want to run a short smoke test before a full training run.
 
 See [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) for the complete layout,
 single-experiment commands, TPU usage, and multi-seed runner.
