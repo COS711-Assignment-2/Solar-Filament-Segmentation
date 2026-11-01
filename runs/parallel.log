@@ -1,0 +1,3943 @@
+Launching 20 dynamically scheduled model/seed runs across 4 XLA devices; seeds=[42, 43, 44, 45, 46]; epochs=100; early stopping disabled.
+[worker 2 / TPU core 2 (xla:0)] ready for dynamically scheduled runs
+[worker 2 / TPU core 2 (xla:0)] starting unet-baseline seed=42, epochs=100, early_stopping=disabled
+[worker 1 / TPU core 1 (xla:0)] ready for dynamically scheduled runs
+[worker 1 / TPU core 1 (xla:0)] starting condinst-comparison seed=42, epochs=100, early_stopping=disabled
+[worker 0 / TPU core 0 (xla:0)] ready for dynamically scheduled runs
+[worker 0 / TPU core 0 (xla:0)] starting boundary-aware-unet seed=42, epochs=100, early_stopping=disabled
+[worker 3 / TPU core 3 (xla:0)] ready for dynamically scheduled runs
+[worker 3 / TPU core 3 (xla:0)] starting boundary-aware-unet-pyhopper-corrected-data seed=42, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== condinst-comparison, seed42 ===
+Starting epoch 1/100
+Training device: xla:0
+=== unet-baseline, seed42 ===
+Starting epoch 1/100
+Training device: xla:0
+=== boundary-aware-unet-pyhopper-corrected-data, seed42 ===
+Starting epoch 1/100
+Training device: xla:0
+=== boundary-aware-unet, seed42 ===
+Starting epoch 1/100
+Epoch 001/100 | train_loss=1.2543 | val_pq=0.0540 | threshold=0.600 (best)
+Starting epoch 2/100
+Epoch 001/100 | train_loss=1.3561 | val_pq=0.0440 | threshold=0.400 (best)
+Starting epoch 2/100
+Epoch 001/100 | train_loss=0.8851 | val_pq=0.0000 | threshold=0.440 (best)
+Starting epoch 2/100
+Epoch 002/100 | train_loss=1.0888 | val_pq=0.0891 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 002/100 | train_loss=1.1301 | val_pq=0.0568 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 002/100 | train_loss=0.8324 | val_pq=0.0000 | threshold=0.440 (best)
+Starting epoch 3/100
+Epoch 003/100 | train_loss=0.9770 | val_pq=0.1361 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 003/100 | train_loss=0.9752 | val_pq=0.1200 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 003/100 | train_loss=0.8047 | val_pq=0.0001 | threshold=0.440 (best)
+Starting epoch 4/100
+Epoch 004/100 | train_loss=0.8402 | val_pq=0.2168 | threshold=0.600 (best)
+Starting epoch 5/100
+Epoch 004/100 | train_loss=0.7883 | val_pq=0.0006 | threshold=0.440 (best)
+Starting epoch 5/100
+Epoch 004/100 | train_loss=0.7886 | val_pq=0.1813 | threshold=0.600 (best)
+Starting epoch 5/100
+Epoch 005/100 | train_loss=0.7779 | val_pq=0.0039 | threshold=0.440 (best)
+Starting epoch 6/100
+Epoch 005/100 | train_loss=0.6422 | val_pq=0.2169 | threshold=0.200 (best)
+Starting epoch 6/100
+Epoch 005/100 | train_loss=0.5709 | val_pq=0.1853 | threshold=0.600 (best)
+Starting epoch 6/100
+Epoch 006/100 | train_loss=0.7702 | val_pq=0.0118 | threshold=0.440 (best)
+Starting epoch 7/100
+Epoch 006/100 | train_loss=0.4875 | val_pq=0.2643 | threshold=0.300 (best)
+Starting epoch 7/100
+Epoch 006/100 | train_loss=0.4578 | val_pq=0.2010 | threshold=0.600 (best)
+Starting epoch 7/100
+Epoch 007/100 | train_loss=0.7643 | val_pq=0.0258 | threshold=0.440 (best)
+Starting epoch 8/100
+Epoch 007/100 | train_loss=0.4250 | val_pq=0.2347 | threshold=0.600
+Starting epoch 8/100
+Epoch 007/100 | train_loss=0.4141 | val_pq=0.2330 | threshold=0.300 (best)
+Starting epoch 8/100
+Epoch 008/100 | train_loss=0.7589 | val_pq=0.0327 | threshold=0.440 (best)
+Starting epoch 9/100
+Epoch 008/100 | train_loss=0.3954 | val_pq=0.2788 | threshold=0.300 (best)
+Starting epoch 9/100
+Epoch 008/100 | train_loss=0.3984 | val_pq=0.2676 | threshold=0.300 (best)
+Starting epoch 9/100
+Epoch 009/100 | train_loss=0.7547 | val_pq=0.0331 | threshold=0.440 (best)
+Starting epoch 10/100
+Epoch 009/100 | train_loss=0.3802 | val_pq=0.2279 | threshold=0.600
+Starting epoch 10/100
+Epoch 009/100 | train_loss=0.3866 | val_pq=0.1521 | threshold=0.600
+Starting epoch 10/100
+Epoch 010/100 | train_loss=0.7499 | val_pq=0.0339 | threshold=0.440 (best)
+Starting epoch 11/100
+Epoch 010/100 | train_loss=0.3680 | val_pq=0.2447 | threshold=0.400
+Starting epoch 11/100
+Epoch 001/100 | train_loss=3.0222 | val_pq=0.0011 | threshold=0.300 (best) | TP=2 FP=429 FN=1591
+Starting epoch 2/100
+Epoch 010/100 | train_loss=0.3716 | val_pq=0.2691 | threshold=0.400 (best)
+Starting epoch 11/100
+Epoch 011/100 | train_loss=0.7454 | val_pq=0.0373 | threshold=0.440 (best)
+Starting epoch 12/100
+Epoch 011/100 | train_loss=0.3546 | val_pq=0.2714 | threshold=0.500
+Starting epoch 12/100
+Epoch 011/100 | train_loss=0.3720 | val_pq=0.2573 | threshold=0.600
+Starting epoch 12/100
+Epoch 012/100 | train_loss=0.7442 | val_pq=0.0378 | threshold=0.440 (best)
+Starting epoch 13/100
+Epoch 012/100 | train_loss=0.3489 | val_pq=0.2846 | threshold=0.200 (best)
+Starting epoch 13/100
+Epoch 012/100 | train_loss=0.3581 | val_pq=0.2529 | threshold=0.600
+Starting epoch 13/100
+Epoch 002/100 | train_loss=2.1733 | val_pq=0.0063 | threshold=0.300 (best) | TP=15 FP=1175 FN=1578
+Starting epoch 3/100
+Epoch 013/100 | train_loss=0.7384 | val_pq=0.0389 | threshold=0.440 (best)
+Starting epoch 14/100
+Epoch 013/100 | train_loss=0.3428 | val_pq=0.2779 | threshold=0.200
+Starting epoch 14/100
+Epoch 013/100 | train_loss=0.3465 | val_pq=0.2622 | threshold=0.300
+Starting epoch 14/100
+Epoch 014/100 | train_loss=0.7348 | val_pq=0.0385 | threshold=0.440
+Starting epoch 15/100
+Epoch 014/100 | train_loss=0.3499 | val_pq=0.2871 | threshold=0.400 (best)
+Starting epoch 15/100
+Epoch 003/100 | train_loss=1.9399 | val_pq=0.0220 | threshold=0.300 (best) | TP=55 FP=1226 FN=1538
+Starting epoch 4/100
+Epoch 014/100 | train_loss=0.3533 | val_pq=0.2631 | threshold=0.600
+Starting epoch 15/100
+Epoch 015/100 | train_loss=0.7308 | val_pq=0.0391 | threshold=0.440 (best)
+Starting epoch 16/100
+Epoch 015/100 | train_loss=0.3321 | val_pq=0.2983 | threshold=0.300 (best)
+Starting epoch 16/100
+Epoch 015/100 | train_loss=0.3559 | val_pq=0.2575 | threshold=0.500
+Starting epoch 16/100
+Epoch 016/100 | train_loss=0.7271 | val_pq=0.0394 | threshold=0.440 (best)
+Starting epoch 17/100
+Epoch 004/100 | train_loss=1.7986 | val_pq=0.0395 | threshold=0.300 (best) | TP=106 FP=1379 FN=1487
+Starting epoch 5/100
+Epoch 016/100 | train_loss=0.3264 | val_pq=0.2594 | threshold=0.400
+Starting epoch 17/100
+Epoch 016/100 | train_loss=0.3419 | val_pq=0.2609 | threshold=0.200
+Starting epoch 17/100
+Epoch 017/100 | train_loss=0.7238 | val_pq=0.0392 | threshold=0.440
+Starting epoch 18/100
+Epoch 017/100 | train_loss=0.3290 | val_pq=0.2762 | threshold=0.600
+Starting epoch 18/100
+Epoch 017/100 | train_loss=0.3378 | val_pq=0.2822 | threshold=0.400 (best)
+Starting epoch 18/100
+Epoch 018/100 | train_loss=0.7202 | val_pq=0.0405 | threshold=0.440 (best)
+Starting epoch 19/100
+Epoch 005/100 | train_loss=1.6540 | val_pq=0.0398 | threshold=0.300 (best) | TP=103 FP=1343 FN=1490
+Starting epoch 6/100
+Epoch 018/100 | train_loss=0.3153 | val_pq=0.2985 | threshold=0.500 (best)
+Starting epoch 19/100
+Epoch 018/100 | train_loss=0.3364 | val_pq=0.2800 | threshold=0.400
+Starting epoch 19/100
+Epoch 019/100 | train_loss=0.7169 | val_pq=0.0429 | threshold=0.440 (best)
+Starting epoch 20/100
+Epoch 006/100 | train_loss=1.5426 | val_pq=0.0351 | threshold=0.300 | TP=115 FP=2009 FN=1478
+Starting epoch 7/100
+Epoch 019/100 | train_loss=0.3163 | val_pq=0.2967 | threshold=0.200
+Starting epoch 20/100
+Epoch 019/100 | train_loss=0.3413 | val_pq=0.2445 | threshold=0.300
+Starting epoch 20/100
+Epoch 020/100 | train_loss=0.7135 | val_pq=0.0389 | threshold=0.440
+Starting epoch 21/100
+Epoch 020/100 | train_loss=0.3108 | val_pq=0.2919 | threshold=0.200
+Starting epoch 21/100
+Epoch 020/100 | train_loss=0.3346 | val_pq=0.2873 | threshold=0.400 (best)
+Starting epoch 21/100
+Epoch 021/100 | train_loss=0.7100 | val_pq=0.0366 | threshold=0.440
+Starting epoch 22/100
+Epoch 007/100 | train_loss=1.4199 | val_pq=0.0388 | threshold=0.300 | TP=120 FP=1810 FN=1473
+Starting epoch 8/100
+Epoch 021/100 | train_loss=0.3369 | val_pq=0.3011 | threshold=0.400 (best)
+Starting epoch 22/100
+Epoch 022/100 | train_loss=0.7071 | val_pq=0.0354 | threshold=0.440
+Starting epoch 23/100
+Epoch 021/100 | train_loss=0.3286 | val_pq=0.2909 | threshold=0.400 (best)
+Starting epoch 22/100
+Epoch 023/100 | train_loss=0.7035 | val_pq=0.0520 | threshold=0.440 (best)
+Starting epoch 24/100
+Epoch 022/100 | train_loss=0.3181 | val_pq=0.2945 | threshold=0.600
+Starting epoch 23/100
+Epoch 008/100 | train_loss=1.3266 | val_pq=0.0610 | threshold=0.400 (best) | TP=127 FP=707 FN=1466
+Starting epoch 9/100
+Epoch 022/100 | train_loss=0.3199 | val_pq=0.2703 | threshold=0.300
+Starting epoch 23/100
+Epoch 024/100 | train_loss=0.7002 | val_pq=0.0486 | threshold=0.440
+Starting epoch 25/100
+Epoch 023/100 | train_loss=0.3079 | val_pq=0.2643 | threshold=0.200
+Starting epoch 24/100
+Epoch 023/100 | train_loss=0.3200 | val_pq=0.2464 | threshold=0.200
+Starting epoch 24/100
+Epoch 009/100 | train_loss=1.2291 | val_pq=0.0575 | threshold=0.300 | TP=166 FP=1591 FN=1427
+Starting epoch 10/100
+Epoch 025/100 | train_loss=0.6969 | val_pq=0.0498 | threshold=0.440
+Starting epoch 26/100
+Epoch 024/100 | train_loss=0.3010 | val_pq=0.2852 | threshold=0.600
+Starting epoch 25/100
+Epoch 024/100 | train_loss=0.3198 | val_pq=0.2516 | threshold=0.600
+Starting epoch 25/100
+Epoch 026/100 | train_loss=0.6937 | val_pq=0.0469 | threshold=0.440
+Starting epoch 27/100
+Epoch 010/100 | train_loss=1.1343 | val_pq=0.0667 | threshold=0.300 (best) | TP=193 FP=1606 FN=1400
+Starting epoch 11/100
+Epoch 025/100 | train_loss=0.2997 | val_pq=0.2746 | threshold=0.300
+Starting epoch 26/100
+Epoch 025/100 | train_loss=0.3136 | val_pq=0.2750 | threshold=0.200
+Starting epoch 26/100
+Epoch 027/100 | train_loss=0.6905 | val_pq=0.0422 | threshold=0.440
+Starting epoch 28/100
+Epoch 026/100 | train_loss=0.2968 | val_pq=0.3015 | threshold=0.600 (best)
+Starting epoch 27/100
+Epoch 026/100 | train_loss=0.3160 | val_pq=0.2619 | threshold=0.600
+Starting epoch 27/100
+Epoch 011/100 | train_loss=1.0503 | val_pq=0.0623 | threshold=0.300 | TP=193 FP=1835 FN=1400
+Starting epoch 12/100
+Epoch 028/100 | train_loss=0.6873 | val_pq=0.0515 | threshold=0.440
+Starting epoch 29/100
+Epoch 027/100 | train_loss=0.2931 | val_pq=0.2865 | threshold=0.600
+Starting epoch 28/100
+Epoch 027/100 | train_loss=0.3161 | val_pq=0.2896 | threshold=0.500
+Starting epoch 28/100
+Epoch 012/100 | train_loss=0.9930 | val_pq=0.0747 | threshold=0.400 (best) | TP=181 FP=1075 FN=1412
+Starting epoch 13/100
+Epoch 029/100 | train_loss=0.6842 | val_pq=0.0568 | threshold=0.440 (best)
+Starting epoch 30/100
+Epoch 028/100 | train_loss=0.3036 | val_pq=0.2888 | threshold=0.300
+Starting epoch 29/100
+Epoch 028/100 | train_loss=0.3169 | val_pq=0.2791 | threshold=0.300
+Starting epoch 29/100
+Epoch 030/100 | train_loss=0.6811 | val_pq=0.0444 | threshold=0.440
+Starting epoch 31/100
+Epoch 013/100 | train_loss=0.9456 | val_pq=0.0627 | threshold=0.300 | TP=178 FP=1498 FN=1415
+Starting epoch 14/100
+Epoch 029/100 | train_loss=0.2951 | val_pq=0.3053 | threshold=0.300 (best)
+Starting epoch 30/100
+Epoch 029/100 | train_loss=0.3103 | val_pq=0.2839 | threshold=0.400
+Starting epoch 30/100
+Epoch 031/100 | train_loss=0.6780 | val_pq=0.0621 | threshold=0.440 (best)
+Starting epoch 32/100
+Epoch 030/100 | train_loss=0.2884 | val_pq=0.3140 | threshold=0.400 (best)
+Starting epoch 31/100
+Epoch 030/100 | train_loss=0.3026 | val_pq=0.2823 | threshold=0.300
+Starting epoch 31/100
+Epoch 014/100 | train_loss=0.9004 | val_pq=0.0692 | threshold=0.400 | TP=186 FP=1377 FN=1407
+Starting epoch 15/100
+Epoch 032/100 | train_loss=0.6748 | val_pq=0.0636 | threshold=0.440 (best)
+Starting epoch 33/100
+Epoch 031/100 | train_loss=0.2852 | val_pq=0.3153 | threshold=0.500 (best)
+Starting epoch 32/100
+Epoch 031/100 | train_loss=0.3002 | val_pq=0.2150 | threshold=0.600
+Starting epoch 32/100
+Epoch 033/100 | train_loss=0.6717 | val_pq=0.0647 | threshold=0.440 (best)
+Starting epoch 34/100
+Epoch 015/100 | train_loss=0.8511 | val_pq=0.0899 | threshold=0.400 (best) | TP=193 FP=727 FN=1400
+Starting epoch 16/100
+Epoch 032/100 | train_loss=0.2879 | val_pq=0.2884 | threshold=0.400
+Starting epoch 33/100
+Epoch 034/100 | train_loss=0.6686 | val_pq=0.0692 | threshold=0.440 (best)
+Starting epoch 35/100
+Epoch 032/100 | train_loss=0.3076 | val_pq=0.2767 | threshold=0.300
+Starting epoch 33/100
+Epoch 033/100 | train_loss=0.2912 | val_pq=0.2669 | threshold=0.200
+Starting epoch 34/100
+Epoch 016/100 | train_loss=0.8380 | val_pq=0.0862 | threshold=0.400 | TP=198 FP=892 FN=1395
+Starting epoch 17/100
+Epoch 035/100 | train_loss=0.6656 | val_pq=0.0613 | threshold=0.440
+Starting epoch 36/100
+Epoch 033/100 | train_loss=0.2972 | val_pq=0.2859 | threshold=0.300
+Starting epoch 34/100
+Epoch 034/100 | train_loss=0.2904 | val_pq=0.2984 | threshold=0.500
+Starting epoch 35/100
+Epoch 036/100 | train_loss=0.6626 | val_pq=0.0590 | threshold=0.440
+Starting epoch 37/100
+Epoch 034/100 | train_loss=0.2909 | val_pq=0.2947 | threshold=0.500 (best)
+Starting epoch 35/100
+Epoch 017/100 | train_loss=0.8066 | val_pq=0.0561 | threshold=0.300 | TP=177 FP=1898 FN=1416
+Starting epoch 18/100
+Epoch 037/100 | train_loss=0.6596 | val_pq=0.0562 | threshold=0.440
+Starting epoch 38/100
+Epoch 035/100 | train_loss=0.2794 | val_pq=0.3026 | threshold=0.200
+Starting epoch 36/100
+Epoch 035/100 | train_loss=0.2914 | val_pq=0.2977 | threshold=0.200 (best)
+Starting epoch 36/100
+Epoch 018/100 | train_loss=0.7781 | val_pq=0.0783 | threshold=0.400 | TP=178 FP=947 FN=1415
+Starting epoch 19/100
+Epoch 038/100 | train_loss=0.6568 | val_pq=0.0845 | threshold=0.440 (best)
+Starting epoch 39/100
+Epoch 036/100 | train_loss=0.2937 | val_pq=0.2830 | threshold=0.200
+Starting epoch 37/100
+Epoch 036/100 | train_loss=0.2882 | val_pq=0.2890 | threshold=0.500
+Starting epoch 37/100
+Epoch 039/100 | train_loss=0.6539 | val_pq=0.0780 | threshold=0.440
+Starting epoch 40/100
+Epoch 037/100 | train_loss=0.2875 | val_pq=0.3072 | threshold=0.200
+Starting epoch 38/100
+Epoch 019/100 | train_loss=0.7570 | val_pq=0.0849 | threshold=0.300 | TP=237 FP=1453 FN=1356
+Starting epoch 20/100
+Epoch 037/100 | train_loss=0.2874 | val_pq=0.2776 | threshold=0.400
+Starting epoch 38/100
+Epoch 040/100 | train_loss=0.6509 | val_pq=0.0525 | threshold=0.440
+Starting epoch 41/100
+Epoch 038/100 | train_loss=0.2762 | val_pq=0.2990 | threshold=0.400
+Starting epoch 39/100
+Epoch 038/100 | train_loss=0.2905 | val_pq=0.2894 | threshold=0.300
+Starting epoch 39/100
+Epoch 020/100 | train_loss=0.7291 | val_pq=0.0723 | threshold=0.400 | TP=179 FP=1109 FN=1414
+Starting epoch 21/100
+Epoch 041/100 | train_loss=0.6481 | val_pq=0.0720 | threshold=0.440
+Starting epoch 42/100
+Epoch 039/100 | train_loss=0.2821 | val_pq=0.3007 | threshold=0.400
+Starting epoch 40/100
+Epoch 039/100 | train_loss=0.2931 | val_pq=0.2529 | threshold=0.600
+Starting epoch 40/100
+Epoch 042/100 | train_loss=0.6455 | val_pq=0.0728 | threshold=0.440
+Starting epoch 43/100
+Epoch 040/100 | train_loss=0.2737 | val_pq=0.2924 | threshold=0.600
+Starting epoch 41/100
+Epoch 021/100 | train_loss=0.7190 | val_pq=0.0780 | threshold=0.400 | TP=189 FP=1073 FN=1404
+Starting epoch 22/100
+Epoch 040/100 | train_loss=0.2875 | val_pq=0.3014 | threshold=0.600 (best)
+Starting epoch 41/100
+Epoch 043/100 | train_loss=0.6425 | val_pq=0.0792 | threshold=0.440
+Starting epoch 44/100
+Epoch 041/100 | train_loss=0.2788 | val_pq=0.2829 | threshold=0.500
+Starting epoch 42/100
+Epoch 041/100 | train_loss=0.2822 | val_pq=0.2755 | threshold=0.600
+Starting epoch 42/100
+Epoch 044/100 | train_loss=0.6396 | val_pq=0.0850 | threshold=0.440 (best)
+Starting epoch 45/100
+Epoch 022/100 | train_loss=0.7019 | val_pq=0.0931 | threshold=0.400 (best) | TP=227 FP=1064 FN=1366
+Starting epoch 23/100
+Epoch 042/100 | train_loss=0.2887 | val_pq=0.2735 | threshold=0.200
+Starting epoch 43/100
+Epoch 042/100 | train_loss=0.2808 | val_pq=0.2756 | threshold=0.500
+Starting epoch 43/100
+Epoch 045/100 | train_loss=0.6367 | val_pq=0.0926 | threshold=0.440 (best)
+Starting epoch 46/100
+Epoch 023/100 | train_loss=0.6937 | val_pq=0.0922 | threshold=0.400 | TP=224 FP=1056 FN=1369
+Starting epoch 24/100
+Epoch 043/100 | train_loss=0.2731 | val_pq=0.2721 | threshold=0.200
+Starting epoch 44/100
+Epoch 043/100 | train_loss=0.2757 | val_pq=0.2908 | threshold=0.600
+Starting epoch 44/100
+Epoch 046/100 | train_loss=0.6340 | val_pq=0.0884 | threshold=0.440
+Starting epoch 47/100
+Epoch 044/100 | train_loss=0.2681 | val_pq=0.3033 | threshold=0.500
+Starting epoch 45/100
+Epoch 044/100 | train_loss=0.2765 | val_pq=0.2946 | threshold=0.600
+Starting epoch 45/100
+Epoch 024/100 | train_loss=0.6878 | val_pq=0.0858 | threshold=0.300 | TP=231 FP=1378 FN=1362
+Starting epoch 25/100
+Epoch 047/100 | train_loss=0.6311 | val_pq=0.0638 | threshold=0.440
+Starting epoch 48/100
+Epoch 045/100 | train_loss=0.2693 | val_pq=0.2911 | threshold=0.400
+Starting epoch 46/100
+Epoch 045/100 | train_loss=0.2795 | val_pq=0.2921 | threshold=0.600
+Starting epoch 46/100
+Epoch 048/100 | train_loss=0.6281 | val_pq=0.0518 | threshold=0.440
+Starting epoch 49/100
+Epoch 025/100 | train_loss=0.6833 | val_pq=0.0800 | threshold=0.400 | TP=195 FP=1076 FN=1398
+Starting epoch 26/100
+Epoch 046/100 | train_loss=0.2637 | val_pq=0.2982 | threshold=0.300
+Starting epoch 47/100
+Epoch 046/100 | train_loss=0.2792 | val_pq=0.2816 | threshold=0.600
+Starting epoch 47/100
+Epoch 049/100 | train_loss=0.6250 | val_pq=0.1075 | threshold=0.440 (best)
+Starting epoch 50/100
+Epoch 026/100 | train_loss=0.6716 | val_pq=0.0920 | threshold=0.400 | TP=234 FP=1118 FN=1359
+Starting epoch 27/100
+Epoch 047/100 | train_loss=0.2595 | val_pq=0.3037 | threshold=0.200
+Starting epoch 48/100
+Epoch 047/100 | train_loss=0.2709 | val_pq=0.2970 | threshold=0.300
+Starting epoch 48/100
+Epoch 050/100 | train_loss=0.6219 | val_pq=0.0965 | threshold=0.440
+Starting epoch 51/100
+Epoch 048/100 | train_loss=0.2568 | val_pq=0.3107 | threshold=0.400
+Starting epoch 49/100
+Epoch 048/100 | train_loss=0.2746 | val_pq=0.3027 | threshold=0.500 (best)
+Starting epoch 49/100
+Epoch 051/100 | train_loss=0.6190 | val_pq=0.0940 | threshold=0.440
+Starting epoch 52/100
+Epoch 027/100 | train_loss=0.6546 | val_pq=0.0994 | threshold=0.400 (best) | TP=263 FP=1281 FN=1330
+Starting epoch 28/100
+Epoch 049/100 | train_loss=0.2565 | val_pq=0.3048 | threshold=0.600
+Starting epoch 50/100
+Epoch 049/100 | train_loss=0.2686 | val_pq=0.2739 | threshold=0.200
+Starting epoch 50/100
+Epoch 052/100 | train_loss=0.6161 | val_pq=0.0859 | threshold=0.440
+Starting epoch 53/100
+Epoch 028/100 | train_loss=0.6444 | val_pq=0.0891 | threshold=0.400 | TP=216 FP=1066 FN=1377
+Starting epoch 29/100
+Epoch 050/100 | train_loss=0.2544 | val_pq=0.3030 | threshold=0.300
+Starting epoch 51/100
+Epoch 053/100 | train_loss=0.6133 | val_pq=0.0485 | threshold=0.440
+Starting epoch 54/100
+Epoch 050/100 | train_loss=0.2667 | val_pq=0.2876 | threshold=0.300
+Starting epoch 51/100
+Epoch 051/100 | train_loss=0.2619 | val_pq=0.2894 | threshold=0.600
+Starting epoch 52/100
+Epoch 054/100 | train_loss=0.6105 | val_pq=0.1156 | threshold=0.440 (best)
+Starting epoch 55/100
+Epoch 051/100 | train_loss=0.2719 | val_pq=0.2996 | threshold=0.300
+Starting epoch 52/100
+Epoch 029/100 | train_loss=0.6230 | val_pq=0.0863 | threshold=0.400 | TP=201 FP=969 FN=1392
+Starting epoch 30/100
+Epoch 055/100 | train_loss=0.6077 | val_pq=0.0728 | threshold=0.440
+Starting epoch 56/100
+Epoch 052/100 | train_loss=0.2587 | val_pq=0.3093 | threshold=0.400
+Starting epoch 53/100
+Epoch 052/100 | train_loss=0.2671 | val_pq=0.2962 | threshold=0.200
+Starting epoch 53/100
+Epoch 030/100 | train_loss=0.6313 | val_pq=0.0858 | threshold=0.400 | TP=232 FP=1343 FN=1361
+Starting epoch 31/100
+Epoch 056/100 | train_loss=0.6049 | val_pq=0.0932 | threshold=0.440
+Starting epoch 57/100
+Epoch 053/100 | train_loss=0.2519 | val_pq=0.2901 | threshold=0.500
+Starting epoch 54/100
+Epoch 053/100 | train_loss=0.2629 | val_pq=0.3001 | threshold=0.300
+Starting epoch 54/100
+Epoch 031/100 | train_loss=0.6289 | val_pq=0.0862 | threshold=0.400 | TP=201 FP=957 FN=1392
+Starting epoch 32/100
+Epoch 057/100 | train_loss=0.6021 | val_pq=0.0994 | threshold=0.440
+Starting epoch 58/100
+Epoch 054/100 | train_loss=0.2520 | val_pq=0.3014 | threshold=0.300
+Starting epoch 55/100
+Epoch 054/100 | train_loss=0.2587 | val_pq=0.2629 | threshold=0.600
+Starting epoch 55/100
+Epoch 058/100 | train_loss=0.5995 | val_pq=0.1101 | threshold=0.440
+Starting epoch 59/100
+Epoch 032/100 | train_loss=0.6003 | val_pq=0.1023 | threshold=0.400 (best) | TP=257 FP=1103 FN=1336
+Starting epoch 33/100
+Epoch 055/100 | train_loss=0.2538 | val_pq=0.2478 | threshold=0.300
+Starting epoch 56/100
+Epoch 055/100 | train_loss=0.2589 | val_pq=0.2736 | threshold=0.200
+Starting epoch 56/100
+Epoch 059/100 | train_loss=0.5966 | val_pq=0.0920 | threshold=0.440
+Starting epoch 60/100
+Epoch 056/100 | train_loss=0.2536 | val_pq=0.2853 | threshold=0.400
+Starting epoch 57/100
+Epoch 056/100 | train_loss=0.2567 | val_pq=0.2964 | threshold=0.600
+Starting epoch 57/100
+Epoch 033/100 | train_loss=0.5989 | val_pq=0.1037 | threshold=0.300 (best) | TP=255 FP=1042 FN=1338
+Starting epoch 34/100
+Epoch 060/100 | train_loss=0.5941 | val_pq=0.1187 | threshold=0.440 (best)
+Starting epoch 61/100
+Epoch 057/100 | train_loss=0.2484 | val_pq=0.2989 | threshold=0.400
+Starting epoch 58/100
+Epoch 057/100 | train_loss=0.2559 | val_pq=0.2863 | threshold=0.600
+Starting epoch 58/100
+Epoch 034/100 | train_loss=0.5928 | val_pq=0.0919 | threshold=0.300 | TP=246 FP=1320 FN=1347
+Starting epoch 35/100
+Epoch 061/100 | train_loss=0.5913 | val_pq=0.1071 | threshold=0.440
+Starting epoch 62/100
+Epoch 058/100 | train_loss=0.2548 | val_pq=0.3158 | threshold=0.500 (best)
+Starting epoch 59/100
+Epoch 058/100 | train_loss=0.2560 | val_pq=0.2934 | threshold=0.300
+Starting epoch 59/100
+Epoch 062/100 | train_loss=0.5888 | val_pq=0.1185 | threshold=0.440
+Starting epoch 63/100
+Epoch 035/100 | train_loss=0.5991 | val_pq=0.0854 | threshold=0.300 | TP=264 FP=1729 FN=1329
+Starting epoch 36/100
+Epoch 059/100 | train_loss=0.2485 | val_pq=0.2990 | threshold=0.600
+Starting epoch 60/100
+Epoch 059/100 | train_loss=0.2534 | val_pq=0.2712 | threshold=0.600
+Starting epoch 60/100
+Epoch 063/100 | train_loss=0.5860 | val_pq=0.1114 | threshold=0.440
+Starting epoch 64/100
+Epoch 060/100 | train_loss=0.2548 | val_pq=0.2742 | threshold=0.600
+Starting epoch 61/100
+Epoch 036/100 | train_loss=0.5955 | val_pq=0.0959 | threshold=0.400 | TP=234 FP=1045 FN=1359
+Starting epoch 37/100
+Epoch 060/100 | train_loss=0.2576 | val_pq=0.2684 | threshold=0.200
+Starting epoch 61/100
+Epoch 064/100 | train_loss=0.5835 | val_pq=0.1084 | threshold=0.440
+Starting epoch 65/100
+Epoch 061/100 | train_loss=0.2759 | val_pq=0.2996 | threshold=0.600
+Starting epoch 62/100
+Epoch 061/100 | train_loss=0.2620 | val_pq=0.2708 | threshold=0.300
+Starting epoch 62/100
+Epoch 037/100 | train_loss=0.5797 | val_pq=0.0964 | threshold=0.300 | TP=255 FP=1276 FN=1338
+Starting epoch 38/100
+Epoch 065/100 | train_loss=0.5809 | val_pq=0.1081 | threshold=0.440
+Starting epoch 66/100
+Epoch 062/100 | train_loss=0.2528 | val_pq=0.2994 | threshold=0.400
+Starting epoch 63/100
+Epoch 062/100 | train_loss=0.2570 | val_pq=0.3038 | threshold=0.400 (best)
+Starting epoch 63/100
+Epoch 066/100 | train_loss=0.5783 | val_pq=0.0944 | threshold=0.440
+Starting epoch 67/100
+Epoch 038/100 | train_loss=0.5796 | val_pq=0.0945 | threshold=0.300 | TP=258 FP=1377 FN=1335
+Starting epoch 39/100
+Epoch 063/100 | train_loss=0.2457 | val_pq=0.2874 | threshold=0.200
+Starting epoch 64/100
+Epoch 063/100 | train_loss=0.2498 | val_pq=0.2824 | threshold=0.200
+Starting epoch 64/100
+Epoch 067/100 | train_loss=0.5758 | val_pq=0.1279 | threshold=0.440 (best)
+Starting epoch 68/100
+Epoch 064/100 | train_loss=0.2438 | val_pq=0.3013 | threshold=0.200
+Starting epoch 65/100
+Epoch 064/100 | train_loss=0.2483 | val_pq=0.2591 | threshold=0.600
+Starting epoch 65/100
+Epoch 068/100 | train_loss=0.5731 | val_pq=0.1167 | threshold=0.440
+Starting epoch 69/100
+Epoch 039/100 | train_loss=0.5680 | val_pq=0.0876 | threshold=0.300 | TP=239 FP=1385 FN=1354
+Starting epoch 40/100
+Epoch 065/100 | train_loss=0.2429 | val_pq=0.3031 | threshold=0.400
+Starting epoch 66/100
+Epoch 065/100 | train_loss=0.2501 | val_pq=0.2901 | threshold=0.400
+Starting epoch 66/100
+Epoch 069/100 | train_loss=0.5707 | val_pq=0.1220 | threshold=0.440
+Starting epoch 70/100
+Epoch 040/100 | train_loss=0.5694 | val_pq=0.0964 | threshold=0.300 | TP=272 FP=1519 FN=1321
+Starting epoch 41/100
+Epoch 066/100 | train_loss=0.2390 | val_pq=0.2960 | threshold=0.400
+Starting epoch 67/100
+Epoch 070/100 | train_loss=0.5681 | val_pq=0.1056 | threshold=0.440
+Starting epoch 71/100
+Epoch 066/100 | train_loss=0.2534 | val_pq=0.2771 | threshold=0.200
+Starting epoch 67/100
+Epoch 041/100 | train_loss=0.5447 | val_pq=0.1072 | threshold=0.400 (best) | TP=254 FP=959 FN=1339
+Starting epoch 42/100
+Epoch 067/100 | train_loss=0.2398 | val_pq=0.2923 | threshold=0.600
+Starting epoch 68/100
+Epoch 071/100 | train_loss=0.5657 | val_pq=0.1241 | threshold=0.440
+Starting epoch 72/100
+Epoch 067/100 | train_loss=0.2534 | val_pq=0.2936 | threshold=0.400
+Starting epoch 68/100
+Epoch 068/100 | train_loss=0.2361 | val_pq=0.2810 | threshold=0.400
+Starting epoch 69/100
+Epoch 072/100 | train_loss=0.5631 | val_pq=0.1133 | threshold=0.440
+Starting epoch 73/100
+Epoch 042/100 | train_loss=0.5501 | val_pq=0.0881 | threshold=0.300 | TP=264 FP=1676 FN=1329
+Starting epoch 43/100
+Epoch 068/100 | train_loss=0.2463 | val_pq=0.2848 | threshold=0.300
+Starting epoch 69/100
+Epoch 073/100 | train_loss=0.5607 | val_pq=0.1257 | threshold=0.440
+Starting epoch 74/100
+Epoch 069/100 | train_loss=0.2344 | val_pq=0.2999 | threshold=0.500
+Starting epoch 70/100
+Epoch 069/100 | train_loss=0.2458 | val_pq=0.2740 | threshold=0.500
+Starting epoch 70/100
+Epoch 043/100 | train_loss=0.5601 | val_pq=0.0908 | threshold=0.300 | TP=223 FP=1063 FN=1370
+Starting epoch 44/100
+Epoch 074/100 | train_loss=0.5583 | val_pq=0.1313 | threshold=0.440 (best)
+Starting epoch 75/100
+Epoch 070/100 | train_loss=0.2346 | val_pq=0.3027 | threshold=0.600
+Starting epoch 71/100
+Epoch 070/100 | train_loss=0.2533 | val_pq=0.3037 | threshold=0.500
+Starting epoch 71/100
+Epoch 075/100 | train_loss=0.5558 | val_pq=0.1094 | threshold=0.440
+Starting epoch 76/100
+Epoch 044/100 | train_loss=0.5571 | val_pq=0.1051 | threshold=0.300 | TP=290 FP=1364 FN=1303
+Starting epoch 45/100
+Epoch 071/100 | train_loss=0.2353 | val_pq=0.2995 | threshold=0.200
+Starting epoch 72/100
+Epoch 076/100 | train_loss=0.5535 | val_pq=0.1129 | threshold=0.440
+Starting epoch 77/100
+Epoch 071/100 | train_loss=0.2473 | val_pq=0.2837 | threshold=0.200
+Starting epoch 72/100
+Epoch 045/100 | train_loss=0.5413 | val_pq=0.1111 | threshold=0.400 (best) | TP=262 FP=950 FN=1331
+Starting epoch 46/100
+Epoch 077/100 | train_loss=0.5509 | val_pq=0.1128 | threshold=0.440
+Starting epoch 78/100
+Epoch 072/100 | train_loss=0.2341 | val_pq=0.2934 | threshold=0.600
+Starting epoch 73/100
+Epoch 072/100 | train_loss=0.2441 | val_pq=0.2839 | threshold=0.500
+Starting epoch 73/100
+Epoch 046/100 | train_loss=0.5354 | val_pq=0.0824 | threshold=0.300 | TP=199 FP=1033 FN=1394
+Starting epoch 47/100
+Epoch 078/100 | train_loss=0.5487 | val_pq=0.1031 | threshold=0.440
+Starting epoch 79/100
+Epoch 073/100 | train_loss=0.2320 | val_pq=0.2755 | threshold=0.600
+Starting epoch 74/100
+Epoch 073/100 | train_loss=0.2414 | val_pq=0.2778 | threshold=0.300
+Starting epoch 74/100
+Epoch 079/100 | train_loss=0.5462 | val_pq=0.1262 | threshold=0.440
+Starting epoch 80/100
+Epoch 047/100 | train_loss=0.5240 | val_pq=0.1110 | threshold=0.200 | TP=299 FP=1288 FN=1294
+Starting epoch 48/100
+Epoch 074/100 | train_loss=0.2313 | val_pq=0.2848 | threshold=0.300
+Starting epoch 75/100
+Epoch 074/100 | train_loss=0.2385 | val_pq=0.2789 | threshold=0.200
+Starting epoch 75/100
+Epoch 080/100 | train_loss=0.5439 | val_pq=0.1434 | threshold=0.440 (best)
+Starting epoch 81/100
+Epoch 075/100 | train_loss=0.2307 | val_pq=0.2864 | threshold=0.500
+Starting epoch 76/100
+Epoch 048/100 | train_loss=0.5120 | val_pq=0.1090 | threshold=0.200 | TP=297 FP=1350 FN=1296
+Starting epoch 49/100
+Epoch 075/100 | train_loss=0.2441 | val_pq=0.3008 | threshold=0.600
+Starting epoch 76/100
+Epoch 081/100 | train_loss=0.5415 | val_pq=0.1380 | threshold=0.440
+Starting epoch 82/100
+Epoch 076/100 | train_loss=0.2320 | val_pq=0.2840 | threshold=0.400
+Starting epoch 77/100
+Epoch 076/100 | train_loss=0.2431 | val_pq=0.2835 | threshold=0.500
+Starting epoch 77/100
+Epoch 049/100 | train_loss=0.5179 | val_pq=0.1119 | threshold=0.300 (best) | TP=304 FP=1354 FN=1289
+Starting epoch 50/100
+Epoch 082/100 | train_loss=0.5392 | val_pq=0.1283 | threshold=0.440
+Starting epoch 83/100
+Epoch 077/100 | train_loss=0.2321 | val_pq=0.2808 | threshold=0.600
+Starting epoch 78/100
+Epoch 077/100 | train_loss=0.2389 | val_pq=0.2652 | threshold=0.300
+Starting epoch 78/100
+Epoch 083/100 | train_loss=0.5369 | val_pq=0.1208 | threshold=0.440
+Starting epoch 84/100
+Epoch 050/100 | train_loss=0.5195 | val_pq=0.1052 | threshold=0.400 | TP=247 FP=941 FN=1346
+Starting epoch 51/100
+Epoch 078/100 | train_loss=0.2308 | val_pq=0.2869 | threshold=0.600
+Starting epoch 79/100
+Epoch 078/100 | train_loss=0.2384 | val_pq=0.2805 | threshold=0.600
+Starting epoch 79/100
+Epoch 084/100 | train_loss=0.5345 | val_pq=0.1371 | threshold=0.440
+Starting epoch 85/100
+Epoch 051/100 | train_loss=0.5180 | val_pq=0.1205 | threshold=0.300 (best) | TP=325 FP=1302 FN=1268
+Starting epoch 52/100
+Epoch 079/100 | train_loss=0.2334 | val_pq=0.2934 | threshold=0.600
+Starting epoch 80/100
+Epoch 079/100 | train_loss=0.2368 | val_pq=0.2679 | threshold=0.200
+Starting epoch 80/100
+Epoch 085/100 | train_loss=0.5323 | val_pq=0.1139 | threshold=0.440
+Starting epoch 86/100
+Epoch 080/100 | train_loss=0.2279 | val_pq=0.2841 | threshold=0.200
+Starting epoch 81/100
+Epoch 052/100 | train_loss=0.5192 | val_pq=0.1067 | threshold=0.300 | TP=300 FP=1460 FN=1293
+Starting epoch 53/100
+Epoch 080/100 | train_loss=0.2367 | val_pq=0.2740 | threshold=0.500
+Starting epoch 81/100
+Epoch 086/100 | train_loss=0.5299 | val_pq=0.1330 | threshold=0.440
+Starting epoch 87/100
+Epoch 081/100 | train_loss=0.2268 | val_pq=0.2773 | threshold=0.300
+Starting epoch 82/100
+Epoch 081/100 | train_loss=0.2355 | val_pq=0.2904 | threshold=0.200
+Starting epoch 82/100
+Epoch 087/100 | train_loss=0.5278 | val_pq=0.1342 | threshold=0.440
+Starting epoch 88/100
+Epoch 053/100 | train_loss=0.5017 | val_pq=0.1024 | threshold=0.300 | TP=292 FP=1524 FN=1301
+Starting epoch 54/100
+Epoch 082/100 | train_loss=0.2333 | val_pq=0.2856 | threshold=0.600
+Starting epoch 83/100
+Epoch 082/100 | train_loss=0.2326 | val_pq=0.2593 | threshold=0.400
+Starting epoch 83/100
+Epoch 088/100 | train_loss=0.5254 | val_pq=0.1266 | threshold=0.440
+Starting epoch 89/100
+Epoch 054/100 | train_loss=0.5036 | val_pq=0.1097 | threshold=0.300 | TP=312 FP=1491 FN=1281
+Starting epoch 55/100
+Epoch 083/100 | train_loss=0.2247 | val_pq=0.2790 | threshold=0.200
+Starting epoch 84/100
+Epoch 089/100 | train_loss=0.5233 | val_pq=0.1342 | threshold=0.440
+Starting epoch 90/100
+Epoch 083/100 | train_loss=0.2636 | val_pq=0.2683 | threshold=0.400
+Starting epoch 84/100
+Epoch 084/100 | train_loss=0.2247 | val_pq=0.2765 | threshold=0.600
+Starting epoch 85/100
+Epoch 055/100 | train_loss=0.4929 | val_pq=0.1060 | threshold=0.400 | TP=251 FP=939 FN=1342
+Starting epoch 56/100
+Epoch 090/100 | train_loss=0.5209 | val_pq=0.1371 | threshold=0.440
+Starting epoch 91/100
+Epoch 084/100 | train_loss=0.2399 | val_pq=0.2630 | threshold=0.200
+Starting epoch 85/100
+Epoch 085/100 | train_loss=0.2223 | val_pq=0.3025 | threshold=0.600
+Starting epoch 86/100
+Epoch 091/100 | train_loss=0.5188 | val_pq=0.1340 | threshold=0.440
+Starting epoch 92/100
+Epoch 085/100 | train_loss=0.2327 | val_pq=0.2899 | threshold=0.200
+Starting epoch 86/100
+Epoch 086/100 | train_loss=0.2231 | val_pq=0.2668 | threshold=0.600
+Starting epoch 87/100
+Epoch 092/100 | train_loss=0.5165 | val_pq=0.1291 | threshold=0.440
+Starting epoch 93/100
+Epoch 086/100 | train_loss=0.2305 | val_pq=0.2762 | threshold=0.500
+Starting epoch 87/100
+Epoch 093/100 | train_loss=0.5144 | val_pq=0.1324 | threshold=0.440
+Starting epoch 94/100
+Epoch 087/100 | train_loss=0.2228 | val_pq=0.2685 | threshold=0.600
+Starting epoch 88/100
+Epoch 087/100 | train_loss=0.2298 | val_pq=0.2666 | threshold=0.500
+Starting epoch 88/100
+Epoch 094/100 | train_loss=0.5122 | val_pq=0.1382 | threshold=0.440
+Starting epoch 95/100
+Epoch 088/100 | train_loss=0.2216 | val_pq=0.2675 | threshold=0.600
+Starting epoch 89/100
+Epoch 088/100 | train_loss=0.2358 | val_pq=0.2817 | threshold=0.300
+Starting epoch 89/100
+Epoch 095/100 | train_loss=0.5100 | val_pq=0.1288 | threshold=0.440
+Starting epoch 96/100
+Epoch 089/100 | train_loss=0.2223 | val_pq=0.2710 | threshold=0.200
+Starting epoch 90/100
+Epoch 089/100 | train_loss=0.2461 | val_pq=0.2891 | threshold=0.300
+Starting epoch 90/100
+Epoch 096/100 | train_loss=0.5080 | val_pq=0.1370 | threshold=0.440
+Starting epoch 97/100
+Epoch 090/100 | train_loss=0.2204 | val_pq=0.2682 | threshold=0.400
+Starting epoch 91/100
+Epoch 090/100 | train_loss=0.2319 | val_pq=0.2691 | threshold=0.400
+Starting epoch 91/100
+Epoch 097/100 | train_loss=0.5057 | val_pq=0.1314 | threshold=0.440
+Starting epoch 98/100
+Epoch 091/100 | train_loss=0.2184 | val_pq=0.2763 | threshold=0.400
+Starting epoch 92/100
+Epoch 091/100 | train_loss=0.2283 | val_pq=0.2738 | threshold=0.200
+Starting epoch 92/100
+Epoch 098/100 | train_loss=0.5036 | val_pq=0.1361 | threshold=0.440
+Starting epoch 99/100
+Epoch 092/100 | train_loss=0.2176 | val_pq=0.2859 | threshold=0.500
+Starting epoch 93/100
+Epoch 092/100 | train_loss=0.2266 | val_pq=0.2824 | threshold=0.600
+Starting epoch 93/100
+Epoch 056/100 | train_loss=0.4962 | val_pq=0.1012 | threshold=0.300 | TP=268 FP=1271 FN=1325
+Starting epoch 57/100
+Epoch 099/100 | train_loss=0.5013 | val_pq=0.1567 | threshold=0.440 (best)
+Starting epoch 100/100
+Epoch 093/100 | train_loss=0.2158 | val_pq=0.2771 | threshold=0.600
+Starting epoch 94/100
+Epoch 093/100 | train_loss=0.2250 | val_pq=0.2756 | threshold=0.400
+Starting epoch 94/100
+Epoch 057/100 | train_loss=0.5029 | val_pq=0.1179 | threshold=0.400 | TP=302 FP=1171 FN=1291
+Starting epoch 58/100
+Epoch 100/100 | train_loss=0.4991 | val_pq=0.1333 | threshold=0.440
+[worker 3 / TPU core 3 (xla:0)] finished boundary-aware-unet-pyhopper-corrected-data seed=42, best_val_pq=0.156696, best_epoch=99
+[worker 3 / TPU core 3 (xla:0)] starting condinst-comparison seed=43, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== condinst-comparison, seed43 ===
+Starting epoch 1/100
+Epoch 094/100 | train_loss=0.2153 | val_pq=0.2904 | threshold=0.400
+Starting epoch 95/100
+Epoch 094/100 | train_loss=0.2242 | val_pq=0.2889 | threshold=0.600
+Starting epoch 95/100
+Epoch 058/100 | train_loss=0.4933 | val_pq=0.1074 | threshold=0.300 | TP=279 FP=1233 FN=1314
+Starting epoch 59/100
+Epoch 095/100 | train_loss=0.2159 | val_pq=0.2837 | threshold=0.600
+Starting epoch 96/100
+Epoch 095/100 | train_loss=0.2240 | val_pq=0.2742 | threshold=0.600
+Starting epoch 96/100
+Epoch 059/100 | train_loss=0.4908 | val_pq=0.1152 | threshold=0.300 | TP=296 FP=1157 FN=1297
+Starting epoch 60/100
+Epoch 096/100 | train_loss=0.2163 | val_pq=0.2558 | threshold=0.600
+Starting epoch 97/100
+Epoch 096/100 | train_loss=0.2225 | val_pq=0.2795 | threshold=0.400
+Starting epoch 97/100
+Epoch 060/100 | train_loss=0.4871 | val_pq=0.0955 | threshold=0.300 | TP=260 FP=1368 FN=1333
+Starting epoch 61/100
+Epoch 097/100 | train_loss=0.2158 | val_pq=0.2846 | threshold=0.600
+Starting epoch 98/100
+Epoch 097/100 | train_loss=0.2224 | val_pq=0.2825 | threshold=0.300
+Starting epoch 98/100
+Epoch 098/100 | train_loss=0.2149 | val_pq=0.2555 | threshold=0.600
+Starting epoch 99/100
+Epoch 061/100 | train_loss=0.4877 | val_pq=0.0971 | threshold=0.400 | TP=222 FP=889 FN=1371
+Starting epoch 62/100
+Epoch 098/100 | train_loss=0.2229 | val_pq=0.2586 | threshold=0.200
+Starting epoch 99/100
+Epoch 099/100 | train_loss=0.2168 | val_pq=0.2921 | threshold=0.600
+Starting epoch 100/100
+Epoch 099/100 | train_loss=0.2225 | val_pq=0.2612 | threshold=0.300
+Starting epoch 100/100
+Epoch 062/100 | train_loss=0.4968 | val_pq=0.1178 | threshold=0.300 | TP=314 FP=1274 FN=1279
+Starting epoch 63/100
+Epoch 100/100 | train_loss=0.2134 | val_pq=0.2865 | threshold=0.200
+[worker 2 / TPU core 2 (xla:0)] finished unet-baseline seed=42, best_val_pq=0.315795, best_epoch=58
+[worker 2 / TPU core 2 (xla:0)] starting condinst-comparison seed=44, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== condinst-comparison, seed44 ===
+Starting epoch 1/100
+Epoch 100/100 | train_loss=0.2208 | val_pq=0.2719 | threshold=0.300
+[worker 0 / TPU core 0 (xla:0)] finished boundary-aware-unet seed=42, best_val_pq=0.303784, best_epoch=62
+[worker 0 / TPU core 0 (xla:0)] starting condinst-comparison seed=45, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== condinst-comparison, seed45 ===
+Starting epoch 1/100
+Epoch 063/100 | train_loss=0.4911 | val_pq=0.1116 | threshold=0.300 | TP=308 FP=1382 FN=1285
+Starting epoch 64/100
+Epoch 064/100 | train_loss=0.4812 | val_pq=0.1120 | threshold=0.300 | TP=285 FP=1138 FN=1308
+Starting epoch 65/100
+Epoch 065/100 | train_loss=0.4886 | val_pq=0.1116 | threshold=0.300 | TP=299 FP=1282 FN=1294
+Starting epoch 66/100
+Epoch 001/100 | train_loss=2.8584 | val_pq=0.0004 | threshold=0.300 (best) | TP=1 FP=876 FN=1592
+Starting epoch 2/100
+Epoch 066/100 | train_loss=0.4630 | val_pq=0.1039 | threshold=0.200 | TP=284 FP=1346 FN=1309
+Starting epoch 67/100
+Epoch 067/100 | train_loss=0.4715 | val_pq=0.1050 | threshold=0.300 | TP=290 FP=1397 FN=1303
+Starting epoch 68/100
+Epoch 002/100 | train_loss=2.1881 | val_pq=0.0061 | threshold=0.300 (best) | TP=17 FP=1517 FN=1576
+Starting epoch 3/100
+Epoch 068/100 | train_loss=0.4700 | val_pq=0.0991 | threshold=0.300 | TP=253 FP=1177 FN=1340
+Starting epoch 69/100
+Epoch 003/100 | train_loss=1.9589 | val_pq=0.0165 | threshold=0.300 (best) | TP=53 FP=1899 FN=1540
+Starting epoch 4/100
+Epoch 069/100 | train_loss=0.4639 | val_pq=0.1168 | threshold=0.300 | TP=329 FP=1446 FN=1264
+Starting epoch 70/100
+Epoch 070/100 | train_loss=0.4725 | val_pq=0.0946 | threshold=0.200 | TP=244 FP=1211 FN=1349
+Starting epoch 71/100
+Epoch 004/100 | train_loss=1.8203 | val_pq=0.0329 | threshold=0.300 (best) | TP=81 FP=1116 FN=1512
+Starting epoch 5/100
+Epoch 001/100 | train_loss=2.8740 | val_pq=0.0011 | threshold=0.300 (best) | TP=3 FP=1412 FN=1590
+Starting epoch 2/100
+Epoch 001/100 | train_loss=2.8104 | val_pq=0.0004 | threshold=0.300 (best) | TP=1 FP=1293 FN=1592
+Starting epoch 2/100
+Epoch 005/100 | train_loss=1.6744 | val_pq=0.0457 | threshold=0.300 (best) | TP=132 FP=1631 FN=1461
+Starting epoch 6/100
+Epoch 002/100 | train_loss=2.1561 | val_pq=0.0129 | threshold=0.300 (best) | TP=37 FP=1577 FN=1556
+Starting epoch 3/100
+Epoch 002/100 | train_loss=2.2335 | val_pq=0.0081 | threshold=0.300 (best) | TP=22 FP=1304 FN=1571
+Starting epoch 3/100
+Epoch 006/100 | train_loss=1.5655 | val_pq=0.0330 | threshold=0.400 | TP=81 FP=1155 FN=1512
+Starting epoch 7/100
+Epoch 003/100 | train_loss=1.9580 | val_pq=0.0180 | threshold=0.300 (best) | TP=51 FP=1599 FN=1542
+Starting epoch 4/100
+Epoch 003/100 | train_loss=2.0190 | val_pq=0.0138 | threshold=0.200 (best) | TP=58 FP=3062 FN=1535
+Starting epoch 4/100
+Epoch 007/100 | train_loss=1.4235 | val_pq=0.0442 | threshold=0.300 | TP=141 FP=2026 FN=1452
+Starting epoch 8/100
+Epoch 071/100 | train_loss=0.4762 | val_pq=0.1118 | threshold=0.300 | TP=276 FP=1084 FN=1317
+Starting epoch 72/100
+Epoch 004/100 | train_loss=1.8066 | val_pq=0.0177 | threshold=0.300 | TP=36 FP=646 FN=1557
+Starting epoch 5/100
+Epoch 008/100 | train_loss=1.3204 | val_pq=0.0607 | threshold=0.300 (best) | TP=160 FP=1306 FN=1433
+Starting epoch 9/100
+Epoch 004/100 | train_loss=1.8776 | val_pq=0.0352 | threshold=0.300 (best) | TP=87 FP=1161 FN=1506
+Starting epoch 5/100
+Epoch 009/100 | train_loss=1.2137 | val_pq=0.0578 | threshold=0.400 | TP=130 FP=871 FN=1463
+Starting epoch 10/100
+Epoch 005/100 | train_loss=1.6696 | val_pq=0.0384 | threshold=0.300 (best) | TP=114 FP=1701 FN=1479
+Starting epoch 6/100
+Epoch 005/100 | train_loss=1.7219 | val_pq=0.0359 | threshold=0.300 (best) | TP=92 FP=1274 FN=1501
+Starting epoch 6/100
+Epoch 006/100 | train_loss=1.5344 | val_pq=0.0567 | threshold=0.300 (best) | TP=157 FP=1438 FN=1436
+Starting epoch 7/100
+Epoch 010/100 | train_loss=1.1338 | val_pq=0.0535 | threshold=0.300 | TP=162 FP=1733 FN=1431
+Starting epoch 11/100
+Epoch 072/100 | train_loss=0.4679 | val_pq=0.0983 | threshold=0.200 | TP=284 FP=1557 FN=1309
+Starting epoch 73/100
+Epoch 006/100 | train_loss=1.6160 | val_pq=0.0324 | threshold=0.300 | TP=90 FP=1444 FN=1503
+Starting epoch 7/100
+Epoch 007/100 | train_loss=1.4186 | val_pq=0.0664 | threshold=0.300 (best) | TP=168 FP=1196 FN=1425
+Starting epoch 8/100
+Epoch 011/100 | train_loss=1.0736 | val_pq=0.0762 | threshold=0.300 (best) | TP=224 FP=1622 FN=1369
+Starting epoch 12/100
+Epoch 007/100 | train_loss=1.4871 | val_pq=0.0659 | threshold=0.300 (best) | TP=181 FP=1434 FN=1412
+Starting epoch 8/100
+Epoch 073/100 | train_loss=0.4528 | val_pq=0.1016 | threshold=0.400 | TP=249 FP=1052 FN=1344
+Starting epoch 74/100
+Epoch 008/100 | train_loss=1.3097 | val_pq=0.0697 | threshold=0.300 (best) | TP=205 FP=1631 FN=1388
+Starting epoch 9/100
+Epoch 012/100 | train_loss=0.9977 | val_pq=0.0746 | threshold=0.300 | TP=261 FP=2258 FN=1332
+Starting epoch 13/100
+Epoch 008/100 | train_loss=1.3740 | val_pq=0.0637 | threshold=0.400 | TP=155 FP=1065 FN=1438
+Starting epoch 9/100
+Epoch 009/100 | train_loss=1.1918 | val_pq=0.0743 | threshold=0.400 (best) | TP=187 FP=1152 FN=1406
+Starting epoch 10/100
+Epoch 013/100 | train_loss=0.9356 | val_pq=0.0792 | threshold=0.400 (best) | TP=194 FP=1042 FN=1399
+Starting epoch 14/100
+Epoch 074/100 | train_loss=0.4539 | val_pq=0.1144 | threshold=0.200 | TP=299 FP=1210 FN=1294
+Starting epoch 75/100
+Epoch 009/100 | train_loss=1.2589 | val_pq=0.0780 | threshold=0.300 (best) | TP=214 FP=1393 FN=1379
+Starting epoch 10/100
+Epoch 010/100 | train_loss=1.1060 | val_pq=0.0692 | threshold=0.300 | TP=216 FP=1847 FN=1377
+Starting epoch 11/100
+Epoch 014/100 | train_loss=0.8965 | val_pq=0.0784 | threshold=0.400 | TP=212 FP=1333 FN=1381
+Starting epoch 15/100
+Epoch 010/100 | train_loss=1.1720 | val_pq=0.0592 | threshold=0.300 | TP=190 FP=1991 FN=1403
+Starting epoch 11/100
+Epoch 075/100 | train_loss=0.4609 | val_pq=0.1022 | threshold=0.200 | TP=298 FP=1579 FN=1295
+Starting epoch 76/100
+Epoch 015/100 | train_loss=0.8666 | val_pq=0.0785 | threshold=0.300 | TP=207 FP=1282 FN=1386
+Starting epoch 16/100
+Epoch 011/100 | train_loss=1.0295 | val_pq=0.0940 | threshold=0.400 (best) | TP=231 FP=1061 FN=1362
+Starting epoch 12/100
+Epoch 011/100 | train_loss=1.0814 | val_pq=0.0721 | threshold=0.300 | TP=204 FP=1487 FN=1389
+Starting epoch 12/100
+Epoch 076/100 | train_loss=0.4891 | val_pq=0.1087 | threshold=0.300 | TP=282 FP=1207 FN=1311
+Starting epoch 77/100
+Epoch 016/100 | train_loss=0.8235 | val_pq=0.0705 | threshold=0.300 | TP=167 FP=993 FN=1426
+Starting epoch 17/100
+Epoch 012/100 | train_loss=0.9932 | val_pq=0.0821 | threshold=0.400 | TP=187 FP=879 FN=1406
+Starting epoch 13/100
+Epoch 012/100 | train_loss=1.0052 | val_pq=0.0747 | threshold=0.400 | TP=184 FP=1119 FN=1409
+Starting epoch 13/100
+Epoch 017/100 | train_loss=0.7920 | val_pq=0.0805 | threshold=0.400 (best) | TP=184 FP=868 FN=1409
+Starting epoch 18/100
+Epoch 077/100 | train_loss=0.4697 | val_pq=0.1029 | threshold=0.400 | TP=266 FP=1197 FN=1327
+Starting epoch 78/100
+Epoch 013/100 | train_loss=0.9129 | val_pq=0.0895 | threshold=0.400 | TP=223 FP=1110 FN=1370
+Starting epoch 14/100
+Epoch 013/100 | train_loss=0.9521 | val_pq=0.0777 | threshold=0.300 | TP=217 FP=1493 FN=1376
+Starting epoch 14/100
+Epoch 018/100 | train_loss=0.7790 | val_pq=0.0834 | threshold=0.300 (best) | TP=230 FP=1402 FN=1363
+Starting epoch 19/100
+Epoch 078/100 | train_loss=0.4504 | val_pq=0.1078 | threshold=0.300 | TP=290 FP=1313 FN=1303
+Starting epoch 79/100
+Epoch 014/100 | train_loss=0.8802 | val_pq=0.0737 | threshold=0.300 | TP=228 FP=1757 FN=1365
+Starting epoch 15/100
+Epoch 019/100 | train_loss=0.7620 | val_pq=0.0884 | threshold=0.400 (best) | TP=210 FP=951 FN=1383
+Starting epoch 20/100
+Epoch 014/100 | train_loss=0.9072 | val_pq=0.0875 | threshold=0.300 (best) | TP=257 FP=1636 FN=1336
+Starting epoch 15/100
+Epoch 079/100 | train_loss=0.4704 | val_pq=0.0979 | threshold=0.300 | TP=263 FP=1319 FN=1330
+Starting epoch 80/100
+Epoch 015/100 | train_loss=0.8550 | val_pq=0.0914 | threshold=0.400 | TP=227 FP=1118 FN=1366
+Starting epoch 16/100
+Epoch 020/100 | train_loss=0.7566 | val_pq=0.0823 | threshold=0.400 | TP=211 FP=1185 FN=1382
+Starting epoch 21/100
+Epoch 080/100 | train_loss=0.4482 | val_pq=0.1093 | threshold=0.300 | TP=272 FP=1103 FN=1321
+Starting epoch 81/100
+Epoch 015/100 | train_loss=0.8523 | val_pq=0.0760 | threshold=0.300 | TP=213 FP=1522 FN=1380
+Starting epoch 16/100
+Epoch 016/100 | train_loss=0.8062 | val_pq=0.0712 | threshold=0.400 | TP=185 FP=1258 FN=1408
+Starting epoch 17/100
+Epoch 021/100 | train_loss=0.7318 | val_pq=0.0927 | threshold=0.300 (best) | TP=250 FP=1339 FN=1343
+Starting epoch 22/100
+Epoch 081/100 | train_loss=0.4374 | val_pq=0.1182 | threshold=0.300 | TP=297 FP=1096 FN=1296
+Starting epoch 82/100
+Epoch 016/100 | train_loss=0.8331 | val_pq=0.0906 | threshold=0.300 (best) | TP=236 FP=1269 FN=1357
+Starting epoch 17/100
+Epoch 017/100 | train_loss=0.7796 | val_pq=0.0672 | threshold=0.400 | TP=166 FP=1136 FN=1427
+Starting epoch 18/100
+Epoch 022/100 | train_loss=0.7121 | val_pq=0.0820 | threshold=0.300 | TP=234 FP=1507 FN=1359
+Starting epoch 23/100
+Epoch 082/100 | train_loss=0.4282 | val_pq=0.1096 | threshold=0.400 | TP=281 FP=1164 FN=1312
+Starting epoch 83/100
+Epoch 017/100 | train_loss=0.8138 | val_pq=0.1038 | threshold=0.400 (best) | TP=250 FP=1035 FN=1343
+Starting epoch 18/100
+Epoch 018/100 | train_loss=0.7651 | val_pq=0.0927 | threshold=0.300 | TP=267 FP=1542 FN=1326
+Starting epoch 19/100
+Epoch 023/100 | train_loss=0.6910 | val_pq=0.0839 | threshold=0.300 | TP=220 FP=1264 FN=1373
+Starting epoch 24/100
+Epoch 083/100 | train_loss=0.4233 | val_pq=0.1126 | threshold=0.400 | TP=280 FP=1113 FN=1313
+Starting epoch 84/100
+Epoch 018/100 | train_loss=0.8113 | val_pq=0.0846 | threshold=0.400 | TP=206 FP=1078 FN=1387
+Starting epoch 19/100
+Epoch 019/100 | train_loss=0.7421 | val_pq=0.0929 | threshold=0.300 | TP=258 FP=1435 FN=1335
+Starting epoch 20/100
+Epoch 024/100 | train_loss=0.6688 | val_pq=0.0931 | threshold=0.400 (best) | TP=229 FP=1081 FN=1364
+Starting epoch 25/100
+Epoch 019/100 | train_loss=0.7591 | val_pq=0.0867 | threshold=0.400 | TP=214 FP=1137 FN=1379
+Starting epoch 20/100
+Epoch 084/100 | train_loss=0.4513 | val_pq=0.1041 | threshold=0.400 | TP=258 FP=1094 FN=1335
+Starting epoch 85/100
+Epoch 020/100 | train_loss=0.7243 | val_pq=0.0958 | threshold=0.300 (best) | TP=265 FP=1434 FN=1328
+Starting epoch 21/100
+Epoch 025/100 | train_loss=0.6660 | val_pq=0.0941 | threshold=0.400 (best) | TP=222 FP=986 FN=1371
+Starting epoch 26/100
+Epoch 020/100 | train_loss=0.7414 | val_pq=0.0826 | threshold=0.300 | TP=216 FP=1282 FN=1377
+Starting epoch 21/100
+Epoch 085/100 | train_loss=0.4456 | val_pq=0.1092 | threshold=0.300 | TP=296 FP=1341 FN=1297
+Starting epoch 86/100
+Epoch 021/100 | train_loss=0.7081 | val_pq=0.1006 | threshold=0.300 (best) | TP=270 FP=1329 FN=1323
+Starting epoch 22/100
+Epoch 026/100 | train_loss=0.6626 | val_pq=0.0836 | threshold=0.300 | TP=224 FP=1314 FN=1369
+Starting epoch 27/100
+Epoch 021/100 | train_loss=0.7104 | val_pq=0.0901 | threshold=0.400 | TP=203 FP=867 FN=1390
+Starting epoch 22/100
+Epoch 086/100 | train_loss=0.4511 | val_pq=0.1198 | threshold=0.300 | TP=320 FP=1252 FN=1273
+Starting epoch 87/100
+Epoch 022/100 | train_loss=0.6775 | val_pq=0.0987 | threshold=0.400 | TP=229 FP=927 FN=1364
+Starting epoch 23/100
+Epoch 027/100 | train_loss=0.6441 | val_pq=0.0801 | threshold=0.400 | TP=214 FP=1343 FN=1379
+Starting epoch 28/100
+Epoch 022/100 | train_loss=0.6945 | val_pq=0.0959 | threshold=0.300 | TP=251 FP=1248 FN=1342
+Starting epoch 23/100
+Epoch 087/100 | train_loss=0.4412 | val_pq=0.1184 | threshold=0.300 | TP=290 FP=1043 FN=1303
+Starting epoch 88/100
+Epoch 023/100 | train_loss=0.6815 | val_pq=0.0999 | threshold=0.300 | TP=282 FP=1502 FN=1311
+Starting epoch 24/100
+Epoch 023/100 | train_loss=0.7000 | val_pq=0.0999 | threshold=0.400 | TP=239 FP=1033 FN=1354
+Starting epoch 24/100
+Epoch 028/100 | train_loss=0.6407 | val_pq=0.0965 | threshold=0.400 (best) | TP=246 FP=1143 FN=1347
+Starting epoch 29/100
+Epoch 088/100 | train_loss=0.4370 | val_pq=0.1185 | threshold=0.300 | TP=299 FP=1144 FN=1294
+Starting epoch 89/100
+Epoch 024/100 | train_loss=0.6776 | val_pq=0.0952 | threshold=0.300 | TP=271 FP=1525 FN=1322
+Starting epoch 25/100
+Epoch 024/100 | train_loss=0.6800 | val_pq=0.1082 | threshold=0.400 (best) | TP=269 FP=1054 FN=1324
+Starting epoch 25/100
+Epoch 029/100 | train_loss=0.6315 | val_pq=0.0986 | threshold=0.300 (best) | TP=272 FP=1363 FN=1321
+Starting epoch 30/100
+Epoch 089/100 | train_loss=0.4364 | val_pq=0.1027 | threshold=0.200 | TP=277 FP=1318 FN=1316
+Starting epoch 90/100
+Epoch 025/100 | train_loss=0.6593 | val_pq=0.0995 | threshold=0.300 | TP=250 FP=1121 FN=1343
+Starting epoch 26/100
+Epoch 030/100 | train_loss=0.6282 | val_pq=0.0922 | threshold=0.300 | TP=229 FP=1132 FN=1364
+Starting epoch 31/100
+Epoch 025/100 | train_loss=0.6728 | val_pq=0.0946 | threshold=0.400 | TP=235 FP=1110 FN=1358
+Starting epoch 26/100
+Epoch 090/100 | train_loss=0.4642 | val_pq=0.1009 | threshold=0.300 | TP=269 FP=1328 FN=1324
+Starting epoch 91/100
+Epoch 026/100 | train_loss=0.6410 | val_pq=0.0874 | threshold=0.300 | TP=237 FP=1363 FN=1356
+Starting epoch 27/100
+Epoch 031/100 | train_loss=0.6411 | val_pq=0.0884 | threshold=0.400 | TP=200 FP=879 FN=1393
+Starting epoch 32/100
+Epoch 026/100 | train_loss=0.6530 | val_pq=0.0968 | threshold=0.300 | TP=264 FP=1389 FN=1329
+Starting epoch 27/100
+Epoch 091/100 | train_loss=0.4438 | val_pq=0.1190 | threshold=0.300 | TP=288 FP=1023 FN=1305
+Starting epoch 92/100
+Epoch 027/100 | train_loss=0.6553 | val_pq=0.1010 | threshold=0.300 (best) | TP=263 FP=1217 FN=1330
+Starting epoch 28/100
+Epoch 032/100 | train_loss=0.6190 | val_pq=0.0937 | threshold=0.400 | TP=238 FP=1136 FN=1355
+Starting epoch 33/100
+Epoch 027/100 | train_loss=0.6424 | val_pq=0.0820 | threshold=0.400 | TP=199 FP=1122 FN=1394
+Starting epoch 28/100
+Epoch 092/100 | train_loss=0.4296 | val_pq=0.1154 | threshold=0.300 | TP=294 FP=1159 FN=1299
+Starting epoch 93/100
+Epoch 028/100 | train_loss=0.6410 | val_pq=0.0986 | threshold=0.300 | TP=275 FP=1455 FN=1318
+Starting epoch 29/100
+Epoch 033/100 | train_loss=0.5988 | val_pq=0.0861 | threshold=0.400 | TP=223 FP=1193 FN=1370
+Starting epoch 34/100
+Epoch 028/100 | train_loss=0.6250 | val_pq=0.1029 | threshold=0.400 | TP=257 FP=1133 FN=1336
+Starting epoch 29/100
+Epoch 093/100 | train_loss=0.4193 | val_pq=0.1045 | threshold=0.400 | TP=247 FP=958 FN=1346
+Starting epoch 94/100
+Epoch 029/100 | train_loss=0.6253 | val_pq=0.1095 | threshold=0.400 (best) | TP=260 FP=963 FN=1333
+Starting epoch 30/100
+Epoch 034/100 | train_loss=0.5978 | val_pq=0.1119 | threshold=0.400 (best) | TP=263 FP=919 FN=1330
+Starting epoch 35/100
+Epoch 029/100 | train_loss=0.6327 | val_pq=0.1085 | threshold=0.300 (best) | TP=284 FP=1247 FN=1309
+Starting epoch 30/100
+Epoch 094/100 | train_loss=0.4131 | val_pq=0.1139 | threshold=0.300 | TP=308 FP=1335 FN=1285
+Starting epoch 95/100
+Epoch 030/100 | train_loss=0.6117 | val_pq=0.1091 | threshold=0.400 | TP=264 FP=1023 FN=1329
+Starting epoch 31/100
+Epoch 031/100 | train_loss=0.6060 | val_pq=0.1021 | threshold=0.300 | TP=284 FP=1426 FN=1309
+Starting epoch 32/100
+Epoch 035/100 | train_loss=0.5815 | val_pq=0.0918 | threshold=0.400 | TP=246 FP=1297 FN=1347
+Starting epoch 36/100
+Epoch 095/100 | train_loss=0.4199 | val_pq=0.1293 | threshold=0.200 (best) | TP=326 FP=1082 FN=1267
+Starting epoch 96/100
+Epoch 030/100 | train_loss=0.6200 | val_pq=0.1010 | threshold=0.400 | TP=268 FP=1281 FN=1325
+Starting epoch 31/100
+Epoch 036/100 | train_loss=0.5863 | val_pq=0.0990 | threshold=0.300 | TP=274 FP=1363 FN=1319
+Starting epoch 37/100
+Epoch 032/100 | train_loss=0.6047 | val_pq=0.1048 | threshold=0.300 | TP=287 FP=1353 FN=1306
+Starting epoch 33/100
+Epoch 096/100 | train_loss=0.4362 | val_pq=0.1018 | threshold=0.300 | TP=258 FP=1122 FN=1335
+Starting epoch 97/100
+Epoch 031/100 | train_loss=0.6326 | val_pq=0.1006 | threshold=0.400 | TP=250 FP=1104 FN=1343
+Starting epoch 32/100
+Epoch 033/100 | train_loss=0.5868 | val_pq=0.0876 | threshold=0.300 | TP=243 FP=1424 FN=1350
+Starting epoch 34/100
+Epoch 037/100 | train_loss=0.5745 | val_pq=0.0962 | threshold=0.400 | TP=231 FP=967 FN=1362
+Starting epoch 38/100
+Epoch 097/100 | train_loss=0.4364 | val_pq=0.1193 | threshold=0.300 | TP=289 FP=975 FN=1304
+Starting epoch 98/100
+Epoch 032/100 | train_loss=0.6024 | val_pq=0.1065 | threshold=0.400 | TP=250 FP=926 FN=1343
+Starting epoch 33/100
+Epoch 034/100 | train_loss=0.5804 | val_pq=0.1072 | threshold=0.300 | TP=284 FP=1264 FN=1309
+Starting epoch 35/100
+Epoch 033/100 | train_loss=0.5885 | val_pq=0.1103 | threshold=0.300 (best) | TP=282 FP=1178 FN=1311
+Starting epoch 34/100
+Epoch 038/100 | train_loss=0.5645 | val_pq=0.0895 | threshold=0.300 | TP=244 FP=1325 FN=1349
+Starting epoch 39/100
+Epoch 098/100 | train_loss=0.4307 | val_pq=0.1115 | threshold=0.300 | TP=298 FP=1301 FN=1295
+Starting epoch 99/100
+Epoch 035/100 | train_loss=0.5736 | val_pq=0.1002 | threshold=0.300 | TP=270 FP=1351 FN=1323
+Starting epoch 36/100
+Epoch 039/100 | train_loss=0.5701 | val_pq=0.0993 | threshold=0.300 | TP=253 FP=1170 FN=1340
+Starting epoch 40/100
+Epoch 034/100 | train_loss=0.5725 | val_pq=0.1044 | threshold=0.300 | TP=285 FP=1363 FN=1308
+Starting epoch 35/100
+Epoch 099/100 | train_loss=0.4296 | val_pq=0.1063 | threshold=0.400 | TP=251 FP=964 FN=1342
+Starting epoch 100/100
+Epoch 036/100 | train_loss=0.5756 | val_pq=0.1097 | threshold=0.300 (best) | TP=276 FP=1100 FN=1317
+Starting epoch 37/100
+Epoch 035/100 | train_loss=0.5761 | val_pq=0.1041 | threshold=0.300 | TP=285 FP=1399 FN=1308
+Starting epoch 36/100
+Epoch 040/100 | train_loss=0.5608 | val_pq=0.1008 | threshold=0.400 | TP=237 FP=916 FN=1356
+Starting epoch 41/100
+Epoch 100/100 | train_loss=0.4391 | val_pq=0.1199 | threshold=0.300 | TP=326 FP=1338 FN=1267
+[worker 1 / TPU core 1 (xla:0)] finished condinst-comparison seed=42, best_val_pq=0.129280, best_epoch=95
+[worker 1 / TPU core 1 (xla:0)] starting condinst-comparison seed=46, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== condinst-comparison, seed46 ===
+Starting epoch 1/100
+Epoch 037/100 | train_loss=0.5750 | val_pq=0.0950 | threshold=0.400 | TP=225 FP=985 FN=1368
+Starting epoch 38/100
+Epoch 036/100 | train_loss=0.5738 | val_pq=0.1023 | threshold=0.400 | TP=280 FP=1384 FN=1313
+Starting epoch 37/100
+Epoch 041/100 | train_loss=0.5550 | val_pq=0.1071 | threshold=0.400 | TP=274 FP=1144 FN=1319
+Starting epoch 42/100
+Epoch 001/100 | train_loss=2.6954 | val_pq=0.0022 | threshold=0.300 (best) | TP=6 FP=1251 FN=1587
+Starting epoch 2/100
+Epoch 037/100 | train_loss=0.5616 | val_pq=0.1077 | threshold=0.400 | TP=245 FP=861 FN=1348
+Starting epoch 38/100
+Epoch 042/100 | train_loss=0.5516 | val_pq=0.1112 | threshold=0.400 | TP=281 FP=1080 FN=1312
+Starting epoch 43/100
+Epoch 038/100 | train_loss=0.5645 | val_pq=0.1120 | threshold=0.300 (best) | TP=294 FP=1235 FN=1299
+Starting epoch 39/100
+Epoch 002/100 | train_loss=2.1368 | val_pq=0.0136 | threshold=0.300 (best) | TP=36 FP=1341 FN=1557
+Starting epoch 3/100
+Epoch 038/100 | train_loss=0.5717 | val_pq=0.1169 | threshold=0.300 (best) | TP=313 FP=1255 FN=1280
+Starting epoch 39/100
+Epoch 043/100 | train_loss=0.5393 | val_pq=0.1022 | threshold=0.400 | TP=251 FP=1023 FN=1342
+Starting epoch 44/100
+Epoch 039/100 | train_loss=0.5491 | val_pq=0.0985 | threshold=0.300 | TP=306 FP=1720 FN=1287
+Starting epoch 40/100
+Epoch 003/100 | train_loss=1.9484 | val_pq=0.0278 | threshold=0.300 (best) | TP=77 FP=1511 FN=1516
+Starting epoch 4/100
+Epoch 039/100 | train_loss=0.5651 | val_pq=0.0965 | threshold=0.300 | TP=245 FP=1155 FN=1348
+Starting epoch 40/100
+Epoch 044/100 | train_loss=0.5406 | val_pq=0.0826 | threshold=0.300 | TP=218 FP=1287 FN=1375
+Starting epoch 45/100
+Epoch 004/100 | train_loss=1.8095 | val_pq=0.0332 | threshold=0.300 (best) | TP=89 FP=1368 FN=1504
+Starting epoch 5/100
+Epoch 040/100 | train_loss=0.5503 | val_pq=0.1054 | threshold=0.400 | TP=251 FP=981 FN=1342
+Starting epoch 41/100
+Epoch 045/100 | train_loss=0.5351 | val_pq=0.0924 | threshold=0.400 | TP=219 FP=980 FN=1374
+Starting epoch 46/100
+Epoch 040/100 | train_loss=0.5479 | val_pq=0.1027 | threshold=0.300 | TP=278 FP=1332 FN=1315
+Starting epoch 41/100
+Epoch 005/100 | train_loss=1.7031 | val_pq=0.0476 | threshold=0.300 (best) | TP=136 FP=1594 FN=1457
+Starting epoch 6/100
+Epoch 041/100 | train_loss=0.5376 | val_pq=0.1092 | threshold=0.300 | TP=275 FP=1129 FN=1318
+Starting epoch 42/100
+Epoch 046/100 | train_loss=0.5573 | val_pq=0.0957 | threshold=0.400 | TP=251 FP=1222 FN=1342
+Starting epoch 47/100
+Epoch 041/100 | train_loss=0.5409 | val_pq=0.1015 | threshold=0.400 | TP=248 FP=1024 FN=1345
+Starting epoch 42/100
+Epoch 006/100 | train_loss=1.5746 | val_pq=0.0321 | threshold=0.300 | TP=101 FP=1917 FN=1492
+Starting epoch 7/100
+Epoch 042/100 | train_loss=0.5545 | val_pq=0.0942 | threshold=0.300 | TP=271 FP=1573 FN=1322
+Starting epoch 43/100
+Epoch 047/100 | train_loss=0.5337 | val_pq=0.0982 | threshold=0.300 | TP=273 FP=1394 FN=1320
+Starting epoch 48/100
+Epoch 007/100 | train_loss=1.4811 | val_pq=0.0461 | threshold=0.300 | TP=140 FP=1814 FN=1453
+Starting epoch 8/100
+Epoch 043/100 | train_loss=0.5335 | val_pq=0.1024 | threshold=0.400 | TP=272 FP=1263 FN=1321
+Starting epoch 44/100
+Epoch 042/100 | train_loss=0.5435 | val_pq=0.1050 | threshold=0.300 | TP=279 FP=1280 FN=1314
+Starting epoch 43/100
+Epoch 048/100 | train_loss=0.5277 | val_pq=0.1025 | threshold=0.400 | TP=257 FP=1081 FN=1336
+Starting epoch 49/100
+Epoch 043/100 | train_loss=0.5518 | val_pq=0.1172 | threshold=0.400 (best) | TP=268 FP=847 FN=1325
+Starting epoch 44/100
+Epoch 044/100 | train_loss=0.5493 | val_pq=0.0973 | threshold=0.300 | TP=284 FP=1545 FN=1309
+Starting epoch 45/100
+Epoch 008/100 | train_loss=1.3628 | val_pq=0.0535 | threshold=0.400 (best) | TP=125 FP=1010 FN=1468
+Starting epoch 9/100
+Epoch 049/100 | train_loss=0.5212 | val_pq=0.1146 | threshold=0.400 (best) | TP=279 FP=994 FN=1314
+Starting epoch 50/100
+Epoch 044/100 | train_loss=0.5256 | val_pq=0.1151 | threshold=0.300 | TP=282 FP=1066 FN=1311
+Starting epoch 45/100
+Epoch 045/100 | train_loss=0.5304 | val_pq=0.1038 | threshold=0.400 | TP=260 FP=1122 FN=1333
+Starting epoch 46/100
+Epoch 009/100 | train_loss=1.2536 | val_pq=0.0605 | threshold=0.300 (best) | TP=181 FP=1696 FN=1412
+Starting epoch 10/100
+Epoch 050/100 | train_loss=0.5274 | val_pq=0.1017 | threshold=0.300 | TP=271 FP=1225 FN=1322
+Starting epoch 51/100
+Epoch 045/100 | train_loss=0.5322 | val_pq=0.1080 | threshold=0.300 | TP=304 FP=1428 FN=1289
+Starting epoch 46/100
+Epoch 046/100 | train_loss=0.5391 | val_pq=0.1043 | threshold=0.300 | TP=284 FP=1371 FN=1309
+Starting epoch 47/100
+Epoch 010/100 | train_loss=1.1831 | val_pq=0.0698 | threshold=0.300 (best) | TP=186 FP=1310 FN=1407
+Starting epoch 11/100
+Epoch 051/100 | train_loss=0.5167 | val_pq=0.0990 | threshold=0.400 | TP=220 FP=806 FN=1373
+Starting epoch 52/100
+Epoch 047/100 | train_loss=0.5328 | val_pq=0.1031 | threshold=0.300 | TP=274 FP=1262 FN=1319
+Starting epoch 48/100
+Epoch 046/100 | train_loss=0.5345 | val_pq=0.1009 | threshold=0.300 | TP=261 FP=1208 FN=1332
+Starting epoch 47/100
+Epoch 011/100 | train_loss=1.0914 | val_pq=0.0704 | threshold=0.300 (best) | TP=184 FP=1275 FN=1409
+Starting epoch 12/100
+Epoch 052/100 | train_loss=0.5097 | val_pq=0.1031 | threshold=0.400 | TP=261 FP=1101 FN=1332
+Starting epoch 53/100
+Epoch 047/100 | train_loss=0.5104 | val_pq=0.1105 | threshold=0.300 | TP=292 FP=1233 FN=1301
+Starting epoch 48/100
+Epoch 048/100 | train_loss=0.5275 | val_pq=0.0917 | threshold=0.300 | TP=220 FP=1028 FN=1373
+Starting epoch 49/100
+Epoch 012/100 | train_loss=1.0238 | val_pq=0.0585 | threshold=0.300 | TP=169 FP=1613 FN=1424
+Starting epoch 13/100
+Epoch 053/100 | train_loss=0.5023 | val_pq=0.1085 | threshold=0.300 | TP=260 FP=978 FN=1333
+Starting epoch 54/100
+Epoch 048/100 | train_loss=0.5078 | val_pq=0.1002 | threshold=0.200 | TP=273 FP=1335 FN=1320
+Starting epoch 49/100
+Epoch 013/100 | train_loss=0.9472 | val_pq=0.0708 | threshold=0.400 (best) | TP=173 FP=1089 FN=1420
+Starting epoch 14/100
+Epoch 049/100 | train_loss=0.5182 | val_pq=0.0875 | threshold=0.200 | TP=276 FP=1854 FN=1317
+Starting epoch 50/100
+Epoch 054/100 | train_loss=0.5210 | val_pq=0.1028 | threshold=0.400 | TP=253 FP=1068 FN=1340
+Starting epoch 55/100
+Epoch 049/100 | train_loss=0.5160 | val_pq=0.0985 | threshold=0.400 | TP=260 FP=1280 FN=1333
+Starting epoch 50/100
+Epoch 014/100 | train_loss=0.9202 | val_pq=0.0656 | threshold=0.300 | TP=192 FP=1642 FN=1401
+Starting epoch 15/100
+Epoch 050/100 | train_loss=0.5418 | val_pq=0.0907 | threshold=0.300 | TP=248 FP=1390 FN=1345
+Starting epoch 51/100
+Epoch 055/100 | train_loss=0.5055 | val_pq=0.1055 | threshold=0.300 | TP=278 FP=1252 FN=1315
+Starting epoch 56/100
+Epoch 050/100 | train_loss=0.5006 | val_pq=0.1152 | threshold=0.300 | TP=304 FP=1208 FN=1289
+Starting epoch 51/100
+Epoch 015/100 | train_loss=0.8730 | val_pq=0.0777 | threshold=0.300 (best) | TP=221 FP=1509 FN=1372
+Starting epoch 16/100
+Epoch 051/100 | train_loss=0.5243 | val_pq=0.1003 | threshold=0.400 | TP=240 FP=980 FN=1353
+Starting epoch 52/100
+Epoch 051/100 | train_loss=0.5039 | val_pq=0.1185 | threshold=0.300 (best) | TP=299 FP=1097 FN=1294
+Starting epoch 52/100
+Epoch 016/100 | train_loss=0.8407 | val_pq=0.0801 | threshold=0.300 (best) | TP=228 FP=1497 FN=1365
+Starting epoch 17/100
+Epoch 052/100 | train_loss=0.5219 | val_pq=0.0912 | threshold=0.300 | TP=234 FP=1192 FN=1359
+Starting epoch 53/100
+Epoch 052/100 | train_loss=0.5222 | val_pq=0.1182 | threshold=0.400 | TP=282 FP=932 FN=1311
+Starting epoch 53/100
+Epoch 017/100 | train_loss=0.8108 | val_pq=0.0747 | threshold=0.400 | TP=185 FP=1103 FN=1408
+Starting epoch 18/100
+Epoch 053/100 | train_loss=0.5062 | val_pq=0.0996 | threshold=0.300 | TP=260 FP=1226 FN=1333
+Starting epoch 54/100
+Epoch 053/100 | train_loss=0.5007 | val_pq=0.1089 | threshold=0.300 | TP=264 FP=1029 FN=1329
+Starting epoch 54/100
+Epoch 018/100 | train_loss=0.7772 | val_pq=0.0694 | threshold=0.300 | TP=188 FP=1391 FN=1405
+Starting epoch 19/100
+Epoch 054/100 | train_loss=0.4834 | val_pq=0.1016 | threshold=0.300 | TP=290 FP=1501 FN=1303
+Starting epoch 55/100
+Epoch 054/100 | train_loss=0.5068 | val_pq=0.1000 | threshold=0.400 | TP=231 FP=919 FN=1362
+Starting epoch 55/100
+Epoch 019/100 | train_loss=0.7598 | val_pq=0.0764 | threshold=0.400 | TP=190 FP=1131 FN=1403
+Starting epoch 20/100
+Epoch 056/100 | train_loss=0.5009 | val_pq=0.0922 | threshold=0.400 | TP=249 FP=1322 FN=1344
+Starting epoch 57/100
+Epoch 055/100 | train_loss=0.4889 | val_pq=0.1026 | threshold=0.300 | TP=256 FP=1116 FN=1337
+Starting epoch 56/100
+Epoch 055/100 | train_loss=0.4939 | val_pq=0.1143 | threshold=0.300 | TP=277 FP=994 FN=1316
+Starting epoch 56/100
+Epoch 020/100 | train_loss=0.7428 | val_pq=0.0736 | threshold=0.300 | TP=188 FP=1203 FN=1405
+Starting epoch 21/100
+Epoch 057/100 | train_loss=0.5198 | val_pq=0.0982 | threshold=0.300 | TP=254 FP=1189 FN=1339
+Starting epoch 58/100
+Epoch 021/100 | train_loss=0.7343 | val_pq=0.0903 | threshold=0.300 (best) | TP=266 FP=1596 FN=1327
+Starting epoch 22/100
+Epoch 058/100 | train_loss=0.4946 | val_pq=0.1018 | threshold=0.300 | TP=278 FP=1388 FN=1315
+Starting epoch 59/100
+Epoch 022/100 | train_loss=0.7030 | val_pq=0.0907 | threshold=0.300 (best) | TP=227 FP=1133 FN=1366
+Starting epoch 23/100
+Epoch 059/100 | train_loss=0.4863 | val_pq=0.1013 | threshold=0.400 | TP=250 FP=1096 FN=1343
+Starting epoch 60/100
+Epoch 023/100 | train_loss=0.7012 | val_pq=0.0913 | threshold=0.400 (best) | TP=243 FP=1309 FN=1350
+Starting epoch 24/100
+Epoch 060/100 | train_loss=0.4851 | val_pq=0.1086 | threshold=0.300 | TP=303 FP=1396 FN=1290
+Starting epoch 61/100
+Epoch 024/100 | train_loss=0.6789 | val_pq=0.0736 | threshold=0.400 | TP=184 FP=1112 FN=1409
+Starting epoch 25/100
+Epoch 061/100 | train_loss=0.4920 | val_pq=0.1073 | threshold=0.400 | TP=283 FP=1258 FN=1310
+Starting epoch 62/100
+Epoch 056/100 | train_loss=0.4833 | val_pq=0.1181 | threshold=0.300 | TP=291 FP=1043 FN=1302
+Starting epoch 57/100
+Epoch 056/100 | train_loss=0.4832 | val_pq=0.1033 | threshold=0.400 | TP=260 FP=1131 FN=1333
+Starting epoch 57/100
+Epoch 025/100 | train_loss=0.6665 | val_pq=0.0952 | threshold=0.400 (best) | TP=225 FP=980 FN=1368
+Starting epoch 26/100
+Epoch 062/100 | train_loss=0.4737 | val_pq=0.0996 | threshold=0.300 | TP=246 FP=1040 FN=1347
+Starting epoch 63/100
+Epoch 057/100 | train_loss=0.4803 | val_pq=0.1129 | threshold=0.300 | TP=287 FP=1152 FN=1306
+Starting epoch 58/100
+Epoch 057/100 | train_loss=0.4807 | val_pq=0.1087 | threshold=0.400 | TP=255 FP=935 FN=1338
+Starting epoch 58/100
+Epoch 026/100 | train_loss=0.6638 | val_pq=0.0745 | threshold=0.300 | TP=226 FP=1737 FN=1367
+Starting epoch 27/100
+Epoch 063/100 | train_loss=0.4803 | val_pq=0.1004 | threshold=0.400 | TP=241 FP=989 FN=1352
+Starting epoch 64/100
+Epoch 058/100 | train_loss=0.4836 | val_pq=0.1014 | threshold=0.400 | TP=227 FP=837 FN=1366
+Starting epoch 59/100
+Epoch 058/100 | train_loss=0.4837 | val_pq=0.0975 | threshold=0.200 | TP=235 FP=1009 FN=1358
+Starting epoch 59/100
+Epoch 027/100 | train_loss=0.6688 | val_pq=0.0727 | threshold=0.400 | TP=174 FP=1051 FN=1419
+Starting epoch 28/100
+Epoch 064/100 | train_loss=0.4879 | val_pq=0.1035 | threshold=0.300 | TP=261 FP=1126 FN=1332
+Starting epoch 65/100
+Epoch 059/100 | train_loss=0.4859 | val_pq=0.1076 | threshold=0.400 | TP=277 FP=1176 FN=1316
+Starting epoch 60/100
+Epoch 059/100 | train_loss=0.5161 | val_pq=0.1139 | threshold=0.300 (best) | TP=298 FP=1199 FN=1295
+Starting epoch 60/100
+Epoch 028/100 | train_loss=0.6541 | val_pq=0.1003 | threshold=0.300 (best) | TP=266 FP=1234 FN=1327
+Starting epoch 29/100
+Epoch 065/100 | train_loss=0.4855 | val_pq=0.1031 | threshold=0.300 | TP=270 FP=1236 FN=1323
+Starting epoch 66/100
+Epoch 060/100 | train_loss=0.4951 | val_pq=0.1159 | threshold=0.200 | TP=319 FP=1361 FN=1274
+Starting epoch 61/100
+Epoch 060/100 | train_loss=0.4872 | val_pq=0.0979 | threshold=0.300 | TP=277 FP=1460 FN=1316
+Starting epoch 61/100
+Epoch 029/100 | train_loss=0.6322 | val_pq=0.0914 | threshold=0.400 | TP=217 FP=997 FN=1376
+Starting epoch 30/100
+Epoch 066/100 | train_loss=0.4797 | val_pq=0.0984 | threshold=0.400 | TP=233 FP=974 FN=1360
+Starting epoch 67/100
+Epoch 061/100 | train_loss=0.4702 | val_pq=0.1182 | threshold=0.200 | TP=310 FP=1198 FN=1283
+Starting epoch 62/100
+Epoch 061/100 | train_loss=0.4723 | val_pq=0.0962 | threshold=0.400 | TP=248 FP=1199 FN=1345
+Starting epoch 62/100
+Epoch 030/100 | train_loss=0.6228 | val_pq=0.0891 | threshold=0.300 | TP=250 FP=1512 FN=1343
+Starting epoch 31/100
+Epoch 067/100 | train_loss=0.4785 | val_pq=0.0960 | threshold=0.400 | TP=228 FP=960 FN=1365
+Starting epoch 68/100
+Epoch 062/100 | train_loss=0.4778 | val_pq=0.1083 | threshold=0.300 | TP=302 FP=1399 FN=1291
+Starting epoch 63/100
+Epoch 062/100 | train_loss=0.4771 | val_pq=0.1080 | threshold=0.400 | TP=268 FP=1094 FN=1325
+Starting epoch 63/100
+Epoch 031/100 | train_loss=0.6139 | val_pq=0.0913 | threshold=0.300 | TP=240 FP=1257 FN=1353
+Starting epoch 32/100
+Epoch 068/100 | train_loss=0.4804 | val_pq=0.0948 | threshold=0.400 | TP=239 FP=1146 FN=1354
+Starting epoch 69/100
+Epoch 063/100 | train_loss=0.4705 | val_pq=0.1049 | threshold=0.400 | TP=279 FP=1277 FN=1314
+Starting epoch 64/100
+Epoch 063/100 | train_loss=0.4928 | val_pq=0.1117 | threshold=0.300 | TP=308 FP=1366 FN=1285
+Starting epoch 64/100
+Epoch 032/100 | train_loss=0.6028 | val_pq=0.1020 | threshold=0.400 (best) | TP=257 FP=1118 FN=1336
+Starting epoch 33/100
+Epoch 064/100 | train_loss=0.4695 | val_pq=0.1220 | threshold=0.300 (best) | TP=321 FP=1216 FN=1272
+Starting epoch 65/100
+Epoch 069/100 | train_loss=0.5142 | val_pq=0.1076 | threshold=0.300 | TP=283 FP=1186 FN=1310
+Starting epoch 70/100
+Epoch 064/100 | train_loss=0.4821 | val_pq=0.1019 | threshold=0.400 | TP=254 FP=1109 FN=1339
+Starting epoch 65/100
+Epoch 033/100 | train_loss=0.5943 | val_pq=0.0896 | threshold=0.400 | TP=228 FP=1181 FN=1365
+Starting epoch 34/100
+Epoch 070/100 | train_loss=0.4846 | val_pq=0.0934 | threshold=0.300 | TP=246 FP=1241 FN=1347
+Starting epoch 71/100
+Epoch 065/100 | train_loss=0.4671 | val_pq=0.1097 | threshold=0.300 | TP=294 FP=1305 FN=1299
+Starting epoch 66/100
+Epoch 065/100 | train_loss=0.4901 | val_pq=0.1004 | threshold=0.300 | TP=247 FP=1078 FN=1346
+Starting epoch 66/100
+Epoch 034/100 | train_loss=0.5977 | val_pq=0.0875 | threshold=0.400 | TP=206 FP=938 FN=1387
+Starting epoch 35/100
+Epoch 066/100 | train_loss=0.4835 | val_pq=0.1076 | threshold=0.400 | TP=257 FP=968 FN=1336
+Starting epoch 67/100
+Epoch 066/100 | train_loss=0.4688 | val_pq=0.1096 | threshold=0.300 | TP=288 FP=1275 FN=1305
+Starting epoch 67/100
+Epoch 035/100 | train_loss=0.6070 | val_pq=0.0962 | threshold=0.300 | TP=271 FP=1500 FN=1322
+Starting epoch 36/100
+Epoch 067/100 | train_loss=0.4816 | val_pq=0.1056 | threshold=0.300 | TP=264 FP=1105 FN=1329
+Starting epoch 68/100
+Epoch 067/100 | train_loss=0.4662 | val_pq=0.1167 | threshold=0.300 (best) | TP=295 FP=1148 FN=1298
+Starting epoch 68/100
+Epoch 036/100 | train_loss=0.5845 | val_pq=0.1054 | threshold=0.300 (best) | TP=273 FP=1174 FN=1320
+Starting epoch 37/100
+Epoch 068/100 | train_loss=0.4642 | val_pq=0.1135 | threshold=0.300 | TP=326 FP=1492 FN=1267
+Starting epoch 69/100
+Epoch 068/100 | train_loss=0.4595 | val_pq=0.1141 | threshold=0.300 | TP=289 FP=1105 FN=1304
+Starting epoch 69/100
+Epoch 037/100 | train_loss=0.5853 | val_pq=0.0935 | threshold=0.400 | TP=216 FP=905 FN=1377
+Starting epoch 38/100
+Epoch 069/100 | train_loss=0.4433 | val_pq=0.1102 | threshold=0.400 | TP=268 FP=1014 FN=1325
+Starting epoch 70/100
+Epoch 069/100 | train_loss=0.4906 | val_pq=0.0987 | threshold=0.400 | TP=246 FP=1091 FN=1347
+Starting epoch 70/100
+Epoch 070/100 | train_loss=0.4464 | val_pq=0.1080 | threshold=0.200 | TP=288 FP=1258 FN=1305
+Starting epoch 71/100
+Epoch 038/100 | train_loss=0.5639 | val_pq=0.0835 | threshold=0.300 | TP=233 FP=1458 FN=1360
+Starting epoch 39/100
+Epoch 071/100 | train_loss=0.4616 | val_pq=0.1073 | threshold=0.400 | TP=274 FP=1129 FN=1319
+Starting epoch 72/100
+Epoch 070/100 | train_loss=0.4740 | val_pq=0.1068 | threshold=0.400 | TP=281 FP=1279 FN=1312
+Starting epoch 71/100
+Epoch 039/100 | train_loss=0.5598 | val_pq=0.0941 | threshold=0.300 | TP=250 FP=1265 FN=1343
+Starting epoch 40/100
+Epoch 040/100 | train_loss=0.5791 | val_pq=0.0896 | threshold=0.300 | TP=246 FP=1374 FN=1347
+Starting epoch 41/100
+Epoch 041/100 | train_loss=0.5635 | val_pq=0.0959 | threshold=0.400 | TP=237 FP=1061 FN=1356
+Starting epoch 42/100
+Epoch 072/100 | train_loss=0.4527 | val_pq=0.1029 | threshold=0.500 | TP=228 FP=794 FN=1365
+Starting epoch 73/100
+Epoch 042/100 | train_loss=0.5453 | val_pq=0.0950 | threshold=0.300 | TP=253 FP=1280 FN=1340
+Starting epoch 43/100
+Epoch 043/100 | train_loss=0.5565 | val_pq=0.0855 | threshold=0.300 | TP=226 FP=1281 FN=1367
+Starting epoch 44/100
+Epoch 073/100 | train_loss=0.4575 | val_pq=0.1043 | threshold=0.300 | TP=286 FP=1303 FN=1307
+Starting epoch 74/100
+Epoch 071/100 | train_loss=0.4458 | val_pq=0.1036 | threshold=0.400 | TP=268 FP=1182 FN=1325
+Starting epoch 72/100
+Epoch 071/100 | train_loss=0.4665 | val_pq=0.1073 | threshold=0.300 | TP=273 FP=1176 FN=1320
+Starting epoch 72/100
+Epoch 044/100 | train_loss=0.5357 | val_pq=0.0910 | threshold=0.300 | TP=242 FP=1261 FN=1351
+Starting epoch 45/100
+Epoch 074/100 | train_loss=0.4618 | val_pq=0.1043 | threshold=0.400 | TP=268 FP=1183 FN=1325
+Starting epoch 75/100
+Epoch 045/100 | train_loss=0.5328 | val_pq=0.0935 | threshold=0.400 | TP=227 FP=1052 FN=1366
+Starting epoch 46/100
+Epoch 046/100 | train_loss=0.5253 | val_pq=0.0916 | threshold=0.400 | TP=234 FP=1170 FN=1359
+Starting epoch 47/100
+Epoch 075/100 | train_loss=0.4640 | val_pq=0.1077 | threshold=0.300 | TP=273 FP=1128 FN=1320
+Starting epoch 76/100
+Epoch 047/100 | train_loss=0.5238 | val_pq=0.0798 | threshold=0.300 | TP=212 FP=1287 FN=1381
+Starting epoch 48/100
+Epoch 072/100 | train_loss=0.4569 | val_pq=0.1093 | threshold=0.400 | TP=252 FP=889 FN=1341
+Starting epoch 73/100
+Epoch 076/100 | train_loss=0.4570 | val_pq=0.0953 | threshold=0.300 | TP=254 FP=1287 FN=1339
+Starting epoch 77/100
+Epoch 072/100 | train_loss=0.5007 | val_pq=0.1106 | threshold=0.300 | TP=295 FP=1268 FN=1298
+Starting epoch 73/100
+Epoch 048/100 | train_loss=0.5231 | val_pq=0.0995 | threshold=0.300 | TP=283 FP=1464 FN=1310
+Starting epoch 49/100
+Epoch 077/100 | train_loss=0.4603 | val_pq=0.1027 | threshold=0.400 | TP=246 FP=979 FN=1347
+Starting epoch 78/100
+Epoch 073/100 | train_loss=0.4543 | val_pq=0.1111 | threshold=0.300 | TP=291 FP=1192 FN=1302
+Starting epoch 74/100
+Epoch 049/100 | train_loss=0.5240 | val_pq=0.0915 | threshold=0.400 | TP=222 FP=1060 FN=1371
+Starting epoch 50/100
+Epoch 073/100 | train_loss=0.4544 | val_pq=0.1104 | threshold=0.300 | TP=293 FP=1229 FN=1300
+Starting epoch 74/100
+Epoch 050/100 | train_loss=0.5202 | val_pq=0.1082 | threshold=0.400 (best) | TP=255 FP=893 FN=1338
+Starting epoch 51/100
+Epoch 078/100 | train_loss=0.4405 | val_pq=0.1067 | threshold=0.300 | TP=291 FP=1343 FN=1302
+Starting epoch 79/100
+Epoch 074/100 | train_loss=0.4468 | val_pq=0.1171 | threshold=0.300 | TP=318 FP=1317 FN=1275
+Starting epoch 75/100
+Epoch 074/100 | train_loss=0.4480 | val_pq=0.1063 | threshold=0.300 | TP=271 FP=1189 FN=1322
+Starting epoch 75/100
+Epoch 051/100 | train_loss=0.5210 | val_pq=0.0814 | threshold=0.400 | TP=200 FP=1062 FN=1393
+Starting epoch 52/100
+Epoch 079/100 | train_loss=0.4517 | val_pq=0.0969 | threshold=0.400 | TP=252 FP=1179 FN=1341
+Starting epoch 80/100
+Epoch 075/100 | train_loss=0.4552 | val_pq=0.1203 | threshold=0.400 | TP=256 FP=700 FN=1337
+Starting epoch 76/100
+Epoch 052/100 | train_loss=0.5163 | val_pq=0.0933 | threshold=0.300 | TP=241 FP=1178 FN=1352
+Starting epoch 53/100
+Epoch 075/100 | train_loss=0.4498 | val_pq=0.1035 | threshold=0.300 | TP=282 FP=1383 FN=1311
+Starting epoch 76/100
+Epoch 080/100 | train_loss=0.4483 | val_pq=0.1065 | threshold=0.300 | TP=279 FP=1202 FN=1314
+Starting epoch 81/100
+Epoch 053/100 | train_loss=0.5121 | val_pq=0.0957 | threshold=0.300 | TP=260 FP=1356 FN=1333
+Starting epoch 54/100
+Epoch 076/100 | train_loss=0.4595 | val_pq=0.1088 | threshold=0.400 | TP=261 FP=974 FN=1332
+Starting epoch 77/100
+Epoch 076/100 | train_loss=0.4476 | val_pq=0.0837 | threshold=0.200 | TP=221 FP=1337 FN=1372
+Starting epoch 77/100
+Epoch 081/100 | train_loss=0.4602 | val_pq=0.1029 | threshold=0.400 | TP=259 FP=1122 FN=1334
+Starting epoch 82/100
+Epoch 054/100 | train_loss=0.5006 | val_pq=0.0853 | threshold=0.400 | TP=210 FP=1094 FN=1383
+Starting epoch 55/100
+Epoch 077/100 | train_loss=0.4374 | val_pq=0.1081 | threshold=0.200 | TP=304 FP=1421 FN=1289
+Starting epoch 78/100
+Epoch 077/100 | train_loss=0.4717 | val_pq=0.1110 | threshold=0.400 | TP=289 FP=1191 FN=1304
+Starting epoch 78/100
+Epoch 082/100 | train_loss=0.4568 | val_pq=0.1092 | threshold=0.300 | TP=282 FP=1174 FN=1311
+Starting epoch 83/100
+Epoch 055/100 | train_loss=0.5123 | val_pq=0.0990 | threshold=0.400 | TP=223 FP=854 FN=1370
+Starting epoch 56/100
+Epoch 078/100 | train_loss=0.4293 | val_pq=0.1084 | threshold=0.300 | TP=272 FP=1113 FN=1321
+Starting epoch 79/100
+Epoch 078/100 | train_loss=0.4624 | val_pq=0.1108 | threshold=0.400 | TP=288 FP=1209 FN=1305
+Starting epoch 79/100
+Epoch 083/100 | train_loss=0.4460 | val_pq=0.1212 | threshold=0.300 (best) | TP=298 FP=1023 FN=1295
+Starting epoch 84/100
+Epoch 056/100 | train_loss=0.5239 | val_pq=0.0787 | threshold=0.400 | TP=180 FP=917 FN=1413
+Starting epoch 57/100
+Epoch 079/100 | train_loss=0.4284 | val_pq=0.1178 | threshold=0.300 | TP=289 FP=1056 FN=1304
+Starting epoch 80/100
+Epoch 079/100 | train_loss=0.4497 | val_pq=0.1168 | threshold=0.400 (best) | TP=288 FP=1048 FN=1305
+Starting epoch 80/100
+Epoch 084/100 | train_loss=0.4470 | val_pq=0.1154 | threshold=0.400 | TP=274 FP=892 FN=1319
+Starting epoch 85/100
+Epoch 057/100 | train_loss=0.5317 | val_pq=0.0925 | threshold=0.300 | TP=255 FP=1387 FN=1338
+Starting epoch 58/100
+Epoch 080/100 | train_loss=0.4428 | val_pq=0.1133 | threshold=0.300 | TP=288 FP=1148 FN=1305
+Starting epoch 81/100
+Epoch 085/100 | train_loss=0.4486 | val_pq=0.1012 | threshold=0.200 | TP=254 FP=1098 FN=1339
+Starting epoch 86/100
+Epoch 080/100 | train_loss=0.4462 | val_pq=0.1078 | threshold=0.400 | TP=260 FP=973 FN=1333
+Starting epoch 81/100
+Epoch 058/100 | train_loss=0.4974 | val_pq=0.1000 | threshold=0.400 | TP=242 FP=1045 FN=1351
+Starting epoch 59/100
+Epoch 081/100 | train_loss=0.4427 | val_pq=0.1149 | threshold=0.400 | TP=270 FP=929 FN=1323
+Starting epoch 82/100
+Epoch 086/100 | train_loss=0.4414 | val_pq=0.1044 | threshold=0.300 | TP=269 FP=1157 FN=1324
+Starting epoch 87/100
+Epoch 059/100 | train_loss=0.4886 | val_pq=0.0930 | threshold=0.300 | TP=248 FP=1320 FN=1345
+Starting epoch 60/100
+Epoch 081/100 | train_loss=0.4473 | val_pq=0.1135 | threshold=0.200 | TP=315 FP=1401 FN=1278
+Starting epoch 82/100
+Epoch 082/100 | train_loss=0.4520 | val_pq=0.1024 | threshold=0.400 | TP=252 FP=1018 FN=1341
+Starting epoch 83/100
+Epoch 060/100 | train_loss=0.4822 | val_pq=0.0910 | threshold=0.300 | TP=245 FP=1323 FN=1348
+Starting epoch 61/100
+Epoch 087/100 | train_loss=0.4467 | val_pq=0.1160 | threshold=0.200 | TP=318 FP=1295 FN=1275
+Starting epoch 88/100
+Epoch 082/100 | train_loss=0.4405 | val_pq=0.0992 | threshold=0.400 | TP=233 FP=947 FN=1360
+Starting epoch 83/100
+Epoch 083/100 | train_loss=0.4552 | val_pq=0.1150 | threshold=0.400 | TP=280 FP=1032 FN=1313
+Starting epoch 84/100
+Epoch 061/100 | train_loss=0.4926 | val_pq=0.0847 | threshold=0.300 | TP=225 FP=1302 FN=1368
+Starting epoch 62/100
+Epoch 088/100 | train_loss=0.4431 | val_pq=0.1087 | threshold=0.200 | TP=301 FP=1364 FN=1292
+Starting epoch 89/100
+Epoch 083/100 | train_loss=0.4364 | val_pq=0.1018 | threshold=0.300 | TP=252 FP=1098 FN=1341
+Starting epoch 84/100
+Epoch 084/100 | train_loss=0.4378 | val_pq=0.1178 | threshold=0.200 | TP=323 FP=1334 FN=1270
+Starting epoch 85/100
+Epoch 062/100 | train_loss=0.4815 | val_pq=0.1023 | threshold=0.400 | TP=251 FP=1060 FN=1342
+Starting epoch 63/100
+Epoch 089/100 | train_loss=0.4425 | val_pq=0.1074 | threshold=0.400 | TP=253 FP=942 FN=1340
+Starting epoch 90/100
+Epoch 084/100 | train_loss=0.4401 | val_pq=0.1081 | threshold=0.200 | TP=315 FP=1571 FN=1278
+Starting epoch 85/100
+Epoch 063/100 | train_loss=0.4781 | val_pq=0.0927 | threshold=0.400 | TP=237 FP=1169 FN=1356
+Starting epoch 64/100
+Epoch 085/100 | train_loss=0.4233 | val_pq=0.1075 | threshold=0.300 | TP=267 FP=1086 FN=1326
+Starting epoch 86/100
+Epoch 090/100 | train_loss=0.4376 | val_pq=0.1209 | threshold=0.300 | TP=293 FP=953 FN=1300
+Starting epoch 91/100
+Epoch 085/100 | train_loss=0.4498 | val_pq=0.1012 | threshold=0.400 | TP=254 FP=1120 FN=1339
+Starting epoch 86/100
+Epoch 064/100 | train_loss=0.4711 | val_pq=0.0948 | threshold=0.200 | TP=275 FP=1543 FN=1318
+Starting epoch 65/100
+Epoch 086/100 | train_loss=0.4154 | val_pq=0.1222 | threshold=0.300 (best) | TP=320 FP=1196 FN=1273
+Starting epoch 87/100
+Epoch 091/100 | train_loss=0.4361 | val_pq=0.1035 | threshold=0.400 | TP=269 FP=1199 FN=1324
+Starting epoch 92/100
+Epoch 065/100 | train_loss=0.4916 | val_pq=0.1033 | threshold=0.400 | TP=261 FP=1147 FN=1332
+Starting epoch 66/100
+Epoch 086/100 | train_loss=0.4686 | val_pq=0.0988 | threshold=0.300 | TP=280 FP=1461 FN=1313
+Starting epoch 87/100
+Epoch 087/100 | train_loss=0.4311 | val_pq=0.1092 | threshold=0.300 | TP=267 FP=1037 FN=1326
+Starting epoch 88/100
+Epoch 092/100 | train_loss=0.4511 | val_pq=0.0928 | threshold=0.400 | TP=229 FP=1036 FN=1364
+Starting epoch 93/100
+Epoch 066/100 | train_loss=0.4917 | val_pq=0.1005 | threshold=0.300 | TP=274 FP=1358 FN=1319
+Starting epoch 67/100
+Epoch 088/100 | train_loss=0.4381 | val_pq=0.1094 | threshold=0.300 | TP=279 FP=1135 FN=1314
+Starting epoch 89/100
+Epoch 087/100 | train_loss=0.4580 | val_pq=0.1083 | threshold=0.300 | TP=301 FP=1402 FN=1292
+Starting epoch 88/100
+Epoch 093/100 | train_loss=0.4436 | val_pq=0.1028 | threshold=0.200 | TP=284 FP=1357 FN=1309
+Starting epoch 94/100
+Epoch 067/100 | train_loss=0.4797 | val_pq=0.1045 | threshold=0.400 | TP=264 FP=1090 FN=1329
+Starting epoch 68/100
+Epoch 089/100 | train_loss=0.4284 | val_pq=0.1079 | threshold=0.200 | TP=272 FP=1131 FN=1321
+Starting epoch 90/100
+Epoch 088/100 | train_loss=0.4347 | val_pq=0.1120 | threshold=0.300 | TP=291 FP=1210 FN=1302
+Starting epoch 89/100
+Epoch 094/100 | train_loss=0.4354 | val_pq=0.1100 | threshold=0.400 | TP=276 FP=1081 FN=1317
+Starting epoch 95/100
+Epoch 068/100 | train_loss=0.4579 | val_pq=0.0963 | threshold=0.300 | TP=240 FP=1084 FN=1353
+Starting epoch 69/100
+Epoch 090/100 | train_loss=0.4209 | val_pq=0.1054 | threshold=0.200 | TP=307 FP=1540 FN=1286
+Starting epoch 91/100
+Epoch 089/100 | train_loss=0.4224 | val_pq=0.1191 | threshold=0.300 (best) | TP=307 FP=1178 FN=1286
+Starting epoch 90/100
+Epoch 095/100 | train_loss=0.4304 | val_pq=0.1070 | threshold=0.400 | TP=260 FP=1010 FN=1333
+Starting epoch 96/100
+Epoch 069/100 | train_loss=0.4552 | val_pq=0.1012 | threshold=0.400 | TP=233 FP=910 FN=1360
+Starting epoch 70/100
+Epoch 091/100 | train_loss=0.4258 | val_pq=0.1068 | threshold=0.400 | TP=245 FP=914 FN=1348
+Starting epoch 92/100
+Epoch 090/100 | train_loss=0.4200 | val_pq=0.1170 | threshold=0.200 | TP=324 FP=1392 FN=1269
+Starting epoch 91/100
+Epoch 096/100 | train_loss=0.4374 | val_pq=0.1105 | threshold=0.400 | TP=286 FP=1163 FN=1307
+Starting epoch 97/100
+Epoch 070/100 | train_loss=0.4557 | val_pq=0.0882 | threshold=0.300 | TP=214 FP=1002 FN=1379
+Starting epoch 71/100
+Epoch 092/100 | train_loss=0.4323 | val_pq=0.1078 | threshold=0.300 | TP=266 FP=1020 FN=1327
+Starting epoch 93/100
+Epoch 097/100 | train_loss=0.4168 | val_pq=0.1028 | threshold=0.300 | TP=285 FP=1368 FN=1308
+Starting epoch 98/100
+Epoch 071/100 | train_loss=0.4743 | val_pq=0.0915 | threshold=0.300 | TP=223 FP=1076 FN=1370
+Starting epoch 72/100
+Epoch 091/100 | train_loss=0.4269 | val_pq=0.0956 | threshold=0.400 | TP=227 FP=977 FN=1366
+Starting epoch 92/100
+Epoch 093/100 | train_loss=0.4494 | val_pq=0.1081 | threshold=0.300 | TP=266 FP=1074 FN=1327
+Starting epoch 94/100
+Epoch 098/100 | train_loss=0.4302 | val_pq=0.1103 | threshold=0.300 | TP=292 FP=1200 FN=1301
+Starting epoch 99/100
+Epoch 092/100 | train_loss=0.4391 | val_pq=0.1133 | threshold=0.500 | TP=263 FP=913 FN=1330
+Starting epoch 93/100
+Epoch 072/100 | train_loss=0.4728 | val_pq=0.1011 | threshold=0.400 | TP=233 FP=892 FN=1360
+Starting epoch 73/100
+Epoch 094/100 | train_loss=0.4231 | val_pq=0.1060 | threshold=0.300 | TP=267 FP=1110 FN=1326
+Starting epoch 95/100
+Epoch 099/100 | train_loss=0.4359 | val_pq=0.1095 | threshold=0.200 | TP=300 FP=1290 FN=1293
+Starting epoch 100/100
+Epoch 073/100 | train_loss=0.4516 | val_pq=0.0953 | threshold=0.300 | TP=251 FP=1277 FN=1342
+Starting epoch 74/100
+Epoch 093/100 | train_loss=0.4345 | val_pq=0.1076 | threshold=0.200 | TP=269 FP=1119 FN=1324
+Starting epoch 94/100
+Epoch 095/100 | train_loss=0.4104 | val_pq=0.1130 | threshold=0.200 | TP=310 FP=1311 FN=1283
+Starting epoch 96/100
+Epoch 100/100 | train_loss=0.4342 | val_pq=0.1030 | threshold=0.300 | TP=269 FP=1215 FN=1324
+[worker 3 / TPU core 3 (xla:0)] finished condinst-comparison seed=43, best_val_pq=0.121200, best_epoch=83
+[worker 3 / TPU core 3 (xla:0)] starting unet-baseline seed=43, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== unet-baseline, seed43 ===
+Starting epoch 1/100
+Epoch 094/100 | train_loss=0.4425 | val_pq=0.0858 | threshold=0.300 | TP=204 FP=1024 FN=1389
+Starting epoch 95/100
+Epoch 074/100 | train_loss=0.4625 | val_pq=0.1176 | threshold=0.300 (best) | TP=299 FP=1150 FN=1294
+Starting epoch 75/100
+Epoch 096/100 | train_loss=0.4060 | val_pq=0.1148 | threshold=0.200 | TP=289 FP=1100 FN=1304
+Starting epoch 97/100
+Epoch 075/100 | train_loss=0.4559 | val_pq=0.1012 | threshold=0.400 | TP=236 FP=913 FN=1357
+Starting epoch 76/100
+Epoch 095/100 | train_loss=0.4447 | val_pq=0.0977 | threshold=0.400 | TP=227 FP=968 FN=1366
+Starting epoch 96/100
+Epoch 097/100 | train_loss=0.4078 | val_pq=0.0997 | threshold=0.300 | TP=249 FP=1101 FN=1344
+Starting epoch 98/100
+Epoch 001/100 | train_loss=1.3106 | val_pq=0.0458 | threshold=0.600 (best)
+Starting epoch 2/100
+Epoch 076/100 | train_loss=0.4610 | val_pq=0.0936 | threshold=0.300 | TP=243 FP=1206 FN=1350
+Starting epoch 77/100
+Epoch 096/100 | train_loss=0.4279 | val_pq=0.1065 | threshold=0.400 | TP=252 FP=967 FN=1341
+Starting epoch 97/100
+Epoch 098/100 | train_loss=0.4097 | val_pq=0.1069 | threshold=0.300 | TP=270 FP=1122 FN=1323
+Starting epoch 99/100
+Epoch 002/100 | train_loss=1.1227 | val_pq=0.1138 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 077/100 | train_loss=0.4474 | val_pq=0.0998 | threshold=0.300 | TP=263 FP=1268 FN=1330
+Starting epoch 78/100
+Epoch 003/100 | train_loss=1.0048 | val_pq=0.0534 | threshold=0.600
+Starting epoch 4/100
+Epoch 097/100 | train_loss=0.4356 | val_pq=0.1126 | threshold=0.300 | TP=291 FP=1217 FN=1302
+Starting epoch 98/100
+Epoch 099/100 | train_loss=0.4158 | val_pq=0.1109 | threshold=0.300 | TP=286 FP=1158 FN=1307
+Starting epoch 100/100
+Epoch 078/100 | train_loss=0.4505 | val_pq=0.1028 | threshold=0.200 | TP=289 FP=1416 FN=1304
+Starting epoch 79/100
+Epoch 004/100 | train_loss=0.8773 | val_pq=0.1496 | threshold=0.600 (best)
+Starting epoch 5/100
+Epoch 098/100 | train_loss=0.4273 | val_pq=0.1054 | threshold=0.300 | TP=266 FP=1136 FN=1327
+Starting epoch 99/100
+Epoch 100/100 | train_loss=0.4145 | val_pq=0.1163 | threshold=0.300 | TP=284 FP=1033 FN=1309
+[worker 0 / TPU core 0 (xla:0)] finished condinst-comparison seed=45, best_val_pq=0.122217, best_epoch=86
+[worker 0 / TPU core 0 (xla:0)] starting boundary-aware-unet seed=43, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet, seed43 ===
+Starting epoch 1/100
+Epoch 079/100 | train_loss=0.4603 | val_pq=0.0806 | threshold=0.300 | TP=222 FP=1440 FN=1371
+Starting epoch 80/100
+Epoch 005/100 | train_loss=0.6641 | val_pq=0.2194 | threshold=0.600 (best)
+Starting epoch 6/100
+Epoch 001/100 | train_loss=1.4315 | val_pq=0.0544 | threshold=0.600 (best)
+Starting epoch 2/100
+Epoch 099/100 | train_loss=0.4387 | val_pq=0.0910 | threshold=0.400 | TP=222 FP=1081 FN=1371
+Starting epoch 100/100
+Epoch 006/100 | train_loss=0.5047 | val_pq=0.2322 | threshold=0.600 (best)
+Starting epoch 7/100
+Epoch 080/100 | train_loss=0.4605 | val_pq=0.1057 | threshold=0.400 | TP=257 FP=1003 FN=1336
+Starting epoch 81/100
+Epoch 002/100 | train_loss=1.1839 | val_pq=0.1106 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 100/100 | train_loss=0.4369 | val_pq=0.1106 | threshold=0.400 | TP=269 FP=1028 FN=1324
+[worker 2 / TPU core 2 (xla:0)] finished condinst-comparison seed=44, best_val_pq=0.119054, best_epoch=89
+[worker 2 / TPU core 2 (xla:0)] starting boundary-aware-unet-pyhopper-corrected-data seed=43, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet-pyhopper-corrected-data, seed43 ===
+Starting epoch 1/100
+Epoch 007/100 | train_loss=0.4206 | val_pq=0.2817 | threshold=0.600 (best)
+Starting epoch 8/100
+Epoch 003/100 | train_loss=1.0265 | val_pq=0.1632 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 081/100 | train_loss=0.4539 | val_pq=0.0976 | threshold=0.300 | TP=257 FP=1245 FN=1336
+Starting epoch 82/100
+Epoch 008/100 | train_loss=0.3930 | val_pq=0.2723 | threshold=0.500
+Starting epoch 9/100
+Epoch 004/100 | train_loss=0.8437 | val_pq=0.0639 | threshold=0.600
+Starting epoch 5/100
+Epoch 082/100 | train_loss=0.4446 | val_pq=0.1037 | threshold=0.400 | TP=225 FP=741 FN=1368
+Starting epoch 83/100
+Epoch 009/100 | train_loss=0.3765 | val_pq=0.2798 | threshold=0.400
+Starting epoch 10/100
+Epoch 005/100 | train_loss=0.6256 | val_pq=0.1742 | threshold=0.600 (best)
+Starting epoch 6/100
+Epoch 001/100 | train_loss=1.0216 | val_pq=0.0000 | threshold=0.440 (best)
+Starting epoch 2/100
+Epoch 010/100 | train_loss=0.3592 | val_pq=0.2941 | threshold=0.300 (best)
+Starting epoch 11/100
+Epoch 083/100 | train_loss=0.4425 | val_pq=0.0925 | threshold=0.400 | TP=251 FP=1346 FN=1342
+Starting epoch 84/100
+Epoch 006/100 | train_loss=0.4812 | val_pq=0.2436 | threshold=0.400 (best)
+Starting epoch 7/100
+Epoch 002/100 | train_loss=0.9435 | val_pq=0.0001 | threshold=0.440 (best)
+Starting epoch 3/100
+Epoch 011/100 | train_loss=0.3573 | val_pq=0.2728 | threshold=0.600
+Starting epoch 12/100
+Epoch 084/100 | train_loss=0.4492 | val_pq=0.0994 | threshold=0.200 | TP=250 FP=1162 FN=1343
+Starting epoch 85/100
+Epoch 007/100 | train_loss=0.4276 | val_pq=0.2669 | threshold=0.500 (best)
+Starting epoch 8/100
+Epoch 003/100 | train_loss=0.9011 | val_pq=0.0004 | threshold=0.440 (best)
+Starting epoch 4/100
+Epoch 012/100 | train_loss=0.3542 | val_pq=0.3105 | threshold=0.600 (best)
+Starting epoch 13/100
+Epoch 008/100 | train_loss=0.3972 | val_pq=0.2440 | threshold=0.600
+Starting epoch 9/100
+Epoch 004/100 | train_loss=0.8787 | val_pq=0.0011 | threshold=0.440 (best)
+Starting epoch 5/100
+Epoch 085/100 | train_loss=0.4444 | val_pq=0.1013 | threshold=0.400 | TP=243 FP=993 FN=1350
+Starting epoch 86/100
+Epoch 013/100 | train_loss=0.3474 | val_pq=0.2860 | threshold=0.500
+Starting epoch 14/100
+Epoch 009/100 | train_loss=0.3942 | val_pq=0.2704 | threshold=0.500 (best)
+Starting epoch 10/100
+Epoch 005/100 | train_loss=0.8766 | val_pq=0.0010 | threshold=0.440
+Starting epoch 6/100
+Epoch 014/100 | train_loss=0.3327 | val_pq=0.2654 | threshold=0.500
+Starting epoch 15/100
+Epoch 086/100 | train_loss=0.4363 | val_pq=0.0975 | threshold=0.400 | TP=225 FP=904 FN=1368
+Starting epoch 87/100
+Epoch 010/100 | train_loss=0.3672 | val_pq=0.2673 | threshold=0.200
+Starting epoch 11/100
+Epoch 006/100 | train_loss=0.8620 | val_pq=0.0016 | threshold=0.440 (best)
+Starting epoch 7/100
+Epoch 015/100 | train_loss=0.3470 | val_pq=0.2837 | threshold=0.500
+Starting epoch 16/100
+Epoch 087/100 | train_loss=0.4366 | val_pq=0.1081 | threshold=0.300 | TP=271 FP=1093 FN=1322
+Starting epoch 88/100
+Epoch 011/100 | train_loss=0.3667 | val_pq=0.2909 | threshold=0.400 (best)
+Starting epoch 12/100
+Epoch 007/100 | train_loss=0.8532 | val_pq=0.0022 | threshold=0.440 (best)
+Starting epoch 8/100
+Epoch 016/100 | train_loss=0.3285 | val_pq=0.3068 | threshold=0.300
+Starting epoch 17/100
+Epoch 012/100 | train_loss=0.3581 | val_pq=0.2991 | threshold=0.300 (best)
+Starting epoch 13/100
+Epoch 008/100 | train_loss=0.8479 | val_pq=0.0025 | threshold=0.440 (best)
+Starting epoch 9/100
+Epoch 088/100 | train_loss=0.4484 | val_pq=0.1045 | threshold=0.300 | TP=287 FP=1368 FN=1306
+Starting epoch 89/100
+Epoch 017/100 | train_loss=0.3214 | val_pq=0.2967 | threshold=0.300
+Starting epoch 18/100
+Epoch 013/100 | train_loss=0.3463 | val_pq=0.2616 | threshold=0.600
+Starting epoch 14/100
+Epoch 009/100 | train_loss=0.8433 | val_pq=0.0033 | threshold=0.440 (best)
+Starting epoch 10/100
+Epoch 018/100 | train_loss=0.3291 | val_pq=0.2813 | threshold=0.200
+Starting epoch 19/100
+Epoch 089/100 | train_loss=0.4402 | val_pq=0.1049 | threshold=0.200 | TP=276 FP=1245 FN=1317
+Starting epoch 90/100
+Epoch 010/100 | train_loss=0.8386 | val_pq=0.0037 | threshold=0.440 (best)
+Starting epoch 11/100
+Epoch 014/100 | train_loss=0.3367 | val_pq=0.2723 | threshold=0.300
+Starting epoch 15/100
+Epoch 019/100 | train_loss=0.3240 | val_pq=0.2946 | threshold=0.400
+Starting epoch 20/100
+Epoch 011/100 | train_loss=0.8337 | val_pq=0.0057 | threshold=0.440 (best)
+Starting epoch 12/100
+Epoch 015/100 | train_loss=0.3565 | val_pq=0.2751 | threshold=0.600
+Starting epoch 16/100
+Epoch 090/100 | train_loss=0.4395 | val_pq=0.1043 | threshold=0.400 | TP=248 FP=958 FN=1345
+Starting epoch 91/100
+Epoch 020/100 | train_loss=0.3137 | val_pq=0.2779 | threshold=0.600
+Starting epoch 21/100
+Epoch 012/100 | train_loss=0.8299 | val_pq=0.0055 | threshold=0.440
+Starting epoch 13/100
+Epoch 016/100 | train_loss=0.3414 | val_pq=0.2645 | threshold=0.600
+Starting epoch 17/100
+Epoch 091/100 | train_loss=0.4432 | val_pq=0.0999 | threshold=0.300 | TP=282 FP=1463 FN=1311
+Starting epoch 92/100
+Epoch 021/100 | train_loss=0.3153 | val_pq=0.2912 | threshold=0.300
+Starting epoch 22/100
+Epoch 013/100 | train_loss=0.8262 | val_pq=0.0121 | threshold=0.440 (best)
+Starting epoch 14/100
+Epoch 017/100 | train_loss=0.3414 | val_pq=0.2738 | threshold=0.500
+Starting epoch 18/100
+Epoch 092/100 | train_loss=0.4485 | val_pq=0.0990 | threshold=0.300 | TP=261 FP=1257 FN=1332
+Starting epoch 93/100
+Epoch 022/100 | train_loss=0.3108 | val_pq=0.3013 | threshold=0.600
+Starting epoch 23/100
+Epoch 014/100 | train_loss=0.8232 | val_pq=0.0092 | threshold=0.440
+Starting epoch 15/100
+Epoch 018/100 | train_loss=0.3477 | val_pq=0.2914 | threshold=0.200
+Starting epoch 19/100
+Epoch 023/100 | train_loss=0.3114 | val_pq=0.2995 | threshold=0.200
+Starting epoch 24/100
+Epoch 093/100 | train_loss=0.4333 | val_pq=0.1143 | threshold=0.300 | TP=284 FP=1037 FN=1309
+Starting epoch 94/100
+Epoch 015/100 | train_loss=0.8196 | val_pq=0.0177 | threshold=0.440 (best)
+Starting epoch 16/100
+Epoch 019/100 | train_loss=0.3400 | val_pq=0.2808 | threshold=0.300
+Starting epoch 20/100
+Epoch 024/100 | train_loss=0.3214 | val_pq=0.2858 | threshold=0.400
+Starting epoch 25/100
+Epoch 016/100 | train_loss=0.8169 | val_pq=0.0176 | threshold=0.440
+Starting epoch 17/100
+Epoch 020/100 | train_loss=0.3223 | val_pq=0.3026 | threshold=0.600 (best)
+Starting epoch 21/100
+Epoch 094/100 | train_loss=0.4230 | val_pq=0.1078 | threshold=0.400 | TP=246 FP=871 FN=1347
+Starting epoch 95/100
+Epoch 025/100 | train_loss=0.3161 | val_pq=0.2737 | threshold=0.500
+Starting epoch 26/100
+Epoch 017/100 | train_loss=0.8128 | val_pq=0.0239 | threshold=0.440 (best)
+Starting epoch 18/100
+Epoch 021/100 | train_loss=0.3197 | val_pq=0.2976 | threshold=0.400
+Starting epoch 22/100
+Epoch 095/100 | train_loss=0.4391 | val_pq=0.1117 | threshold=0.300 | TP=293 FP=1240 FN=1300
+Starting epoch 96/100
+Epoch 018/100 | train_loss=0.8099 | val_pq=0.0261 | threshold=0.440 (best)
+Starting epoch 19/100
+Epoch 026/100 | train_loss=0.3277 | val_pq=0.2951 | threshold=0.400
+Starting epoch 27/100
+Epoch 022/100 | train_loss=0.3168 | val_pq=0.2927 | threshold=0.600
+Starting epoch 23/100
+Epoch 096/100 | train_loss=0.4292 | val_pq=0.1100 | threshold=0.400 | TP=258 FP=928 FN=1335
+Starting epoch 97/100
+Epoch 019/100 | train_loss=0.8071 | val_pq=0.0227 | threshold=0.440
+Starting epoch 20/100
+Epoch 027/100 | train_loss=0.3115 | val_pq=0.3071 | threshold=0.300
+Starting epoch 28/100
+Epoch 023/100 | train_loss=0.3134 | val_pq=0.3172 | threshold=0.200 (best)
+Starting epoch 24/100
+Epoch 020/100 | train_loss=0.8036 | val_pq=0.0301 | threshold=0.440 (best)
+Starting epoch 21/100
+Epoch 097/100 | train_loss=0.4206 | val_pq=0.1097 | threshold=0.300 | TP=274 FP=1091 FN=1319
+Starting epoch 98/100
+Epoch 028/100 | train_loss=0.3021 | val_pq=0.2898 | threshold=0.300
+Starting epoch 29/100
+Epoch 024/100 | train_loss=0.3125 | val_pq=0.2977 | threshold=0.400
+Starting epoch 25/100
+Epoch 021/100 | train_loss=0.8007 | val_pq=0.0293 | threshold=0.440
+Starting epoch 22/100
+Epoch 098/100 | train_loss=0.4175 | val_pq=0.1045 | threshold=0.400 | TP=251 FP=1008 FN=1342
+Starting epoch 99/100
+Epoch 029/100 | train_loss=0.2988 | val_pq=0.3003 | threshold=0.600
+Starting epoch 30/100
+Epoch 025/100 | train_loss=0.3182 | val_pq=0.2889 | threshold=0.200
+Starting epoch 26/100
+Epoch 022/100 | train_loss=0.7974 | val_pq=0.0319 | threshold=0.440 (best)
+Starting epoch 23/100
+Epoch 099/100 | train_loss=0.4194 | val_pq=0.1041 | threshold=0.400 | TP=234 FP=815 FN=1359
+Starting epoch 100/100
+Epoch 030/100 | train_loss=0.2973 | val_pq=0.2813 | threshold=0.200
+Starting epoch 31/100
+Epoch 026/100 | train_loss=0.3173 | val_pq=0.3023 | threshold=0.200
+Starting epoch 27/100
+Epoch 023/100 | train_loss=0.7947 | val_pq=0.0345 | threshold=0.440 (best)
+Starting epoch 24/100
+Epoch 031/100 | train_loss=0.2979 | val_pq=0.3171 | threshold=0.500 (best)
+Starting epoch 32/100
+Epoch 100/100 | train_loss=0.4211 | val_pq=0.1019 | threshold=0.300 | TP=242 FP=1000 FN=1351
+[worker 1 / TPU core 1 (xla:0)] finished condinst-comparison seed=46, best_val_pq=0.117621, best_epoch=74
+[worker 1 / TPU core 1 (xla:0)] starting unet-baseline seed=44, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== unet-baseline, seed44 ===
+Starting epoch 1/100
+Epoch 027/100 | train_loss=0.3054 | val_pq=0.3048 | threshold=0.200
+Starting epoch 28/100
+Epoch 024/100 | train_loss=0.7917 | val_pq=0.0323 | threshold=0.440
+Starting epoch 25/100
+Epoch 032/100 | train_loss=0.2947 | val_pq=0.3121 | threshold=0.300
+Starting epoch 33/100
+Epoch 028/100 | train_loss=0.3040 | val_pq=0.3003 | threshold=0.300
+Starting epoch 29/100
+Epoch 025/100 | train_loss=0.7887 | val_pq=0.0299 | threshold=0.440
+Starting epoch 26/100
+Epoch 033/100 | train_loss=0.2856 | val_pq=0.2960 | threshold=0.200
+Starting epoch 34/100
+Epoch 029/100 | train_loss=0.3006 | val_pq=0.2834 | threshold=0.600
+Starting epoch 30/100
+Epoch 026/100 | train_loss=0.7857 | val_pq=0.0315 | threshold=0.440
+Starting epoch 27/100
+Epoch 001/100 | train_loss=1.2335 | val_pq=0.0525 | threshold=0.600 (best)
+Starting epoch 2/100
+Epoch 034/100 | train_loss=0.2893 | val_pq=0.3100 | threshold=0.300
+Starting epoch 35/100
+Epoch 027/100 | train_loss=0.7825 | val_pq=0.0342 | threshold=0.440
+Starting epoch 28/100
+Epoch 030/100 | train_loss=0.3011 | val_pq=0.2788 | threshold=0.500
+Starting epoch 31/100
+Epoch 035/100 | train_loss=0.2837 | val_pq=0.3137 | threshold=0.300
+Starting epoch 36/100
+Epoch 028/100 | train_loss=0.7799 | val_pq=0.0349 | threshold=0.440 (best)
+Starting epoch 29/100
+Epoch 031/100 | train_loss=0.2984 | val_pq=0.3201 | threshold=0.600 (best)
+Starting epoch 32/100
+Epoch 002/100 | train_loss=1.0634 | val_pq=0.1135 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 036/100 | train_loss=0.2828 | val_pq=0.3077 | threshold=0.300
+Starting epoch 37/100
+Epoch 029/100 | train_loss=0.7766 | val_pq=0.0338 | threshold=0.440
+Starting epoch 30/100
+Epoch 032/100 | train_loss=0.2934 | val_pq=0.3091 | threshold=0.200
+Starting epoch 33/100
+Epoch 003/100 | train_loss=0.9363 | val_pq=0.1718 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 030/100 | train_loss=0.7739 | val_pq=0.0379 | threshold=0.440 (best)
+Starting epoch 31/100
+Epoch 037/100 | train_loss=0.2769 | val_pq=0.3036 | threshold=0.300
+Starting epoch 38/100
+Epoch 033/100 | train_loss=0.2947 | val_pq=0.2975 | threshold=0.200
+Starting epoch 34/100
+Epoch 004/100 | train_loss=0.7575 | val_pq=0.2331 | threshold=0.600 (best)
+Starting epoch 5/100
+Epoch 031/100 | train_loss=0.7709 | val_pq=0.0372 | threshold=0.440
+Starting epoch 32/100
+Epoch 038/100 | train_loss=0.2779 | val_pq=0.2993 | threshold=0.600
+Starting epoch 39/100
+Epoch 034/100 | train_loss=0.2933 | val_pq=0.3097 | threshold=0.500
+Starting epoch 35/100
+Epoch 005/100 | train_loss=0.5471 | val_pq=0.2337 | threshold=0.500 (best)
+Starting epoch 6/100
+Epoch 032/100 | train_loss=0.7678 | val_pq=0.0363 | threshold=0.440
+Starting epoch 33/100
+Epoch 039/100 | train_loss=0.2826 | val_pq=0.3057 | threshold=0.500
+Starting epoch 40/100
+Epoch 035/100 | train_loss=0.2873 | val_pq=0.3052 | threshold=0.400
+Starting epoch 36/100
+Epoch 006/100 | train_loss=0.4481 | val_pq=0.2547 | threshold=0.500 (best)
+Starting epoch 7/100
+Epoch 033/100 | train_loss=0.7650 | val_pq=0.0334 | threshold=0.440
+Starting epoch 34/100
+Epoch 040/100 | train_loss=0.2772 | val_pq=0.2792 | threshold=0.500
+Starting epoch 41/100
+Epoch 036/100 | train_loss=0.2924 | val_pq=0.2991 | threshold=0.300
+Starting epoch 37/100
+Epoch 007/100 | train_loss=0.4109 | val_pq=0.1963 | threshold=0.600
+Starting epoch 8/100
+Epoch 034/100 | train_loss=0.7621 | val_pq=0.0335 | threshold=0.440
+Starting epoch 35/100
+Epoch 041/100 | train_loss=0.2732 | val_pq=0.3068 | threshold=0.600
+Starting epoch 42/100
+Epoch 037/100 | train_loss=0.2803 | val_pq=0.3043 | threshold=0.300
+Starting epoch 38/100
+Epoch 008/100 | train_loss=0.3870 | val_pq=0.2634 | threshold=0.200 (best)
+Starting epoch 9/100
+Epoch 035/100 | train_loss=0.7594 | val_pq=0.0371 | threshold=0.440
+Starting epoch 36/100
+Epoch 042/100 | train_loss=0.2850 | val_pq=0.3053 | threshold=0.500
+Starting epoch 43/100
+Epoch 038/100 | train_loss=0.3043 | val_pq=0.2474 | threshold=0.600
+Starting epoch 39/100
+Epoch 009/100 | train_loss=0.3707 | val_pq=0.2708 | threshold=0.300 (best)
+Starting epoch 10/100
+Epoch 036/100 | train_loss=0.7573 | val_pq=0.0391 | threshold=0.440 (best)
+Starting epoch 37/100
+Epoch 043/100 | train_loss=0.2866 | val_pq=0.2875 | threshold=0.600
+Starting epoch 44/100
+Epoch 039/100 | train_loss=0.3066 | val_pq=0.2805 | threshold=0.500
+Starting epoch 40/100
+Epoch 010/100 | train_loss=0.3610 | val_pq=0.2955 | threshold=0.300 (best)
+Starting epoch 11/100
+Epoch 037/100 | train_loss=0.7544 | val_pq=0.0408 | threshold=0.440 (best)
+Starting epoch 38/100
+Epoch 044/100 | train_loss=0.2776 | val_pq=0.2998 | threshold=0.200
+Starting epoch 45/100
+Epoch 040/100 | train_loss=0.3041 | val_pq=0.2857 | threshold=0.500
+Starting epoch 41/100
+Epoch 011/100 | train_loss=0.3539 | val_pq=0.2720 | threshold=0.300
+Starting epoch 12/100
+Epoch 038/100 | train_loss=0.7516 | val_pq=0.0425 | threshold=0.440 (best)
+Starting epoch 39/100
+Epoch 045/100 | train_loss=0.2705 | val_pq=0.2903 | threshold=0.300
+Starting epoch 46/100
+Epoch 041/100 | train_loss=0.2860 | val_pq=0.3083 | threshold=0.200
+Starting epoch 42/100
+Epoch 012/100 | train_loss=0.3488 | val_pq=0.2656 | threshold=0.300
+Starting epoch 13/100
+Epoch 039/100 | train_loss=0.7487 | val_pq=0.0386 | threshold=0.440
+Starting epoch 40/100
+Epoch 046/100 | train_loss=0.2664 | val_pq=0.2983 | threshold=0.600
+Starting epoch 47/100
+Epoch 042/100 | train_loss=0.2764 | val_pq=0.2998 | threshold=0.600
+Starting epoch 43/100
+Epoch 013/100 | train_loss=0.3432 | val_pq=0.2954 | threshold=0.200
+Starting epoch 14/100
+Epoch 040/100 | train_loss=0.7461 | val_pq=0.0423 | threshold=0.440
+Starting epoch 41/100
+Epoch 047/100 | train_loss=0.2668 | val_pq=0.2550 | threshold=0.600
+Starting epoch 48/100
+Epoch 043/100 | train_loss=0.2719 | val_pq=0.3053 | threshold=0.300
+Starting epoch 44/100
+Epoch 014/100 | train_loss=0.3408 | val_pq=0.2705 | threshold=0.200
+Starting epoch 15/100
+Epoch 041/100 | train_loss=0.7430 | val_pq=0.0421 | threshold=0.440
+Starting epoch 42/100
+Epoch 048/100 | train_loss=0.2974 | val_pq=0.2959 | threshold=0.500
+Starting epoch 49/100
+Epoch 044/100 | train_loss=0.2698 | val_pq=0.3000 | threshold=0.600
+Starting epoch 45/100
+Epoch 015/100 | train_loss=0.3390 | val_pq=0.3049 | threshold=0.200 (best)
+Starting epoch 16/100
+Epoch 042/100 | train_loss=0.7404 | val_pq=0.0379 | threshold=0.440
+Starting epoch 43/100
+Epoch 049/100 | train_loss=0.3011 | val_pq=0.2654 | threshold=0.300
+Starting epoch 50/100
+Epoch 045/100 | train_loss=0.2735 | val_pq=0.2994 | threshold=0.200
+Starting epoch 46/100
+Epoch 016/100 | train_loss=0.3330 | val_pq=0.2975 | threshold=0.200
+Starting epoch 17/100
+Epoch 043/100 | train_loss=0.7377 | val_pq=0.0459 | threshold=0.440 (best)
+Starting epoch 44/100
+Epoch 050/100 | train_loss=0.2934 | val_pq=0.3011 | threshold=0.600
+Starting epoch 51/100
+Epoch 046/100 | train_loss=0.2673 | val_pq=0.2992 | threshold=0.500
+Starting epoch 47/100
+Epoch 044/100 | train_loss=0.7349 | val_pq=0.0412 | threshold=0.440
+Starting epoch 45/100
+Epoch 017/100 | train_loss=0.3273 | val_pq=0.2937 | threshold=0.200
+Starting epoch 18/100
+Epoch 051/100 | train_loss=0.2709 | val_pq=0.2943 | threshold=0.300
+Starting epoch 52/100
+Epoch 045/100 | train_loss=0.7325 | val_pq=0.0487 | threshold=0.440 (best)
+Starting epoch 46/100
+Epoch 047/100 | train_loss=0.2682 | val_pq=0.2916 | threshold=0.200
+Starting epoch 48/100
+Epoch 018/100 | train_loss=0.3239 | val_pq=0.3024 | threshold=0.200
+Starting epoch 19/100
+Epoch 052/100 | train_loss=0.2652 | val_pq=0.2933 | threshold=0.400
+Starting epoch 53/100
+Epoch 046/100 | train_loss=0.7297 | val_pq=0.0390 | threshold=0.440
+Starting epoch 47/100
+Epoch 048/100 | train_loss=0.2661 | val_pq=0.3032 | threshold=0.500
+Starting epoch 49/100
+Epoch 019/100 | train_loss=0.3159 | val_pq=0.3097 | threshold=0.300 (best)
+Starting epoch 20/100
+Epoch 053/100 | train_loss=0.2607 | val_pq=0.2897 | threshold=0.400
+Starting epoch 54/100
+Epoch 047/100 | train_loss=0.7274 | val_pq=0.0403 | threshold=0.440
+Starting epoch 48/100
+Epoch 049/100 | train_loss=0.2633 | val_pq=0.3005 | threshold=0.600
+Starting epoch 50/100
+Epoch 020/100 | train_loss=0.3150 | val_pq=0.3049 | threshold=0.300
+Starting epoch 21/100
+Epoch 054/100 | train_loss=0.2584 | val_pq=0.2931 | threshold=0.600
+Starting epoch 55/100
+Epoch 048/100 | train_loss=0.7244 | val_pq=0.0498 | threshold=0.440 (best)
+Starting epoch 49/100
+Epoch 050/100 | train_loss=0.2631 | val_pq=0.2436 | threshold=0.200
+Starting epoch 51/100
+Epoch 021/100 | train_loss=0.3182 | val_pq=0.2838 | threshold=0.300
+Starting epoch 22/100
+Epoch 049/100 | train_loss=0.7217 | val_pq=0.0396 | threshold=0.440
+Starting epoch 50/100
+Epoch 055/100 | train_loss=0.2543 | val_pq=0.2860 | threshold=0.600
+Starting epoch 56/100
+Epoch 051/100 | train_loss=0.2659 | val_pq=0.3153 | threshold=0.200
+Starting epoch 52/100
+Epoch 022/100 | train_loss=0.3070 | val_pq=0.2934 | threshold=0.400
+Starting epoch 23/100
+Epoch 050/100 | train_loss=0.7190 | val_pq=0.0460 | threshold=0.440
+Starting epoch 51/100
+Epoch 056/100 | train_loss=0.2554 | val_pq=0.3018 | threshold=0.500
+Starting epoch 57/100
+Epoch 052/100 | train_loss=0.2586 | val_pq=0.2950 | threshold=0.400
+Starting epoch 53/100
+Epoch 023/100 | train_loss=0.3159 | val_pq=0.3110 | threshold=0.600 (best)
+Starting epoch 24/100
+Epoch 051/100 | train_loss=0.7154 | val_pq=0.0429 | threshold=0.440
+Starting epoch 52/100
+Epoch 057/100 | train_loss=0.2525 | val_pq=0.3087 | threshold=0.600
+Starting epoch 58/100
+Epoch 053/100 | train_loss=0.2570 | val_pq=0.2912 | threshold=0.300
+Starting epoch 54/100
+Epoch 024/100 | train_loss=0.3047 | val_pq=0.3149 | threshold=0.600 (best)
+Starting epoch 25/100
+Epoch 052/100 | train_loss=0.7127 | val_pq=0.0433 | threshold=0.440
+Starting epoch 53/100
+Epoch 058/100 | train_loss=0.2502 | val_pq=0.2893 | threshold=0.200
+Starting epoch 59/100
+Epoch 054/100 | train_loss=0.2558 | val_pq=0.2969 | threshold=0.600
+Starting epoch 55/100
+Epoch 025/100 | train_loss=0.3030 | val_pq=0.2794 | threshold=0.600
+Starting epoch 26/100
+Epoch 053/100 | train_loss=0.7096 | val_pq=0.0424 | threshold=0.440
+Starting epoch 54/100
+Epoch 059/100 | train_loss=0.2524 | val_pq=0.2978 | threshold=0.300
+Starting epoch 60/100
+Epoch 055/100 | train_loss=0.2633 | val_pq=0.1992 | threshold=0.600
+Starting epoch 56/100
+Epoch 026/100 | train_loss=0.3003 | val_pq=0.3063 | threshold=0.600
+Starting epoch 27/100
+Epoch 054/100 | train_loss=0.7065 | val_pq=0.0468 | threshold=0.440
+Starting epoch 55/100
+Epoch 060/100 | train_loss=0.2504 | val_pq=0.2945 | threshold=0.300
+Starting epoch 61/100
+Epoch 056/100 | train_loss=0.2836 | val_pq=0.2626 | threshold=0.600
+Starting epoch 57/100
+Epoch 027/100 | train_loss=0.2960 | val_pq=0.3038 | threshold=0.600
+Starting epoch 28/100
+Epoch 055/100 | train_loss=0.7037 | val_pq=0.0382 | threshold=0.440
+Starting epoch 56/100
+Epoch 061/100 | train_loss=0.2469 | val_pq=0.2970 | threshold=0.600
+Starting epoch 62/100
+Epoch 057/100 | train_loss=0.2843 | val_pq=0.3028 | threshold=0.300
+Starting epoch 58/100
+Epoch 028/100 | train_loss=0.2974 | val_pq=0.3059 | threshold=0.500
+Starting epoch 29/100
+Epoch 056/100 | train_loss=0.7018 | val_pq=0.0492 | threshold=0.440
+Starting epoch 57/100
+Epoch 062/100 | train_loss=0.2479 | val_pq=0.2968 | threshold=0.600
+Starting epoch 63/100
+Epoch 058/100 | train_loss=0.2594 | val_pq=0.2968 | threshold=0.300
+Starting epoch 59/100
+Epoch 057/100 | train_loss=0.6989 | val_pq=0.0450 | threshold=0.440
+Starting epoch 58/100
+Epoch 029/100 | train_loss=0.2914 | val_pq=0.2933 | threshold=0.400
+Starting epoch 30/100
+Epoch 063/100 | train_loss=0.2468 | val_pq=0.2760 | threshold=0.500
+Starting epoch 64/100
+Epoch 059/100 | train_loss=0.2550 | val_pq=0.2938 | threshold=0.600
+Starting epoch 60/100
+Epoch 058/100 | train_loss=0.6956 | val_pq=0.0404 | threshold=0.440
+Starting epoch 59/100
+Epoch 030/100 | train_loss=0.2919 | val_pq=0.3126 | threshold=0.500
+Starting epoch 31/100
+Epoch 064/100 | train_loss=0.2454 | val_pq=0.2822 | threshold=0.600
+Starting epoch 65/100
+Epoch 060/100 | train_loss=0.2514 | val_pq=0.2905 | threshold=0.300
+Starting epoch 61/100
+Epoch 059/100 | train_loss=0.6930 | val_pq=0.0497 | threshold=0.440
+Starting epoch 60/100
+Epoch 031/100 | train_loss=0.2889 | val_pq=0.2753 | threshold=0.600
+Starting epoch 32/100
+Epoch 065/100 | train_loss=0.2461 | val_pq=0.3007 | threshold=0.600
+Starting epoch 66/100
+Epoch 061/100 | train_loss=0.2476 | val_pq=0.3073 | threshold=0.500
+Starting epoch 62/100
+Epoch 060/100 | train_loss=0.6899 | val_pq=0.0451 | threshold=0.440
+Starting epoch 61/100
+Epoch 032/100 | train_loss=0.2973 | val_pq=0.2852 | threshold=0.600
+Starting epoch 33/100
+Epoch 066/100 | train_loss=0.2452 | val_pq=0.2921 | threshold=0.600
+Starting epoch 67/100
+Epoch 062/100 | train_loss=0.2467 | val_pq=0.2989 | threshold=0.600
+Starting epoch 63/100
+Epoch 061/100 | train_loss=0.6872 | val_pq=0.0489 | threshold=0.440
+Starting epoch 62/100
+Epoch 033/100 | train_loss=0.2879 | val_pq=0.3097 | threshold=0.600
+Starting epoch 34/100
+Epoch 067/100 | train_loss=0.2451 | val_pq=0.2874 | threshold=0.400
+Starting epoch 68/100
+Epoch 063/100 | train_loss=0.2495 | val_pq=0.3190 | threshold=0.200
+Starting epoch 64/100
+Epoch 062/100 | train_loss=0.6846 | val_pq=0.0486 | threshold=0.440
+Starting epoch 63/100
+Epoch 034/100 | train_loss=0.2780 | val_pq=0.3049 | threshold=0.600
+Starting epoch 35/100
+Epoch 068/100 | train_loss=0.2441 | val_pq=0.2752 | threshold=0.600
+Starting epoch 69/100
+Epoch 063/100 | train_loss=0.6819 | val_pq=0.0493 | threshold=0.440
+Starting epoch 64/100
+Epoch 064/100 | train_loss=0.2460 | val_pq=0.2851 | threshold=0.400
+Starting epoch 65/100
+Epoch 035/100 | train_loss=0.2787 | val_pq=0.2987 | threshold=0.500
+Starting epoch 36/100
+Epoch 069/100 | train_loss=0.2423 | val_pq=0.2910 | threshold=0.600
+Starting epoch 70/100
+Epoch 064/100 | train_loss=0.6791 | val_pq=0.0447 | threshold=0.440
+Starting epoch 65/100
+Epoch 065/100 | train_loss=0.2442 | val_pq=0.3041 | threshold=0.600
+Starting epoch 66/100
+Epoch 036/100 | train_loss=0.2805 | val_pq=0.3149 | threshold=0.400
+Starting epoch 37/100
+Epoch 070/100 | train_loss=0.2420 | val_pq=0.2962 | threshold=0.500
+Starting epoch 71/100
+Epoch 065/100 | train_loss=0.6761 | val_pq=0.0605 | threshold=0.440 (best)
+Starting epoch 66/100
+Epoch 066/100 | train_loss=0.2414 | val_pq=0.2997 | threshold=0.600
+Starting epoch 67/100
+Epoch 037/100 | train_loss=0.2778 | val_pq=0.3171 | threshold=0.600 (best)
+Starting epoch 38/100
+Epoch 066/100 | train_loss=0.6734 | val_pq=0.0499 | threshold=0.440
+Starting epoch 67/100
+Epoch 067/100 | train_loss=0.2432 | val_pq=0.3030 | threshold=0.600
+Starting epoch 68/100
+Epoch 071/100 | train_loss=0.2429 | val_pq=0.2954 | threshold=0.600
+Starting epoch 72/100
+Epoch 038/100 | train_loss=0.2713 | val_pq=0.3096 | threshold=0.500
+Starting epoch 39/100
+Epoch 067/100 | train_loss=0.6707 | val_pq=0.0523 | threshold=0.440
+Starting epoch 68/100
+Epoch 068/100 | train_loss=0.2428 | val_pq=0.2960 | threshold=0.400
+Starting epoch 69/100
+Epoch 039/100 | train_loss=0.2739 | val_pq=0.2892 | threshold=0.400
+Starting epoch 40/100
+Epoch 072/100 | train_loss=0.2398 | val_pq=0.2761 | threshold=0.400
+Starting epoch 73/100
+Epoch 068/100 | train_loss=0.6680 | val_pq=0.0405 | threshold=0.440
+Starting epoch 69/100
+Epoch 069/100 | train_loss=0.2445 | val_pq=0.2906 | threshold=0.200
+Starting epoch 70/100
+Epoch 040/100 | train_loss=0.2723 | val_pq=0.3009 | threshold=0.600
+Starting epoch 41/100
+Epoch 073/100 | train_loss=0.2434 | val_pq=0.2990 | threshold=0.600
+Starting epoch 74/100
+Epoch 069/100 | train_loss=0.6654 | val_pq=0.0521 | threshold=0.440
+Starting epoch 70/100
+Epoch 070/100 | train_loss=0.2646 | val_pq=0.2925 | threshold=0.400
+Starting epoch 71/100
+Epoch 041/100 | train_loss=0.2741 | val_pq=0.3129 | threshold=0.400
+Starting epoch 42/100
+Epoch 070/100 | train_loss=0.6626 | val_pq=0.0501 | threshold=0.440
+Starting epoch 71/100
+Epoch 074/100 | train_loss=0.2382 | val_pq=0.2780 | threshold=0.400
+Starting epoch 75/100
+Epoch 071/100 | train_loss=0.2446 | val_pq=0.2971 | threshold=0.600
+Starting epoch 72/100
+Epoch 042/100 | train_loss=0.2692 | val_pq=0.3056 | threshold=0.500
+Starting epoch 43/100
+Epoch 071/100 | train_loss=0.6599 | val_pq=0.0622 | threshold=0.440 (best)
+Starting epoch 72/100
+Epoch 075/100 | train_loss=0.2755 | val_pq=0.2808 | threshold=0.300
+Starting epoch 76/100
+Epoch 072/100 | train_loss=0.2486 | val_pq=0.2998 | threshold=0.200
+Starting epoch 73/100
+Epoch 043/100 | train_loss=0.2685 | val_pq=0.2882 | threshold=0.300
+Starting epoch 44/100
+Epoch 072/100 | train_loss=0.6561 | val_pq=0.0571 | threshold=0.440
+Starting epoch 73/100
+Epoch 076/100 | train_loss=0.2439 | val_pq=0.2829 | threshold=0.600
+Starting epoch 77/100
+Epoch 073/100 | train_loss=0.2385 | val_pq=0.3060 | threshold=0.600
+Starting epoch 74/100
+Epoch 044/100 | train_loss=0.2645 | val_pq=0.2960 | threshold=0.200
+Starting epoch 45/100
+Epoch 073/100 | train_loss=0.6531 | val_pq=0.0393 | threshold=0.440
+Starting epoch 74/100
+Epoch 077/100 | train_loss=0.2364 | val_pq=0.2839 | threshold=0.500
+Starting epoch 78/100
+Epoch 074/100 | train_loss=0.2380 | val_pq=0.3004 | threshold=0.600
+Starting epoch 75/100
+Epoch 074/100 | train_loss=0.6501 | val_pq=0.0566 | threshold=0.440
+Starting epoch 75/100
+Epoch 045/100 | train_loss=0.2610 | val_pq=0.3086 | threshold=0.600
+Starting epoch 46/100
+Epoch 078/100 | train_loss=0.2330 | val_pq=0.2735 | threshold=0.200
+Starting epoch 79/100
+Epoch 075/100 | train_loss=0.2352 | val_pq=0.3075 | threshold=0.400
+Starting epoch 76/100
+Epoch 075/100 | train_loss=0.6470 | val_pq=0.0817 | threshold=0.440 (best)
+Starting epoch 76/100
+Epoch 046/100 | train_loss=0.2564 | val_pq=0.2986 | threshold=0.600
+Starting epoch 47/100
+Epoch 079/100 | train_loss=0.2360 | val_pq=0.3008 | threshold=0.600
+Starting epoch 80/100
+Epoch 076/100 | train_loss=0.2337 | val_pq=0.2892 | threshold=0.200
+Starting epoch 77/100
+Epoch 076/100 | train_loss=0.6439 | val_pq=0.0531 | threshold=0.440
+Starting epoch 77/100
+Epoch 047/100 | train_loss=0.2551 | val_pq=0.3098 | threshold=0.500
+Starting epoch 48/100
+Epoch 080/100 | train_loss=0.2315 | val_pq=0.2849 | threshold=0.600
+Starting epoch 81/100
+Epoch 077/100 | train_loss=0.2324 | val_pq=0.2900 | threshold=0.300
+Starting epoch 78/100
+Epoch 077/100 | train_loss=0.6409 | val_pq=0.0537 | threshold=0.440
+Starting epoch 78/100
+Epoch 048/100 | train_loss=0.2581 | val_pq=0.2784 | threshold=0.500
+Starting epoch 49/100
+Epoch 081/100 | train_loss=0.2291 | val_pq=0.2906 | threshold=0.300
+Starting epoch 82/100
+Epoch 078/100 | train_loss=0.2328 | val_pq=0.2875 | threshold=0.200
+Starting epoch 79/100
+Epoch 078/100 | train_loss=0.6378 | val_pq=0.0510 | threshold=0.440
+Starting epoch 79/100
+Epoch 049/100 | train_loss=0.2596 | val_pq=0.2947 | threshold=0.400
+Starting epoch 50/100
+Epoch 082/100 | train_loss=0.2271 | val_pq=0.2852 | threshold=0.600
+Starting epoch 83/100
+Epoch 079/100 | train_loss=0.2323 | val_pq=0.2864 | threshold=0.600
+Starting epoch 80/100
+Epoch 079/100 | train_loss=0.6345 | val_pq=0.0700 | threshold=0.440
+Starting epoch 80/100
+Epoch 050/100 | train_loss=0.2731 | val_pq=0.2724 | threshold=0.600
+Starting epoch 51/100
+Epoch 083/100 | train_loss=0.2260 | val_pq=0.2888 | threshold=0.300
+Starting epoch 84/100
+Epoch 080/100 | train_loss=0.2334 | val_pq=0.2841 | threshold=0.600
+Starting epoch 81/100
+Epoch 080/100 | train_loss=0.6316 | val_pq=0.0581 | threshold=0.440
+Starting epoch 81/100
+Epoch 051/100 | train_loss=0.2602 | val_pq=0.2890 | threshold=0.200
+Starting epoch 52/100
+Epoch 084/100 | train_loss=0.2244 | val_pq=0.2780 | threshold=0.300
+Starting epoch 85/100
+Epoch 081/100 | train_loss=0.6285 | val_pq=0.0659 | threshold=0.440
+Starting epoch 82/100
+Epoch 081/100 | train_loss=0.2325 | val_pq=0.2655 | threshold=0.600
+Starting epoch 82/100
+Epoch 052/100 | train_loss=0.2540 | val_pq=0.2973 | threshold=0.600
+Starting epoch 53/100
+Epoch 085/100 | train_loss=0.2257 | val_pq=0.2756 | threshold=0.600
+Starting epoch 86/100
+Epoch 082/100 | train_loss=0.6256 | val_pq=0.0740 | threshold=0.440
+Starting epoch 83/100
+Epoch 082/100 | train_loss=0.2390 | val_pq=0.2958 | threshold=0.300
+Starting epoch 83/100
+Epoch 053/100 | train_loss=0.2550 | val_pq=0.2934 | threshold=0.400
+Starting epoch 54/100
+Epoch 086/100 | train_loss=0.2244 | val_pq=0.2866 | threshold=0.300
+Starting epoch 87/100
+Epoch 083/100 | train_loss=0.6228 | val_pq=0.0712 | threshold=0.440
+Starting epoch 84/100
+Epoch 083/100 | train_loss=0.2331 | val_pq=0.2846 | threshold=0.500
+Starting epoch 84/100
+Epoch 054/100 | train_loss=0.2545 | val_pq=0.2898 | threshold=0.300
+Starting epoch 55/100
+Epoch 087/100 | train_loss=0.2228 | val_pq=0.2821 | threshold=0.600
+Starting epoch 88/100
+Epoch 084/100 | train_loss=0.6200 | val_pq=0.0830 | threshold=0.440 (best)
+Starting epoch 85/100
+Epoch 084/100 | train_loss=0.2297 | val_pq=0.2878 | threshold=0.600
+Starting epoch 85/100
+Epoch 055/100 | train_loss=0.2539 | val_pq=0.3016 | threshold=0.600
+Starting epoch 56/100
+Epoch 088/100 | train_loss=0.2218 | val_pq=0.2798 | threshold=0.600
+Starting epoch 89/100
+Epoch 085/100 | train_loss=0.6171 | val_pq=0.0662 | threshold=0.440
+Starting epoch 86/100
+Epoch 085/100 | train_loss=0.2274 | val_pq=0.2922 | threshold=0.200
+Starting epoch 86/100
+Epoch 056/100 | train_loss=0.2490 | val_pq=0.3107 | threshold=0.600
+Starting epoch 57/100
+Epoch 089/100 | train_loss=0.2239 | val_pq=0.2594 | threshold=0.600
+Starting epoch 90/100
+Epoch 086/100 | train_loss=0.6144 | val_pq=0.0775 | threshold=0.440
+Starting epoch 87/100
+Epoch 086/100 | train_loss=0.2259 | val_pq=0.2830 | threshold=0.400
+Starting epoch 87/100
+Epoch 057/100 | train_loss=0.2476 | val_pq=0.3001 | threshold=0.600
+Starting epoch 58/100
+Epoch 087/100 | train_loss=0.6116 | val_pq=0.0811 | threshold=0.440
+Starting epoch 88/100
+Epoch 090/100 | train_loss=0.2261 | val_pq=0.2774 | threshold=0.600
+Starting epoch 91/100
+Epoch 087/100 | train_loss=0.2358 | val_pq=0.2946 | threshold=0.400
+Starting epoch 88/100
+Epoch 058/100 | train_loss=0.2544 | val_pq=0.2980 | threshold=0.600
+Starting epoch 59/100
+Epoch 088/100 | train_loss=0.6090 | val_pq=0.0786 | threshold=0.440
+Starting epoch 89/100
+Epoch 091/100 | train_loss=0.2235 | val_pq=0.2960 | threshold=0.600
+Starting epoch 92/100
+Epoch 088/100 | train_loss=0.2274 | val_pq=0.2704 | threshold=0.500
+Starting epoch 89/100
+Epoch 059/100 | train_loss=0.2660 | val_pq=0.3028 | threshold=0.600
+Starting epoch 60/100
+Epoch 089/100 | train_loss=0.6065 | val_pq=0.0764 | threshold=0.440
+Starting epoch 90/100
+Epoch 092/100 | train_loss=0.2221 | val_pq=0.2776 | threshold=0.600
+Starting epoch 93/100
+Epoch 089/100 | train_loss=0.2246 | val_pq=0.2892 | threshold=0.600
+Starting epoch 90/100
+Epoch 090/100 | train_loss=0.6038 | val_pq=0.0871 | threshold=0.440 (best)
+Starting epoch 91/100
+Epoch 060/100 | train_loss=0.2533 | val_pq=0.2907 | threshold=0.500
+Starting epoch 61/100
+Epoch 093/100 | train_loss=0.2221 | val_pq=0.2892 | threshold=0.600
+Starting epoch 94/100
+Epoch 090/100 | train_loss=0.2228 | val_pq=0.2722 | threshold=0.600
+Starting epoch 91/100
+Epoch 091/100 | train_loss=0.6019 | val_pq=0.0975 | threshold=0.440 (best)
+Starting epoch 92/100
+Epoch 061/100 | train_loss=0.2446 | val_pq=0.2937 | threshold=0.600
+Starting epoch 62/100
+Epoch 094/100 | train_loss=0.2262 | val_pq=0.2829 | threshold=0.600
+Starting epoch 95/100
+Epoch 091/100 | train_loss=0.2229 | val_pq=0.2963 | threshold=0.600
+Starting epoch 92/100
+Epoch 092/100 | train_loss=0.5989 | val_pq=0.0800 | threshold=0.440
+Starting epoch 93/100
+Epoch 062/100 | train_loss=0.2406 | val_pq=0.2983 | threshold=0.400
+Starting epoch 63/100
+Epoch 095/100 | train_loss=0.2210 | val_pq=0.2809 | threshold=0.600
+Starting epoch 96/100
+Epoch 092/100 | train_loss=0.2211 | val_pq=0.2855 | threshold=0.400
+Starting epoch 93/100
+Epoch 093/100 | train_loss=0.5965 | val_pq=0.0910 | threshold=0.440
+Starting epoch 94/100
+Epoch 063/100 | train_loss=0.2424 | val_pq=0.2887 | threshold=0.500
+Starting epoch 64/100
+Epoch 096/100 | train_loss=0.2181 | val_pq=0.2828 | threshold=0.600
+Starting epoch 97/100
+Epoch 093/100 | train_loss=0.2204 | val_pq=0.2794 | threshold=0.500
+Starting epoch 94/100
+Epoch 094/100 | train_loss=0.5938 | val_pq=0.0864 | threshold=0.440
+Starting epoch 95/100
+Epoch 064/100 | train_loss=0.2390 | val_pq=0.2809 | threshold=0.200
+Starting epoch 65/100
+Epoch 097/100 | train_loss=0.2181 | val_pq=0.2790 | threshold=0.600
+Starting epoch 98/100
+Epoch 094/100 | train_loss=0.2210 | val_pq=0.2781 | threshold=0.500
+Starting epoch 95/100
+Epoch 095/100 | train_loss=0.5913 | val_pq=0.0998 | threshold=0.440 (best)
+Starting epoch 96/100
+Epoch 065/100 | train_loss=0.2371 | val_pq=0.2884 | threshold=0.600
+Starting epoch 66/100
+Epoch 098/100 | train_loss=0.2164 | val_pq=0.2808 | threshold=0.500
+Starting epoch 99/100
+Epoch 095/100 | train_loss=0.2208 | val_pq=0.2555 | threshold=0.200
+Starting epoch 96/100
+Epoch 096/100 | train_loss=0.5889 | val_pq=0.0991 | threshold=0.440
+Starting epoch 97/100
+Epoch 066/100 | train_loss=0.2425 | val_pq=0.2996 | threshold=0.500
+Starting epoch 67/100
+Epoch 099/100 | train_loss=0.2163 | val_pq=0.2645 | threshold=0.600
+Starting epoch 100/100
+Epoch 096/100 | train_loss=0.2300 | val_pq=0.2615 | threshold=0.600
+Starting epoch 97/100
+Epoch 097/100 | train_loss=0.5865 | val_pq=0.1115 | threshold=0.440 (best)
+Starting epoch 98/100
+Epoch 067/100 | train_loss=0.2363 | val_pq=0.2819 | threshold=0.600
+Starting epoch 68/100
+Epoch 100/100 | train_loss=0.2262 | val_pq=0.2686 | threshold=0.200
+[worker 3 / TPU core 3 (xla:0)] finished unet-baseline seed=43, best_val_pq=0.317146, best_epoch=31
+[worker 3 / TPU core 3 (xla:0)] starting boundary-aware-unet seed=44, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet, seed44 ===
+Starting epoch 1/100
+Epoch 098/100 | train_loss=0.5841 | val_pq=0.0980 | threshold=0.440
+Starting epoch 99/100
+Epoch 097/100 | train_loss=0.2314 | val_pq=0.2826 | threshold=0.400
+Starting epoch 98/100
+Epoch 068/100 | train_loss=0.2354 | val_pq=0.2913 | threshold=0.400
+Starting epoch 69/100
+Epoch 099/100 | train_loss=0.5817 | val_pq=0.0886 | threshold=0.440
+Starting epoch 100/100
+Epoch 098/100 | train_loss=0.2238 | val_pq=0.2787 | threshold=0.500
+Starting epoch 99/100
+Epoch 069/100 | train_loss=0.2328 | val_pq=0.2784 | threshold=0.400
+Starting epoch 70/100
+Epoch 001/100 | train_loss=1.3521 | val_pq=0.0683 | threshold=0.600 (best)
+Starting epoch 2/100
+Epoch 100/100 | train_loss=0.5794 | val_pq=0.0775 | threshold=0.440
+[worker 2 / TPU core 2 (xla:0)] finished boundary-aware-unet-pyhopper-corrected-data seed=43, best_val_pq=0.111456, best_epoch=97
+[worker 2 / TPU core 2 (xla:0)] starting boundary-aware-unet-pyhopper-corrected-data seed=44, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet-pyhopper-corrected-data, seed44 ===
+Starting epoch 1/100
+Epoch 099/100 | train_loss=0.2187 | val_pq=0.2747 | threshold=0.500
+Starting epoch 100/100
+Epoch 070/100 | train_loss=0.2319 | val_pq=0.2937 | threshold=0.400
+Starting epoch 71/100
+Epoch 001/100 | train_loss=0.9260 | val_pq=0.0000 | threshold=0.440 (best)
+Starting epoch 2/100
+Epoch 002/100 | train_loss=1.1147 | val_pq=0.1351 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 100/100 | train_loss=0.2177 | val_pq=0.2342 | threshold=0.600
+[worker 0 / TPU core 0 (xla:0)] finished boundary-aware-unet seed=43, best_val_pq=0.320147, best_epoch=31
+[worker 0 / TPU core 0 (xla:0)] starting unet-baseline seed=45, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== unet-baseline, seed45 ===
+Starting epoch 1/100
+Epoch 002/100 | train_loss=0.8580 | val_pq=0.0000 | threshold=0.440
+Starting epoch 3/100
+Epoch 003/100 | train_loss=0.9435 | val_pq=0.1660 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 071/100 | train_loss=0.2314 | val_pq=0.2793 | threshold=0.300
+Starting epoch 72/100
+Epoch 003/100 | train_loss=0.8235 | val_pq=0.0000 | threshold=0.440 (best)
+Starting epoch 4/100
+Epoch 004/100 | train_loss=0.7350 | val_pq=0.2257 | threshold=0.300 (best)
+Starting epoch 5/100
+Epoch 072/100 | train_loss=0.2307 | val_pq=0.2868 | threshold=0.500
+Starting epoch 73/100
+Epoch 004/100 | train_loss=0.8104 | val_pq=0.0000 | threshold=0.440 (best)
+Starting epoch 5/100
+Epoch 001/100 | train_loss=1.3768 | val_pq=0.0477 | threshold=0.500 (best)
+Starting epoch 2/100
+Epoch 005/100 | train_loss=0.5323 | val_pq=0.2421 | threshold=0.200 (best)
+Starting epoch 6/100
+Epoch 073/100 | train_loss=0.2294 | val_pq=0.2753 | threshold=0.500
+Starting epoch 74/100
+Epoch 005/100 | train_loss=0.7987 | val_pq=0.0001 | threshold=0.440 (best)
+Starting epoch 6/100
+Epoch 006/100 | train_loss=0.4493 | val_pq=0.2463 | threshold=0.300 (best)
+Starting epoch 7/100
+Epoch 002/100 | train_loss=1.1621 | val_pq=0.1045 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 074/100 | train_loss=0.2339 | val_pq=0.2844 | threshold=0.600
+Starting epoch 75/100
+Epoch 006/100 | train_loss=0.7904 | val_pq=0.0002 | threshold=0.440 (best)
+Starting epoch 7/100
+Epoch 007/100 | train_loss=0.4117 | val_pq=0.2476 | threshold=0.600 (best)
+Starting epoch 8/100
+Epoch 003/100 | train_loss=1.0371 | val_pq=0.1097 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 075/100 | train_loss=0.2298 | val_pq=0.2796 | threshold=0.300
+Starting epoch 76/100
+Epoch 007/100 | train_loss=0.7850 | val_pq=0.0024 | threshold=0.440 (best)
+Starting epoch 8/100
+Epoch 008/100 | train_loss=0.3920 | val_pq=0.2716 | threshold=0.500 (best)
+Starting epoch 9/100
+Epoch 004/100 | train_loss=0.9185 | val_pq=0.0580 | threshold=0.600
+Starting epoch 5/100
+Epoch 076/100 | train_loss=0.2303 | val_pq=0.2996 | threshold=0.500
+Starting epoch 77/100
+Epoch 008/100 | train_loss=0.7868 | val_pq=0.0033 | threshold=0.440 (best)
+Starting epoch 9/100
+Epoch 009/100 | train_loss=0.3907 | val_pq=0.2490 | threshold=0.600
+Starting epoch 10/100
+Epoch 005/100 | train_loss=0.7436 | val_pq=0.1264 | threshold=0.600 (best)
+Starting epoch 6/100
+Epoch 009/100 | train_loss=0.7773 | val_pq=0.0113 | threshold=0.440 (best)
+Starting epoch 10/100
+Epoch 077/100 | train_loss=0.2272 | val_pq=0.2929 | threshold=0.600
+Starting epoch 78/100
+Epoch 010/100 | train_loss=0.3681 | val_pq=0.2743 | threshold=0.300 (best)
+Starting epoch 11/100
+Epoch 006/100 | train_loss=0.5543 | val_pq=0.1979 | threshold=0.600 (best)
+Starting epoch 7/100
+Epoch 010/100 | train_loss=0.7725 | val_pq=0.0122 | threshold=0.440 (best)
+Starting epoch 11/100
+Epoch 078/100 | train_loss=0.2338 | val_pq=0.2862 | threshold=0.600
+Starting epoch 79/100
+Epoch 011/100 | train_loss=0.3618 | val_pq=0.2779 | threshold=0.300 (best)
+Starting epoch 12/100
+Epoch 007/100 | train_loss=0.4606 | val_pq=0.2382 | threshold=0.200 (best)
+Starting epoch 8/100
+Epoch 011/100 | train_loss=0.7685 | val_pq=0.0153 | threshold=0.440 (best)
+Starting epoch 12/100
+Epoch 079/100 | train_loss=0.2284 | val_pq=0.2938 | threshold=0.500
+Starting epoch 80/100
+Epoch 012/100 | train_loss=0.3563 | val_pq=0.2683 | threshold=0.300
+Starting epoch 13/100
+Epoch 008/100 | train_loss=0.4167 | val_pq=0.2008 | threshold=0.600
+Starting epoch 9/100
+Epoch 012/100 | train_loss=0.7645 | val_pq=0.0181 | threshold=0.440 (best)
+Starting epoch 13/100
+Epoch 080/100 | train_loss=0.2248 | val_pq=0.2980 | threshold=0.500
+Starting epoch 81/100
+Epoch 013/100 | train_loss=0.3476 | val_pq=0.2759 | threshold=0.400
+Starting epoch 14/100
+Epoch 009/100 | train_loss=0.3957 | val_pq=0.1360 | threshold=0.600
+Starting epoch 10/100
+Epoch 013/100 | train_loss=0.7601 | val_pq=0.0188 | threshold=0.440 (best)
+Starting epoch 14/100
+Epoch 081/100 | train_loss=0.2228 | val_pq=0.2914 | threshold=0.500
+Starting epoch 82/100
+Epoch 014/100 | train_loss=0.3399 | val_pq=0.2971 | threshold=0.400 (best)
+Starting epoch 15/100
+Epoch 010/100 | train_loss=0.3777 | val_pq=0.2436 | threshold=0.600 (best)
+Starting epoch 11/100
+Epoch 014/100 | train_loss=0.7564 | val_pq=0.0173 | threshold=0.440
+Starting epoch 15/100
+Epoch 082/100 | train_loss=0.2213 | val_pq=0.2942 | threshold=0.600
+Starting epoch 83/100
+Epoch 015/100 | train_loss=0.3324 | val_pq=0.3112 | threshold=0.500 (best)
+Starting epoch 16/100
+Epoch 011/100 | train_loss=0.3686 | val_pq=0.2378 | threshold=0.200
+Starting epoch 12/100
+Epoch 015/100 | train_loss=0.7546 | val_pq=0.0183 | threshold=0.440
+Starting epoch 16/100
+Epoch 083/100 | train_loss=0.2212 | val_pq=0.2620 | threshold=0.600
+Starting epoch 84/100
+Epoch 016/100 | train_loss=0.7510 | val_pq=0.0209 | threshold=0.440 (best)
+Starting epoch 17/100
+Epoch 016/100 | train_loss=0.3472 | val_pq=0.3039 | threshold=0.300
+Starting epoch 17/100
+Epoch 012/100 | train_loss=0.3597 | val_pq=0.2237 | threshold=0.600
+Starting epoch 13/100
+Epoch 084/100 | train_loss=0.2197 | val_pq=0.2836 | threshold=0.400
+Starting epoch 85/100
+Epoch 017/100 | train_loss=0.7462 | val_pq=0.0222 | threshold=0.440 (best)
+Starting epoch 18/100
+Epoch 017/100 | train_loss=0.3403 | val_pq=0.2970 | threshold=0.500
+Starting epoch 18/100
+Epoch 013/100 | train_loss=0.3579 | val_pq=0.2347 | threshold=0.500
+Starting epoch 14/100
+Epoch 085/100 | train_loss=0.2217 | val_pq=0.2937 | threshold=0.300
+Starting epoch 86/100
+Epoch 018/100 | train_loss=0.7434 | val_pq=0.0249 | threshold=0.440 (best)
+Starting epoch 19/100
+Epoch 018/100 | train_loss=0.3335 | val_pq=0.2904 | threshold=0.600
+Starting epoch 19/100
+Epoch 014/100 | train_loss=0.3502 | val_pq=0.2611 | threshold=0.500 (best)
+Starting epoch 15/100
+Epoch 086/100 | train_loss=0.2234 | val_pq=0.2891 | threshold=0.200
+Starting epoch 87/100
+Epoch 019/100 | train_loss=0.7403 | val_pq=0.0281 | threshold=0.440 (best)
+Starting epoch 20/100
+Epoch 019/100 | train_loss=0.3248 | val_pq=0.2801 | threshold=0.300
+Starting epoch 20/100
+Epoch 015/100 | train_loss=0.3434 | val_pq=0.2827 | threshold=0.200 (best)
+Starting epoch 16/100
+Epoch 087/100 | train_loss=0.2246 | val_pq=0.2846 | threshold=0.600
+Starting epoch 88/100
+Epoch 020/100 | train_loss=0.7366 | val_pq=0.0289 | threshold=0.440 (best)
+Starting epoch 21/100
+Epoch 020/100 | train_loss=0.3304 | val_pq=0.2901 | threshold=0.400
+Starting epoch 21/100
+Epoch 016/100 | train_loss=0.3486 | val_pq=0.2434 | threshold=0.500
+Starting epoch 17/100
+Epoch 088/100 | train_loss=0.2181 | val_pq=0.2924 | threshold=0.600
+Starting epoch 89/100
+Epoch 021/100 | train_loss=0.7331 | val_pq=0.0265 | threshold=0.440
+Starting epoch 22/100
+Epoch 021/100 | train_loss=0.3395 | val_pq=0.2855 | threshold=0.300
+Starting epoch 22/100
+Epoch 017/100 | train_loss=0.3372 | val_pq=0.2725 | threshold=0.600
+Starting epoch 18/100
+Epoch 089/100 | train_loss=0.2243 | val_pq=0.2859 | threshold=0.500
+Starting epoch 90/100
+Epoch 022/100 | train_loss=0.7300 | val_pq=0.0237 | threshold=0.440
+Starting epoch 23/100
+Epoch 022/100 | train_loss=0.3244 | val_pq=0.3047 | threshold=0.300
+Starting epoch 23/100
+Epoch 018/100 | train_loss=0.3279 | val_pq=0.2820 | threshold=0.300
+Starting epoch 19/100
+Epoch 090/100 | train_loss=0.2180 | val_pq=0.2973 | threshold=0.400
+Starting epoch 91/100
+Epoch 023/100 | train_loss=0.7268 | val_pq=0.0307 | threshold=0.440 (best)
+Starting epoch 24/100
+Epoch 023/100 | train_loss=0.3288 | val_pq=0.3030 | threshold=0.600
+Starting epoch 24/100
+Epoch 019/100 | train_loss=0.3282 | val_pq=0.2585 | threshold=0.600
+Starting epoch 20/100
+Epoch 091/100 | train_loss=0.2170 | val_pq=0.2817 | threshold=0.500
+Starting epoch 92/100
+Epoch 024/100 | train_loss=0.7239 | val_pq=0.0292 | threshold=0.440
+Starting epoch 25/100
+Epoch 024/100 | train_loss=0.3108 | val_pq=0.3069 | threshold=0.500
+Starting epoch 25/100
+Epoch 020/100 | train_loss=0.3225 | val_pq=0.2605 | threshold=0.300
+Starting epoch 21/100
+Epoch 092/100 | train_loss=0.2137 | val_pq=0.2864 | threshold=0.600
+Starting epoch 93/100
+Epoch 025/100 | train_loss=0.7207 | val_pq=0.0315 | threshold=0.440 (best)
+Starting epoch 26/100
+Epoch 025/100 | train_loss=0.3168 | val_pq=0.2903 | threshold=0.400
+Starting epoch 26/100
+Epoch 021/100 | train_loss=0.3167 | val_pq=0.2876 | threshold=0.300 (best)
+Starting epoch 22/100
+Epoch 026/100 | train_loss=0.7179 | val_pq=0.0303 | threshold=0.440
+Starting epoch 27/100
+Epoch 093/100 | train_loss=0.2122 | val_pq=0.2901 | threshold=0.500
+Starting epoch 94/100
+Epoch 026/100 | train_loss=0.3094 | val_pq=0.2828 | threshold=0.500
+Starting epoch 27/100
+Epoch 022/100 | train_loss=0.3289 | val_pq=0.2822 | threshold=0.500
+Starting epoch 23/100
+Epoch 027/100 | train_loss=0.7147 | val_pq=0.0337 | threshold=0.440 (best)
+Starting epoch 28/100
+Epoch 094/100 | train_loss=0.2136 | val_pq=0.2837 | threshold=0.400
+Starting epoch 95/100
+Epoch 023/100 | train_loss=0.3120 | val_pq=0.2980 | threshold=0.400 (best)
+Starting epoch 24/100
+Epoch 027/100 | train_loss=0.3132 | val_pq=0.2868 | threshold=0.200
+Starting epoch 28/100
+Epoch 028/100 | train_loss=0.7118 | val_pq=0.0342 | threshold=0.440 (best)
+Starting epoch 29/100
+Epoch 095/100 | train_loss=0.2120 | val_pq=0.2848 | threshold=0.600
+Starting epoch 96/100
+Epoch 024/100 | train_loss=0.3081 | val_pq=0.2932 | threshold=0.600
+Starting epoch 25/100
+Epoch 029/100 | train_loss=0.7094 | val_pq=0.0324 | threshold=0.440
+Starting epoch 30/100
+Epoch 028/100 | train_loss=0.3046 | val_pq=0.2824 | threshold=0.600
+Starting epoch 29/100
+Epoch 096/100 | train_loss=0.2122 | val_pq=0.2740 | threshold=0.600
+Starting epoch 97/100
+Epoch 025/100 | train_loss=0.3038 | val_pq=0.2918 | threshold=0.500
+Starting epoch 26/100
+Epoch 030/100 | train_loss=0.7063 | val_pq=0.0382 | threshold=0.440 (best)
+Starting epoch 31/100
+Epoch 029/100 | train_loss=0.3084 | val_pq=0.2955 | threshold=0.300
+Starting epoch 30/100
+Epoch 097/100 | train_loss=0.2123 | val_pq=0.2869 | threshold=0.600
+Starting epoch 98/100
+Epoch 026/100 | train_loss=0.3024 | val_pq=0.2921 | threshold=0.300
+Starting epoch 27/100
+Epoch 031/100 | train_loss=0.7034 | val_pq=0.0365 | threshold=0.440
+Starting epoch 32/100
+Epoch 030/100 | train_loss=0.3000 | val_pq=0.2962 | threshold=0.600
+Starting epoch 31/100
+Epoch 098/100 | train_loss=0.2111 | val_pq=0.2716 | threshold=0.600
+Starting epoch 99/100
+Epoch 032/100 | train_loss=0.7010 | val_pq=0.0287 | threshold=0.440
+Starting epoch 33/100
+Epoch 031/100 | train_loss=0.2989 | val_pq=0.2838 | threshold=0.300
+Starting epoch 32/100
+Epoch 027/100 | train_loss=0.3010 | val_pq=0.2917 | threshold=0.300
+Starting epoch 28/100
+Epoch 099/100 | train_loss=0.2097 | val_pq=0.2613 | threshold=0.600
+Starting epoch 100/100
+Epoch 033/100 | train_loss=0.6982 | val_pq=0.0428 | threshold=0.440 (best)
+Starting epoch 34/100
+Epoch 032/100 | train_loss=0.2938 | val_pq=0.2974 | threshold=0.600
+Starting epoch 33/100
+Epoch 028/100 | train_loss=0.2964 | val_pq=0.2921 | threshold=0.400
+Starting epoch 29/100
+Epoch 100/100 | train_loss=0.2096 | val_pq=0.2890 | threshold=0.600
+[worker 1 / TPU core 1 (xla:0)] finished unet-baseline seed=44, best_val_pq=0.317062, best_epoch=37
+[worker 1 / TPU core 1 (xla:0)] starting boundary-aware-unet seed=45, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet, seed45 ===
+Starting epoch 1/100
+Epoch 034/100 | train_loss=0.6949 | val_pq=0.0350 | threshold=0.440
+Starting epoch 35/100
+Epoch 033/100 | train_loss=0.2909 | val_pq=0.3107 | threshold=0.600
+Starting epoch 34/100
+Epoch 029/100 | train_loss=0.2988 | val_pq=0.2998 | threshold=0.600 (best)
+Starting epoch 30/100
+Epoch 035/100 | train_loss=0.6921 | val_pq=0.0406 | threshold=0.440
+Starting epoch 36/100
+Epoch 034/100 | train_loss=0.2933 | val_pq=0.2862 | threshold=0.500
+Starting epoch 35/100
+Epoch 030/100 | train_loss=0.2917 | val_pq=0.2897 | threshold=0.300
+Starting epoch 31/100
+Epoch 036/100 | train_loss=0.6898 | val_pq=0.0438 | threshold=0.440 (best)
+Starting epoch 37/100
+Epoch 001/100 | train_loss=1.4961 | val_pq=0.0334 | threshold=0.400 (best)
+Starting epoch 2/100
+Epoch 031/100 | train_loss=0.3047 | val_pq=0.2944 | threshold=0.500
+Starting epoch 32/100
+Epoch 035/100 | train_loss=0.2875 | val_pq=0.3038 | threshold=0.300
+Starting epoch 36/100
+Epoch 037/100 | train_loss=0.6865 | val_pq=0.0501 | threshold=0.440 (best)
+Starting epoch 38/100
+Epoch 032/100 | train_loss=0.2928 | val_pq=0.2679 | threshold=0.500
+Starting epoch 33/100
+Epoch 036/100 | train_loss=0.2873 | val_pq=0.2997 | threshold=0.300
+Starting epoch 37/100
+Epoch 002/100 | train_loss=1.2237 | val_pq=0.0680 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 038/100 | train_loss=0.6839 | val_pq=0.0455 | threshold=0.440
+Starting epoch 39/100
+Epoch 033/100 | train_loss=0.2880 | val_pq=0.2907 | threshold=0.400
+Starting epoch 34/100
+Epoch 037/100 | train_loss=0.2887 | val_pq=0.2944 | threshold=0.600
+Starting epoch 38/100
+Epoch 003/100 | train_loss=1.0471 | val_pq=0.1228 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 039/100 | train_loss=0.6810 | val_pq=0.0456 | threshold=0.440
+Starting epoch 40/100
+Epoch 034/100 | train_loss=0.2857 | val_pq=0.2841 | threshold=0.200
+Starting epoch 35/100
+Epoch 038/100 | train_loss=0.2802 | val_pq=0.3099 | threshold=0.200
+Starting epoch 39/100
+Epoch 004/100 | train_loss=0.8969 | val_pq=0.0958 | threshold=0.600
+Starting epoch 5/100
+Epoch 040/100 | train_loss=0.6785 | val_pq=0.0524 | threshold=0.440 (best)
+Starting epoch 41/100
+Epoch 035/100 | train_loss=0.2849 | val_pq=0.2757 | threshold=0.600
+Starting epoch 36/100
+Epoch 039/100 | train_loss=0.2798 | val_pq=0.2974 | threshold=0.500
+Starting epoch 40/100
+Epoch 005/100 | train_loss=0.6894 | val_pq=0.2105 | threshold=0.600 (best)
+Starting epoch 6/100
+Epoch 041/100 | train_loss=0.6757 | val_pq=0.0495 | threshold=0.440
+Starting epoch 42/100
+Epoch 036/100 | train_loss=0.2829 | val_pq=0.2949 | threshold=0.600
+Starting epoch 37/100
+Epoch 040/100 | train_loss=0.3017 | val_pq=0.2837 | threshold=0.200
+Starting epoch 41/100
+Epoch 006/100 | train_loss=0.5149 | val_pq=0.2295 | threshold=0.600 (best)
+Starting epoch 7/100
+Epoch 042/100 | train_loss=0.6731 | val_pq=0.0506 | threshold=0.440
+Starting epoch 43/100
+Epoch 037/100 | train_loss=0.2779 | val_pq=0.3020 | threshold=0.600 (best)
+Starting epoch 38/100
+Epoch 041/100 | train_loss=0.2951 | val_pq=0.2955 | threshold=0.600
+Starting epoch 42/100
+Epoch 043/100 | train_loss=0.6703 | val_pq=0.0489 | threshold=0.440
+Starting epoch 44/100
+Epoch 007/100 | train_loss=0.4406 | val_pq=0.2639 | threshold=0.200 (best)
+Starting epoch 8/100
+Epoch 038/100 | train_loss=0.3205 | val_pq=0.2823 | threshold=0.500
+Starting epoch 39/100
+Epoch 042/100 | train_loss=0.2812 | val_pq=0.3084 | threshold=0.300
+Starting epoch 43/100
+Epoch 044/100 | train_loss=0.6677 | val_pq=0.0643 | threshold=0.440 (best)
+Starting epoch 45/100
+Epoch 008/100 | train_loss=0.4099 | val_pq=0.2477 | threshold=0.300
+Starting epoch 9/100
+Epoch 039/100 | train_loss=0.3130 | val_pq=0.2972 | threshold=0.600
+Starting epoch 40/100
+Epoch 045/100 | train_loss=0.6659 | val_pq=0.0468 | threshold=0.440
+Starting epoch 46/100
+Epoch 043/100 | train_loss=0.2768 | val_pq=0.2780 | threshold=0.300
+Starting epoch 44/100
+Epoch 009/100 | train_loss=0.3898 | val_pq=0.2460 | threshold=0.600
+Starting epoch 10/100
+Epoch 046/100 | train_loss=0.6639 | val_pq=0.0432 | threshold=0.440
+Starting epoch 47/100
+Epoch 040/100 | train_loss=0.2782 | val_pq=0.2929 | threshold=0.400
+Starting epoch 41/100
+Epoch 044/100 | train_loss=0.2741 | val_pq=0.2942 | threshold=0.300
+Starting epoch 45/100
+Epoch 010/100 | train_loss=0.3811 | val_pq=0.2462 | threshold=0.600
+Starting epoch 11/100
+Epoch 047/100 | train_loss=0.6607 | val_pq=0.0592 | threshold=0.440
+Starting epoch 48/100
+Epoch 041/100 | train_loss=0.2732 | val_pq=0.2821 | threshold=0.600
+Starting epoch 42/100
+Epoch 045/100 | train_loss=0.2719 | val_pq=0.2983 | threshold=0.600
+Starting epoch 46/100
+Epoch 011/100 | train_loss=0.3707 | val_pq=0.2602 | threshold=0.600
+Starting epoch 12/100
+Epoch 048/100 | train_loss=0.6578 | val_pq=0.0638 | threshold=0.440
+Starting epoch 49/100
+Epoch 042/100 | train_loss=0.2692 | val_pq=0.2851 | threshold=0.500
+Starting epoch 43/100
+Epoch 046/100 | train_loss=0.2696 | val_pq=0.2949 | threshold=0.500
+Starting epoch 47/100
+Epoch 012/100 | train_loss=0.3682 | val_pq=0.2717 | threshold=0.200 (best)
+Starting epoch 13/100
+Epoch 049/100 | train_loss=0.6551 | val_pq=0.0748 | threshold=0.440 (best)
+Starting epoch 50/100
+Epoch 043/100 | train_loss=0.2680 | val_pq=0.2959 | threshold=0.600
+Starting epoch 44/100
+Epoch 047/100 | train_loss=0.2714 | val_pq=0.3120 | threshold=0.500 (best)
+Starting epoch 48/100
+Epoch 013/100 | train_loss=0.3541 | val_pq=0.2766 | threshold=0.400 (best)
+Starting epoch 14/100
+Epoch 050/100 | train_loss=0.6524 | val_pq=0.0634 | threshold=0.440
+Starting epoch 51/100
+Epoch 044/100 | train_loss=0.2784 | val_pq=0.2979 | threshold=0.600
+Starting epoch 45/100
+Epoch 048/100 | train_loss=0.2661 | val_pq=0.2888 | threshold=0.200
+Starting epoch 49/100
+Epoch 014/100 | train_loss=0.3519 | val_pq=0.2652 | threshold=0.600
+Starting epoch 15/100
+Epoch 051/100 | train_loss=0.6500 | val_pq=0.0628 | threshold=0.440
+Starting epoch 52/100
+Epoch 045/100 | train_loss=0.2674 | val_pq=0.2996 | threshold=0.300
+Starting epoch 46/100
+Epoch 049/100 | train_loss=0.2640 | val_pq=0.2908 | threshold=0.300
+Starting epoch 50/100
+Epoch 015/100 | train_loss=0.3485 | val_pq=0.2746 | threshold=0.400
+Starting epoch 16/100
+Epoch 052/100 | train_loss=0.6474 | val_pq=0.0729 | threshold=0.440
+Starting epoch 53/100
+Epoch 046/100 | train_loss=0.2632 | val_pq=0.2767 | threshold=0.600
+Starting epoch 47/100
+Epoch 050/100 | train_loss=0.2622 | val_pq=0.3040 | threshold=0.200
+Starting epoch 51/100
+Epoch 016/100 | train_loss=0.3489 | val_pq=0.2651 | threshold=0.200
+Starting epoch 17/100
+Epoch 053/100 | train_loss=0.6448 | val_pq=0.0732 | threshold=0.440
+Starting epoch 54/100
+Epoch 047/100 | train_loss=0.2615 | val_pq=0.2881 | threshold=0.400
+Starting epoch 48/100
+Epoch 051/100 | train_loss=0.2720 | val_pq=0.3030 | threshold=0.300
+Starting epoch 52/100
+Epoch 017/100 | train_loss=0.3611 | val_pq=0.2460 | threshold=0.600
+Starting epoch 18/100
+Epoch 054/100 | train_loss=0.6423 | val_pq=0.0662 | threshold=0.440
+Starting epoch 55/100
+Epoch 048/100 | train_loss=0.2597 | val_pq=0.2902 | threshold=0.300
+Starting epoch 49/100
+Epoch 052/100 | train_loss=0.2611 | val_pq=0.3028 | threshold=0.600
+Starting epoch 53/100
+Epoch 018/100 | train_loss=0.3500 | val_pq=0.2825 | threshold=0.200 (best)
+Starting epoch 19/100
+Epoch 055/100 | train_loss=0.6397 | val_pq=0.0791 | threshold=0.440 (best)
+Starting epoch 56/100
+Epoch 049/100 | train_loss=0.2578 | val_pq=0.2876 | threshold=0.600
+Starting epoch 50/100
+Epoch 053/100 | train_loss=0.2840 | val_pq=0.2902 | threshold=0.500
+Starting epoch 54/100
+Epoch 019/100 | train_loss=0.3383 | val_pq=0.2899 | threshold=0.300 (best)
+Starting epoch 20/100
+Epoch 056/100 | train_loss=0.6372 | val_pq=0.0781 | threshold=0.440
+Starting epoch 57/100
+Epoch 050/100 | train_loss=0.2576 | val_pq=0.2918 | threshold=0.600
+Starting epoch 51/100
+Epoch 054/100 | train_loss=0.2779 | val_pq=0.3118 | threshold=0.500
+Starting epoch 55/100
+Epoch 020/100 | train_loss=0.3375 | val_pq=0.2646 | threshold=0.400
+Starting epoch 21/100
+Epoch 057/100 | train_loss=0.6351 | val_pq=0.0679 | threshold=0.440
+Starting epoch 58/100
+Epoch 051/100 | train_loss=0.2569 | val_pq=0.2836 | threshold=0.500
+Starting epoch 52/100
+Epoch 055/100 | train_loss=0.2607 | val_pq=0.3101 | threshold=0.600
+Starting epoch 56/100
+Epoch 058/100 | train_loss=0.6324 | val_pq=0.0738 | threshold=0.440
+Starting epoch 59/100
+Epoch 021/100 | train_loss=0.3320 | val_pq=0.2737 | threshold=0.500
+Starting epoch 22/100
+Epoch 052/100 | train_loss=0.2557 | val_pq=0.2944 | threshold=0.500
+Starting epoch 53/100
+Epoch 056/100 | train_loss=0.2554 | val_pq=0.2941 | threshold=0.300
+Starting epoch 57/100
+Epoch 059/100 | train_loss=0.6299 | val_pq=0.0816 | threshold=0.440 (best)
+Starting epoch 60/100
+Epoch 022/100 | train_loss=0.3215 | val_pq=0.2967 | threshold=0.400 (best)
+Starting epoch 23/100
+Epoch 053/100 | train_loss=0.2568 | val_pq=0.2837 | threshold=0.400
+Starting epoch 54/100
+Epoch 057/100 | train_loss=0.2521 | val_pq=0.2989 | threshold=0.600
+Starting epoch 58/100
+Epoch 060/100 | train_loss=0.6273 | val_pq=0.0745 | threshold=0.440
+Starting epoch 61/100
+Epoch 023/100 | train_loss=0.3182 | val_pq=0.2955 | threshold=0.400
+Starting epoch 24/100
+Epoch 054/100 | train_loss=0.2563 | val_pq=0.2827 | threshold=0.600
+Starting epoch 55/100
+Epoch 058/100 | train_loss=0.2530 | val_pq=0.3094 | threshold=0.400
+Starting epoch 59/100
+Epoch 061/100 | train_loss=0.6250 | val_pq=0.0837 | threshold=0.440 (best)
+Starting epoch 62/100
+Epoch 024/100 | train_loss=0.3177 | val_pq=0.2943 | threshold=0.200
+Starting epoch 25/100
+Epoch 055/100 | train_loss=0.2568 | val_pq=0.2769 | threshold=0.600
+Starting epoch 56/100
+Epoch 062/100 | train_loss=0.6224 | val_pq=0.0856 | threshold=0.440 (best)
+Starting epoch 63/100
+Epoch 059/100 | train_loss=0.2510 | val_pq=0.3020 | threshold=0.600
+Starting epoch 60/100
+Epoch 025/100 | train_loss=0.3170 | val_pq=0.2824 | threshold=0.600
+Starting epoch 26/100
+Epoch 056/100 | train_loss=0.2656 | val_pq=0.2935 | threshold=0.400
+Starting epoch 57/100
+Epoch 063/100 | train_loss=0.6201 | val_pq=0.0738 | threshold=0.440
+Starting epoch 64/100
+Epoch 060/100 | train_loss=0.2504 | val_pq=0.3060 | threshold=0.300
+Starting epoch 61/100
+Epoch 026/100 | train_loss=0.3232 | val_pq=0.2927 | threshold=0.300
+Starting epoch 27/100
+Epoch 064/100 | train_loss=0.6176 | val_pq=0.0830 | threshold=0.440
+Starting epoch 65/100
+Epoch 057/100 | train_loss=0.2549 | val_pq=0.2810 | threshold=0.200
+Starting epoch 58/100
+Epoch 061/100 | train_loss=0.2494 | val_pq=0.3032 | threshold=0.300
+Starting epoch 62/100
+Epoch 027/100 | train_loss=0.3142 | val_pq=0.2861 | threshold=0.300
+Starting epoch 28/100
+Epoch 065/100 | train_loss=0.6153 | val_pq=0.0830 | threshold=0.440
+Starting epoch 66/100
+Epoch 058/100 | train_loss=0.2524 | val_pq=0.2699 | threshold=0.500
+Starting epoch 59/100
+Epoch 062/100 | train_loss=0.2489 | val_pq=0.2968 | threshold=0.600
+Starting epoch 63/100
+Epoch 028/100 | train_loss=0.3033 | val_pq=0.2919 | threshold=0.300
+Starting epoch 29/100
+Epoch 066/100 | train_loss=0.6131 | val_pq=0.0782 | threshold=0.440
+Starting epoch 67/100
+Epoch 059/100 | train_loss=0.2506 | val_pq=0.2920 | threshold=0.200
+Starting epoch 60/100
+Epoch 063/100 | train_loss=0.2564 | val_pq=0.2571 | threshold=0.300
+Starting epoch 64/100
+Epoch 029/100 | train_loss=0.3052 | val_pq=0.2898 | threshold=0.400
+Starting epoch 30/100
+Epoch 067/100 | train_loss=0.6104 | val_pq=0.0683 | threshold=0.440
+Starting epoch 68/100
+Epoch 060/100 | train_loss=0.2468 | val_pq=0.2846 | threshold=0.400
+Starting epoch 61/100
+Epoch 064/100 | train_loss=0.2801 | val_pq=0.2854 | threshold=0.500
+Starting epoch 65/100
+Epoch 030/100 | train_loss=0.3026 | val_pq=0.2836 | threshold=0.600
+Starting epoch 31/100
+Epoch 068/100 | train_loss=0.6081 | val_pq=0.0916 | threshold=0.440 (best)
+Starting epoch 69/100
+Epoch 061/100 | train_loss=0.2438 | val_pq=0.2808 | threshold=0.200
+Starting epoch 62/100
+Epoch 065/100 | train_loss=0.2576 | val_pq=0.2958 | threshold=0.600
+Starting epoch 66/100
+Epoch 031/100 | train_loss=0.3038 | val_pq=0.2825 | threshold=0.600
+Starting epoch 32/100
+Epoch 069/100 | train_loss=0.6054 | val_pq=0.0785 | threshold=0.440
+Starting epoch 70/100
+Epoch 062/100 | train_loss=0.2418 | val_pq=0.2756 | threshold=0.600
+Starting epoch 63/100
+Epoch 066/100 | train_loss=0.2495 | val_pq=0.3059 | threshold=0.600
+Starting epoch 67/100
+Epoch 070/100 | train_loss=0.6032 | val_pq=0.0927 | threshold=0.440 (best)
+Starting epoch 71/100
+Epoch 032/100 | train_loss=0.2961 | val_pq=0.2805 | threshold=0.600
+Starting epoch 33/100
+Epoch 063/100 | train_loss=0.2399 | val_pq=0.2753 | threshold=0.400
+Starting epoch 64/100
+Epoch 067/100 | train_loss=0.2443 | val_pq=0.2944 | threshold=0.600
+Starting epoch 68/100
+Epoch 071/100 | train_loss=0.6008 | val_pq=0.0859 | threshold=0.440
+Starting epoch 72/100
+Epoch 033/100 | train_loss=0.2945 | val_pq=0.3215 | threshold=0.200 (best)
+Starting epoch 34/100
+Epoch 064/100 | train_loss=0.2396 | val_pq=0.2799 | threshold=0.600
+Starting epoch 65/100
+Epoch 068/100 | train_loss=0.2426 | val_pq=0.2950 | threshold=0.600
+Starting epoch 69/100
+Epoch 072/100 | train_loss=0.5984 | val_pq=0.0409 | threshold=0.440
+Starting epoch 73/100
+Epoch 034/100 | train_loss=0.2907 | val_pq=0.3260 | threshold=0.600 (best)
+Starting epoch 35/100
+Epoch 065/100 | train_loss=0.2384 | val_pq=0.2768 | threshold=0.500
+Starting epoch 66/100
+Epoch 069/100 | train_loss=0.2413 | val_pq=0.2882 | threshold=0.600
+Starting epoch 70/100
+Epoch 073/100 | train_loss=0.5962 | val_pq=0.0943 | threshold=0.440 (best)
+Starting epoch 74/100
+Epoch 035/100 | train_loss=0.2931 | val_pq=0.2786 | threshold=0.500
+Starting epoch 36/100
+Epoch 066/100 | train_loss=0.2418 | val_pq=0.2856 | threshold=0.600
+Starting epoch 67/100
+Epoch 070/100 | train_loss=0.2388 | val_pq=0.2902 | threshold=0.500
+Starting epoch 71/100
+Epoch 074/100 | train_loss=0.5936 | val_pq=0.0795 | threshold=0.440
+Starting epoch 75/100
+Epoch 036/100 | train_loss=0.2872 | val_pq=0.3068 | threshold=0.500
+Starting epoch 37/100
+Epoch 067/100 | train_loss=0.2392 | val_pq=0.2956 | threshold=0.400
+Starting epoch 68/100
+Epoch 075/100 | train_loss=0.5915 | val_pq=0.0885 | threshold=0.440
+Starting epoch 76/100
+Epoch 037/100 | train_loss=0.2840 | val_pq=0.2849 | threshold=0.600
+Starting epoch 38/100
+Epoch 071/100 | train_loss=0.2404 | val_pq=0.2978 | threshold=0.600
+Starting epoch 72/100
+Epoch 068/100 | train_loss=0.2370 | val_pq=0.2854 | threshold=0.500
+Starting epoch 69/100
+Epoch 076/100 | train_loss=0.5890 | val_pq=0.0721 | threshold=0.440
+Starting epoch 77/100
+Epoch 038/100 | train_loss=0.2849 | val_pq=0.2968 | threshold=0.500
+Starting epoch 39/100
+Epoch 069/100 | train_loss=0.2427 | val_pq=0.2774 | threshold=0.500
+Starting epoch 70/100
+Epoch 072/100 | train_loss=0.2378 | val_pq=0.3065 | threshold=0.600
+Starting epoch 73/100
+Epoch 077/100 | train_loss=0.5869 | val_pq=0.0661 | threshold=0.440
+Starting epoch 78/100
+Epoch 039/100 | train_loss=0.2874 | val_pq=0.2951 | threshold=0.300
+Starting epoch 40/100
+Epoch 070/100 | train_loss=0.2477 | val_pq=0.3103 | threshold=0.400 (best)
+Starting epoch 71/100
+Epoch 073/100 | train_loss=0.2400 | val_pq=0.2836 | threshold=0.600
+Starting epoch 74/100
+Epoch 078/100 | train_loss=0.5845 | val_pq=0.0959 | threshold=0.440 (best)
+Starting epoch 79/100
+Epoch 040/100 | train_loss=0.2960 | val_pq=0.2825 | threshold=0.300
+Starting epoch 41/100
+Epoch 074/100 | train_loss=0.2381 | val_pq=0.2766 | threshold=0.400
+Starting epoch 75/100
+Epoch 079/100 | train_loss=0.5822 | val_pq=0.0937 | threshold=0.440
+Starting epoch 80/100
+Epoch 071/100 | train_loss=0.2381 | val_pq=0.2634 | threshold=0.600
+Starting epoch 72/100
+Epoch 041/100 | train_loss=0.2859 | val_pq=0.3044 | threshold=0.300
+Starting epoch 42/100
+Epoch 080/100 | train_loss=0.5800 | val_pq=0.0876 | threshold=0.440
+Starting epoch 81/100
+Epoch 075/100 | train_loss=0.2354 | val_pq=0.2988 | threshold=0.400
+Starting epoch 76/100
+Epoch 042/100 | train_loss=0.2760 | val_pq=0.2972 | threshold=0.600
+Starting epoch 43/100
+Epoch 072/100 | train_loss=0.2359 | val_pq=0.2924 | threshold=0.300
+Starting epoch 73/100
+Epoch 081/100 | train_loss=0.5778 | val_pq=0.0774 | threshold=0.440
+Starting epoch 82/100
+Epoch 076/100 | train_loss=0.2442 | val_pq=0.2959 | threshold=0.500
+Starting epoch 77/100
+Epoch 043/100 | train_loss=0.2744 | val_pq=0.3051 | threshold=0.600
+Starting epoch 44/100
+Epoch 073/100 | train_loss=0.2319 | val_pq=0.2868 | threshold=0.300
+Starting epoch 74/100
+Epoch 082/100 | train_loss=0.5756 | val_pq=0.0978 | threshold=0.440 (best)
+Starting epoch 83/100
+Epoch 077/100 | train_loss=0.2515 | val_pq=0.2889 | threshold=0.500
+Starting epoch 78/100
+Epoch 044/100 | train_loss=0.2735 | val_pq=0.3134 | threshold=0.500
+Starting epoch 45/100
+Epoch 074/100 | train_loss=0.2297 | val_pq=0.2800 | threshold=0.300
+Starting epoch 75/100
+Epoch 083/100 | train_loss=0.5732 | val_pq=0.0959 | threshold=0.440
+Starting epoch 84/100
+Epoch 078/100 | train_loss=0.2428 | val_pq=0.2941 | threshold=0.600
+Starting epoch 79/100
+Epoch 045/100 | train_loss=0.2690 | val_pq=0.3051 | threshold=0.500
+Starting epoch 46/100
+Epoch 084/100 | train_loss=0.5711 | val_pq=0.0893 | threshold=0.440
+Starting epoch 85/100
+Epoch 075/100 | train_loss=0.2297 | val_pq=0.2712 | threshold=0.600
+Starting epoch 76/100
+Epoch 079/100 | train_loss=0.2363 | val_pq=0.2986 | threshold=0.600
+Starting epoch 80/100
+Epoch 046/100 | train_loss=0.2727 | val_pq=0.2283 | threshold=0.300
+Starting epoch 47/100
+Epoch 085/100 | train_loss=0.5688 | val_pq=0.0948 | threshold=0.440
+Starting epoch 86/100
+Epoch 076/100 | train_loss=0.2294 | val_pq=0.2784 | threshold=0.500
+Starting epoch 77/100
+Epoch 080/100 | train_loss=0.2348 | val_pq=0.2819 | threshold=0.500
+Starting epoch 81/100
+Epoch 047/100 | train_loss=0.2795 | val_pq=0.3082 | threshold=0.600
+Starting epoch 48/100
+Epoch 086/100 | train_loss=0.5667 | val_pq=0.0976 | threshold=0.440
+Starting epoch 87/100
+Epoch 077/100 | train_loss=0.2292 | val_pq=0.2570 | threshold=0.400
+Starting epoch 78/100
+Epoch 081/100 | train_loss=0.2307 | val_pq=0.2867 | threshold=0.400
+Starting epoch 82/100
+Epoch 087/100 | train_loss=0.5648 | val_pq=0.0963 | threshold=0.440
+Starting epoch 88/100
+Epoch 048/100 | train_loss=0.2653 | val_pq=0.2787 | threshold=0.200
+Starting epoch 49/100
+Epoch 078/100 | train_loss=0.2274 | val_pq=0.2826 | threshold=0.600
+Starting epoch 79/100
+Epoch 082/100 | train_loss=0.2294 | val_pq=0.3075 | threshold=0.500
+Starting epoch 83/100
+Epoch 088/100 | train_loss=0.5623 | val_pq=0.0915 | threshold=0.440
+Starting epoch 89/100
+Epoch 049/100 | train_loss=0.2691 | val_pq=0.2856 | threshold=0.300
+Starting epoch 50/100
+Epoch 079/100 | train_loss=0.2292 | val_pq=0.2786 | threshold=0.400
+Starting epoch 80/100
+Epoch 083/100 | train_loss=0.2288 | val_pq=0.2677 | threshold=0.500
+Starting epoch 84/100
+Epoch 089/100 | train_loss=0.5601 | val_pq=0.1062 | threshold=0.440 (best)
+Starting epoch 90/100
+Epoch 050/100 | train_loss=0.2688 | val_pq=0.2944 | threshold=0.200
+Starting epoch 51/100
+Epoch 080/100 | train_loss=0.2292 | val_pq=0.2544 | threshold=0.600
+Starting epoch 81/100
+Epoch 084/100 | train_loss=0.2273 | val_pq=0.2803 | threshold=0.500
+Starting epoch 85/100
+Epoch 090/100 | train_loss=0.5579 | val_pq=0.1121 | threshold=0.440 (best)
+Starting epoch 91/100
+Epoch 051/100 | train_loss=0.2688 | val_pq=0.2849 | threshold=0.600
+Starting epoch 52/100
+Epoch 081/100 | train_loss=0.2248 | val_pq=0.2748 | threshold=0.400
+Starting epoch 82/100
+Epoch 085/100 | train_loss=0.2283 | val_pq=0.2813 | threshold=0.300
+Starting epoch 86/100
+Epoch 091/100 | train_loss=0.5558 | val_pq=0.0846 | threshold=0.440
+Starting epoch 92/100
+Epoch 052/100 | train_loss=0.2659 | val_pq=0.2865 | threshold=0.600
+Starting epoch 53/100
+Epoch 082/100 | train_loss=0.2237 | val_pq=0.2824 | threshold=0.600
+Starting epoch 83/100
+Epoch 086/100 | train_loss=0.2256 | val_pq=0.2786 | threshold=0.200
+Starting epoch 87/100
+Epoch 092/100 | train_loss=0.5536 | val_pq=0.1240 | threshold=0.440 (best)
+Starting epoch 93/100
+Epoch 053/100 | train_loss=0.2652 | val_pq=0.2881 | threshold=0.400
+Starting epoch 54/100
+Epoch 083/100 | train_loss=0.2219 | val_pq=0.2589 | threshold=0.500
+Starting epoch 84/100
+Epoch 087/100 | train_loss=0.2288 | val_pq=0.2825 | threshold=0.600
+Starting epoch 88/100
+Epoch 093/100 | train_loss=0.5516 | val_pq=0.0821 | threshold=0.440
+Starting epoch 94/100
+Epoch 054/100 | train_loss=0.2592 | val_pq=0.2937 | threshold=0.600
+Starting epoch 55/100
+Epoch 084/100 | train_loss=0.2214 | val_pq=0.2761 | threshold=0.600
+Starting epoch 85/100
+Epoch 088/100 | train_loss=0.2286 | val_pq=0.2773 | threshold=0.400
+Starting epoch 89/100
+Epoch 094/100 | train_loss=0.5493 | val_pq=0.1140 | threshold=0.440
+Starting epoch 95/100
+Epoch 055/100 | train_loss=0.2558 | val_pq=0.2779 | threshold=0.600
+Starting epoch 56/100
+Epoch 085/100 | train_loss=0.2217 | val_pq=0.2771 | threshold=0.600
+Starting epoch 86/100
+Epoch 089/100 | train_loss=0.2242 | val_pq=0.2835 | threshold=0.400
+Starting epoch 90/100
+Epoch 095/100 | train_loss=0.5473 | val_pq=0.0784 | threshold=0.440
+Starting epoch 96/100
+Epoch 056/100 | train_loss=0.2588 | val_pq=0.2619 | threshold=0.300
+Starting epoch 57/100
+Epoch 086/100 | train_loss=0.2204 | val_pq=0.2726 | threshold=0.600
+Starting epoch 87/100
+Epoch 090/100 | train_loss=0.2225 | val_pq=0.2811 | threshold=0.300
+Starting epoch 91/100
+Epoch 096/100 | train_loss=0.5451 | val_pq=0.1076 | threshold=0.440
+Starting epoch 97/100
+Epoch 057/100 | train_loss=0.2642 | val_pq=0.3000 | threshold=0.600
+Starting epoch 58/100
+Epoch 087/100 | train_loss=0.2196 | val_pq=0.2660 | threshold=0.500
+Starting epoch 88/100
+Epoch 091/100 | train_loss=0.2259 | val_pq=0.2947 | threshold=0.600
+Starting epoch 92/100
+Epoch 097/100 | train_loss=0.5429 | val_pq=0.1009 | threshold=0.440
+Starting epoch 98/100
+Epoch 058/100 | train_loss=0.2570 | val_pq=0.2717 | threshold=0.400
+Starting epoch 59/100
+Epoch 088/100 | train_loss=0.2205 | val_pq=0.2613 | threshold=0.500
+Starting epoch 89/100
+Epoch 098/100 | train_loss=0.5408 | val_pq=0.0975 | threshold=0.440
+Starting epoch 99/100
+Epoch 092/100 | train_loss=0.2228 | val_pq=0.2849 | threshold=0.500
+Starting epoch 93/100
+Epoch 059/100 | train_loss=0.2520 | val_pq=0.2871 | threshold=0.200
+Starting epoch 60/100
+Epoch 089/100 | train_loss=0.2200 | val_pq=0.2737 | threshold=0.600
+Starting epoch 90/100
+Epoch 099/100 | train_loss=0.5384 | val_pq=0.1119 | threshold=0.440
+Starting epoch 100/100
+Epoch 093/100 | train_loss=0.2211 | val_pq=0.2661 | threshold=0.300
+Starting epoch 94/100
+Epoch 060/100 | train_loss=0.2553 | val_pq=0.2867 | threshold=0.400
+Starting epoch 61/100
+Epoch 090/100 | train_loss=0.2205 | val_pq=0.2544 | threshold=0.600
+Starting epoch 91/100
+Epoch 100/100 | train_loss=0.5365 | val_pq=0.0984 | threshold=0.440
+[worker 2 / TPU core 2 (xla:0)] finished boundary-aware-unet-pyhopper-corrected-data seed=44, best_val_pq=0.124006, best_epoch=92
+[worker 2 / TPU core 2 (xla:0)] starting boundary-aware-unet-pyhopper-corrected-data seed=45, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet-pyhopper-corrected-data, seed45 ===
+Starting epoch 1/100
+Epoch 094/100 | train_loss=0.2230 | val_pq=0.2732 | threshold=0.600
+Starting epoch 95/100
+Epoch 061/100 | train_loss=0.2492 | val_pq=0.2838 | threshold=0.300
+Starting epoch 62/100
+Epoch 091/100 | train_loss=0.2173 | val_pq=0.2826 | threshold=0.500
+Starting epoch 92/100
+Epoch 001/100 | train_loss=1.0799 | val_pq=0.0001 | threshold=0.440 (best)
+Starting epoch 2/100
+Epoch 095/100 | train_loss=0.2194 | val_pq=0.2721 | threshold=0.600
+Starting epoch 96/100
+Epoch 062/100 | train_loss=0.2642 | val_pq=0.2828 | threshold=0.600
+Starting epoch 63/100
+Epoch 092/100 | train_loss=0.2183 | val_pq=0.2653 | threshold=0.500
+Starting epoch 93/100
+Epoch 002/100 | train_loss=0.9844 | val_pq=0.0001 | threshold=0.440 (best)
+Starting epoch 3/100
+Epoch 096/100 | train_loss=0.2187 | val_pq=0.2800 | threshold=0.300
+Starting epoch 97/100
+Epoch 063/100 | train_loss=0.2558 | val_pq=0.2596 | threshold=0.600
+Starting epoch 64/100
+Epoch 003/100 | train_loss=0.9435 | val_pq=0.0001 | threshold=0.440
+Starting epoch 4/100
+Epoch 093/100 | train_loss=0.2184 | val_pq=0.2703 | threshold=0.600
+Starting epoch 94/100
+Epoch 097/100 | train_loss=0.2198 | val_pq=0.2756 | threshold=0.600
+Starting epoch 98/100
+Epoch 004/100 | train_loss=0.9228 | val_pq=0.0004 | threshold=0.440 (best)
+Starting epoch 5/100
+Epoch 064/100 | train_loss=0.2473 | val_pq=0.2862 | threshold=0.600
+Starting epoch 65/100
+Epoch 094/100 | train_loss=0.2162 | val_pq=0.2657 | threshold=0.400
+Starting epoch 95/100
+Epoch 098/100 | train_loss=0.2175 | val_pq=0.2891 | threshold=0.600
+Starting epoch 99/100
+Epoch 005/100 | train_loss=0.9097 | val_pq=0.0004 | threshold=0.440 (best)
+Starting epoch 6/100
+Epoch 065/100 | train_loss=0.2442 | val_pq=0.2928 | threshold=0.600
+Starting epoch 66/100
+Epoch 095/100 | train_loss=0.2147 | val_pq=0.2720 | threshold=0.500
+Starting epoch 96/100
+Epoch 099/100 | train_loss=0.2160 | val_pq=0.2919 | threshold=0.500
+Starting epoch 100/100
+Epoch 006/100 | train_loss=0.9010 | val_pq=0.0006 | threshold=0.440 (best)
+Starting epoch 7/100
+Epoch 066/100 | train_loss=0.2446 | val_pq=0.2800 | threshold=0.400
+Starting epoch 67/100
+Epoch 096/100 | train_loss=0.2139 | val_pq=0.2629 | threshold=0.300
+Starting epoch 97/100
+Epoch 100/100 | train_loss=0.2161 | val_pq=0.2736 | threshold=0.600
+[worker 3 / TPU core 3 (xla:0)] finished boundary-aware-unet seed=44, best_val_pq=0.311963, best_epoch=47
+[worker 3 / TPU core 3 (xla:0)] starting unet-baseline seed=46, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== unet-baseline, seed46 ===
+Starting epoch 1/100
+Epoch 007/100 | train_loss=0.8941 | val_pq=0.0009 | threshold=0.440 (best)
+Starting epoch 8/100
+Epoch 067/100 | train_loss=0.2426 | val_pq=0.2788 | threshold=0.600
+Starting epoch 68/100
+Epoch 097/100 | train_loss=0.2115 | val_pq=0.2789 | threshold=0.300
+Starting epoch 98/100
+Epoch 001/100 | train_loss=1.2890 | val_pq=0.0017 | threshold=0.600 (best)
+Starting epoch 2/100
+Epoch 008/100 | train_loss=0.8884 | val_pq=0.0013 | threshold=0.440 (best)
+Starting epoch 9/100
+Epoch 068/100 | train_loss=0.2422 | val_pq=0.2901 | threshold=0.600
+Starting epoch 69/100
+Epoch 098/100 | train_loss=0.2135 | val_pq=0.2456 | threshold=0.600
+Starting epoch 99/100
+Epoch 002/100 | train_loss=1.1035 | val_pq=0.0070 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 009/100 | train_loss=0.8831 | val_pq=0.0020 | threshold=0.440 (best)
+Starting epoch 10/100
+Epoch 069/100 | train_loss=0.2411 | val_pq=0.2939 | threshold=0.600
+Starting epoch 70/100
+Epoch 099/100 | train_loss=0.2185 | val_pq=0.2781 | threshold=0.600
+Starting epoch 100/100
+Epoch 003/100 | train_loss=0.9769 | val_pq=0.1378 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 010/100 | train_loss=0.8785 | val_pq=0.0033 | threshold=0.440 (best)
+Starting epoch 11/100
+Epoch 070/100 | train_loss=0.2386 | val_pq=0.2833 | threshold=0.600
+Starting epoch 71/100
+Epoch 100/100 | train_loss=0.2170 | val_pq=0.2662 | threshold=0.600
+[worker 0 / TPU core 0 (xla:0)] finished unet-baseline seed=45, best_val_pq=0.310308, best_epoch=70
+[worker 0 / TPU core 0 (xla:0)] starting boundary-aware-unet seed=46, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet, seed46 ===
+Starting epoch 1/100
+Epoch 004/100 | train_loss=0.8139 | val_pq=0.2347 | threshold=0.600 (best)
+Starting epoch 5/100
+Epoch 011/100 | train_loss=0.8749 | val_pq=0.0033 | threshold=0.440 (best)
+Starting epoch 12/100
+Epoch 001/100 | train_loss=1.4090 | val_pq=0.0373 | threshold=0.600 (best)
+Starting epoch 2/100
+Epoch 005/100 | train_loss=0.5833 | val_pq=0.2360 | threshold=0.600 (best)
+Starting epoch 6/100
+Epoch 012/100 | train_loss=0.8697 | val_pq=0.0043 | threshold=0.440 (best)
+Starting epoch 13/100
+Epoch 071/100 | train_loss=0.2392 | val_pq=0.2794 | threshold=0.300
+Starting epoch 72/100
+Epoch 002/100 | train_loss=1.1654 | val_pq=0.0983 | threshold=0.600 (best)
+Starting epoch 3/100
+Epoch 006/100 | train_loss=0.4523 | val_pq=0.2348 | threshold=0.600
+Starting epoch 7/100
+Epoch 013/100 | train_loss=0.8671 | val_pq=0.0045 | threshold=0.440 (best)
+Starting epoch 14/100
+Epoch 072/100 | train_loss=0.2375 | val_pq=0.2877 | threshold=0.600
+Starting epoch 73/100
+Epoch 003/100 | train_loss=1.0036 | val_pq=0.1047 | threshold=0.600 (best)
+Starting epoch 4/100
+Epoch 007/100 | train_loss=0.4108 | val_pq=0.2782 | threshold=0.500 (best)
+Starting epoch 8/100
+Epoch 014/100 | train_loss=0.8615 | val_pq=0.0039 | threshold=0.440
+Starting epoch 15/100
+Epoch 073/100 | train_loss=0.2388 | val_pq=0.2719 | threshold=0.600
+Starting epoch 74/100
+Epoch 004/100 | train_loss=0.8238 | val_pq=0.2319 | threshold=0.600 (best)
+Starting epoch 5/100
+Epoch 008/100 | train_loss=0.3921 | val_pq=0.2814 | threshold=0.500 (best)
+Starting epoch 9/100
+Epoch 015/100 | train_loss=0.8577 | val_pq=0.0040 | threshold=0.440
+Starting epoch 16/100
+Epoch 074/100 | train_loss=0.2364 | val_pq=0.2778 | threshold=0.600
+Starting epoch 75/100
+Epoch 005/100 | train_loss=0.5914 | val_pq=0.2378 | threshold=0.500 (best)
+Starting epoch 6/100
+Epoch 009/100 | train_loss=0.3742 | val_pq=0.2890 | threshold=0.300 (best)
+Starting epoch 10/100
+Epoch 016/100 | train_loss=0.8539 | val_pq=0.0032 | threshold=0.440
+Starting epoch 17/100
+Epoch 075/100 | train_loss=0.2366 | val_pq=0.2921 | threshold=0.300
+Starting epoch 76/100
+Epoch 006/100 | train_loss=0.4595 | val_pq=0.2532 | threshold=0.600 (best)
+Starting epoch 7/100
+Epoch 017/100 | train_loss=0.8503 | val_pq=0.0034 | threshold=0.440
+Starting epoch 18/100
+Epoch 010/100 | train_loss=0.3696 | val_pq=0.2604 | threshold=0.500
+Starting epoch 11/100
+Epoch 076/100 | train_loss=0.2334 | val_pq=0.2759 | threshold=0.500
+Starting epoch 77/100
+Epoch 007/100 | train_loss=0.4064 | val_pq=0.2728 | threshold=0.200 (best)
+Starting epoch 8/100
+Epoch 018/100 | train_loss=0.8465 | val_pq=0.0030 | threshold=0.440
+Starting epoch 19/100
+Epoch 011/100 | train_loss=0.3585 | val_pq=0.2681 | threshold=0.600
+Starting epoch 12/100
+Epoch 077/100 | train_loss=0.2340 | val_pq=0.2708 | threshold=0.200
+Starting epoch 78/100
+Epoch 008/100 | train_loss=0.3905 | val_pq=0.2829 | threshold=0.200 (best)
+Starting epoch 9/100
+Epoch 019/100 | train_loss=0.8458 | val_pq=0.0057 | threshold=0.440 (best)
+Starting epoch 20/100
+Epoch 012/100 | train_loss=0.3612 | val_pq=0.2982 | threshold=0.200 (best)
+Starting epoch 13/100
+Epoch 078/100 | train_loss=0.2321 | val_pq=0.2686 | threshold=0.400
+Starting epoch 79/100
+Epoch 009/100 | train_loss=0.3768 | val_pq=0.2804 | threshold=0.200
+Starting epoch 10/100
+Epoch 020/100 | train_loss=0.8424 | val_pq=0.0027 | threshold=0.440
+Starting epoch 21/100
+Epoch 013/100 | train_loss=0.3556 | val_pq=0.3067 | threshold=0.400 (best)
+Starting epoch 14/100
+Epoch 079/100 | train_loss=0.2336 | val_pq=0.2804 | threshold=0.600
+Starting epoch 80/100
+Epoch 021/100 | train_loss=0.8372 | val_pq=0.0029 | threshold=0.440
+Starting epoch 22/100
+Epoch 010/100 | train_loss=0.3605 | val_pq=0.2774 | threshold=0.600
+Starting epoch 11/100
+Epoch 014/100 | train_loss=0.3471 | val_pq=0.2948 | threshold=0.400
+Starting epoch 15/100
+Epoch 080/100 | train_loss=0.2461 | val_pq=0.2824 | threshold=0.400
+Starting epoch 81/100
+Epoch 022/100 | train_loss=0.8334 | val_pq=0.0029 | threshold=0.440
+Starting epoch 23/100
+Epoch 011/100 | train_loss=0.3588 | val_pq=0.2983 | threshold=0.300 (best)
+Starting epoch 12/100
+Epoch 015/100 | train_loss=0.3405 | val_pq=0.3001 | threshold=0.200
+Starting epoch 16/100
+Epoch 023/100 | train_loss=0.8297 | val_pq=0.0027 | threshold=0.440
+Starting epoch 24/100
+Epoch 081/100 | train_loss=0.2336 | val_pq=0.2761 | threshold=0.600
+Starting epoch 82/100
+Epoch 012/100 | train_loss=0.3506 | val_pq=0.2833 | threshold=0.600
+Starting epoch 13/100
+Epoch 016/100 | train_loss=0.3514 | val_pq=0.2553 | threshold=0.300
+Starting epoch 17/100
+Epoch 024/100 | train_loss=0.8264 | val_pq=0.0025 | threshold=0.440
+Starting epoch 25/100
+Epoch 082/100 | train_loss=0.2300 | val_pq=0.2764 | threshold=0.500
+Starting epoch 83/100
+Epoch 013/100 | train_loss=0.3478 | val_pq=0.3060 | threshold=0.200 (best)
+Starting epoch 14/100
+Epoch 017/100 | train_loss=0.3466 | val_pq=0.2906 | threshold=0.600
+Starting epoch 18/100
+Epoch 025/100 | train_loss=0.8229 | val_pq=0.0023 | threshold=0.440
+Starting epoch 26/100
+Epoch 083/100 | train_loss=0.2474 | val_pq=0.2802 | threshold=0.300
+Starting epoch 84/100
+Epoch 014/100 | train_loss=0.3444 | val_pq=0.3037 | threshold=0.400
+Starting epoch 15/100
+Epoch 018/100 | train_loss=0.3472 | val_pq=0.2310 | threshold=0.400
+Starting epoch 19/100
+Epoch 026/100 | train_loss=0.8201 | val_pq=0.0021 | threshold=0.440
+Starting epoch 27/100
+Epoch 084/100 | train_loss=0.2290 | val_pq=0.2728 | threshold=0.600
+Starting epoch 85/100
+Epoch 015/100 | train_loss=0.3377 | val_pq=0.3079 | threshold=0.400 (best)
+Starting epoch 16/100
+Epoch 019/100 | train_loss=0.3396 | val_pq=0.2926 | threshold=0.200
+Starting epoch 20/100
+Epoch 027/100 | train_loss=0.8162 | val_pq=0.0020 | threshold=0.440
+Starting epoch 28/100
+Epoch 085/100 | train_loss=0.2267 | val_pq=0.2750 | threshold=0.600
+Starting epoch 86/100
+Epoch 016/100 | train_loss=0.3329 | val_pq=0.2936 | threshold=0.400
+Starting epoch 17/100
+Epoch 020/100 | train_loss=0.3332 | val_pq=0.3165 | threshold=0.200 (best)
+Starting epoch 21/100
+Epoch 028/100 | train_loss=0.8128 | val_pq=0.0021 | threshold=0.440
+Starting epoch 29/100
+Epoch 086/100 | train_loss=0.2241 | val_pq=0.2684 | threshold=0.600
+Starting epoch 87/100
+Epoch 017/100 | train_loss=0.3359 | val_pq=0.2980 | threshold=0.200
+Starting epoch 18/100
+Epoch 021/100 | train_loss=0.3206 | val_pq=0.3037 | threshold=0.300
+Starting epoch 22/100
+Epoch 029/100 | train_loss=0.8099 | val_pq=0.0021 | threshold=0.440
+Starting epoch 30/100
+Epoch 087/100 | train_loss=0.2241 | val_pq=0.2865 | threshold=0.600
+Starting epoch 88/100
+Epoch 018/100 | train_loss=0.3271 | val_pq=0.2945 | threshold=0.500
+Starting epoch 19/100
+Epoch 022/100 | train_loss=0.3242 | val_pq=0.2932 | threshold=0.400
+Starting epoch 23/100
+Epoch 030/100 | train_loss=0.8067 | val_pq=0.0023 | threshold=0.440
+Starting epoch 31/100
+Epoch 088/100 | train_loss=0.2231 | val_pq=0.2622 | threshold=0.600
+Starting epoch 89/100
+Epoch 019/100 | train_loss=0.3373 | val_pq=0.3085 | threshold=0.500 (best)
+Starting epoch 20/100
+Epoch 023/100 | train_loss=0.3287 | val_pq=0.3100 | threshold=0.200
+Starting epoch 24/100
+Epoch 031/100 | train_loss=0.8033 | val_pq=0.0018 | threshold=0.440
+Starting epoch 32/100
+Epoch 089/100 | train_loss=0.2220 | val_pq=0.2686 | threshold=0.500
+Starting epoch 90/100
+Epoch 020/100 | train_loss=0.3244 | val_pq=0.3189 | threshold=0.200 (best)
+Starting epoch 21/100
+Epoch 024/100 | train_loss=0.3160 | val_pq=0.2991 | threshold=0.200
+Starting epoch 25/100
+Epoch 032/100 | train_loss=0.8001 | val_pq=0.0020 | threshold=0.440
+Starting epoch 33/100
+Epoch 090/100 | train_loss=0.2315 | val_pq=0.2806 | threshold=0.500
+Starting epoch 91/100
+Epoch 021/100 | train_loss=0.3163 | val_pq=0.2583 | threshold=0.200
+Starting epoch 22/100
+Epoch 025/100 | train_loss=0.3195 | val_pq=0.2997 | threshold=0.500
+Starting epoch 26/100
+Epoch 033/100 | train_loss=0.7971 | val_pq=0.0020 | threshold=0.440
+Starting epoch 34/100
+Epoch 091/100 | train_loss=0.2223 | val_pq=0.2751 | threshold=0.500
+Starting epoch 92/100
+Epoch 022/100 | train_loss=0.3245 | val_pq=0.2593 | threshold=0.200
+Starting epoch 23/100
+Epoch 026/100 | train_loss=0.3241 | val_pq=0.3092 | threshold=0.600
+Starting epoch 27/100
+Epoch 034/100 | train_loss=0.7935 | val_pq=0.0019 | threshold=0.440
+Starting epoch 35/100
+Epoch 092/100 | train_loss=0.2212 | val_pq=0.2745 | threshold=0.500
+Starting epoch 93/100
+Epoch 023/100 | train_loss=0.3125 | val_pq=0.2945 | threshold=0.300
+Starting epoch 24/100
+Epoch 027/100 | train_loss=0.3124 | val_pq=0.2837 | threshold=0.300
+Starting epoch 28/100
+Epoch 035/100 | train_loss=0.7904 | val_pq=0.0021 | threshold=0.440
+Starting epoch 36/100
+Epoch 093/100 | train_loss=0.2199 | val_pq=0.2789 | threshold=0.600
+Starting epoch 94/100
+Epoch 024/100 | train_loss=0.3141 | val_pq=0.2516 | threshold=0.600
+Starting epoch 25/100
+Epoch 028/100 | train_loss=0.3095 | val_pq=0.2973 | threshold=0.400
+Starting epoch 29/100
+Epoch 036/100 | train_loss=0.7870 | val_pq=0.0021 | threshold=0.440
+Starting epoch 37/100
+Epoch 094/100 | train_loss=0.2196 | val_pq=0.2671 | threshold=0.500
+Starting epoch 95/100
+Epoch 025/100 | train_loss=0.3141 | val_pq=0.3162 | threshold=0.400
+Starting epoch 26/100
+Epoch 037/100 | train_loss=0.7838 | val_pq=0.0018 | threshold=0.440
+Starting epoch 38/100
+Epoch 029/100 | train_loss=0.3025 | val_pq=0.2997 | threshold=0.500
+Starting epoch 30/100
+Epoch 095/100 | train_loss=0.2181 | val_pq=0.2724 | threshold=0.600
+Starting epoch 96/100
+Epoch 026/100 | train_loss=0.3068 | val_pq=0.3089 | threshold=0.300
+Starting epoch 27/100
+Epoch 038/100 | train_loss=0.7820 | val_pq=0.0022 | threshold=0.440
+Starting epoch 39/100
+Epoch 030/100 | train_loss=0.3031 | val_pq=0.2935 | threshold=0.300
+Starting epoch 31/100
+Epoch 096/100 | train_loss=0.2175 | val_pq=0.2500 | threshold=0.400
+Starting epoch 97/100
+Epoch 039/100 | train_loss=0.7775 | val_pq=0.0024 | threshold=0.440
+Starting epoch 40/100
+Epoch 027/100 | train_loss=0.3088 | val_pq=0.2712 | threshold=0.300
+Starting epoch 28/100
+Epoch 031/100 | train_loss=0.3018 | val_pq=0.3117 | threshold=0.300
+Starting epoch 32/100
+Epoch 040/100 | train_loss=0.7739 | val_pq=0.0027 | threshold=0.440
+Starting epoch 41/100
+Epoch 097/100 | train_loss=0.2172 | val_pq=0.2771 | threshold=0.600
+Starting epoch 98/100
+Epoch 028/100 | train_loss=0.3117 | val_pq=0.2969 | threshold=0.400
+Starting epoch 29/100
+Epoch 032/100 | train_loss=0.2958 | val_pq=0.3001 | threshold=0.400
+Starting epoch 33/100
+Epoch 041/100 | train_loss=0.7706 | val_pq=0.0024 | threshold=0.440
+Starting epoch 42/100
+Epoch 098/100 | train_loss=0.2167 | val_pq=0.2773 | threshold=0.600
+Starting epoch 99/100
+Epoch 029/100 | train_loss=0.2972 | val_pq=0.2815 | threshold=0.600
+Starting epoch 30/100
+Epoch 033/100 | train_loss=0.3080 | val_pq=0.2833 | threshold=0.400
+Starting epoch 34/100
+Epoch 042/100 | train_loss=0.7675 | val_pq=0.0031 | threshold=0.440
+Starting epoch 43/100
+Epoch 099/100 | train_loss=0.2155 | val_pq=0.2698 | threshold=0.600
+Starting epoch 100/100
+Epoch 030/100 | train_loss=0.2935 | val_pq=0.3017 | threshold=0.300
+Starting epoch 31/100
+Epoch 034/100 | train_loss=0.3078 | val_pq=0.2967 | threshold=0.200
+Starting epoch 35/100
+Epoch 043/100 | train_loss=0.7643 | val_pq=0.0036 | threshold=0.440
+Starting epoch 44/100
+Epoch 100/100 | train_loss=0.2147 | val_pq=0.2701 | threshold=0.600
+[worker 1 / TPU core 1 (xla:0)] finished boundary-aware-unet seed=45, best_val_pq=0.326025, best_epoch=34
+[worker 1 / TPU core 1 (xla:0)] starting boundary-aware-unet-pyhopper-corrected-data seed=46, epochs=100, early_stopping=disabled
+Training device: xla:0
+=== boundary-aware-unet-pyhopper-corrected-data, seed46 ===
+Starting epoch 1/100
+Epoch 031/100 | train_loss=0.2933 | val_pq=0.2864 | threshold=0.600
+Starting epoch 32/100
+Epoch 035/100 | train_loss=0.2972 | val_pq=0.3175 | threshold=0.200 (best)
+Starting epoch 36/100
+Epoch 044/100 | train_loss=0.7612 | val_pq=0.0042 | threshold=0.440
+Starting epoch 45/100
+Epoch 032/100 | train_loss=0.3069 | val_pq=0.3082 | threshold=0.300
+Starting epoch 33/100
+Epoch 036/100 | train_loss=0.2935 | val_pq=0.3158 | threshold=0.500
+Starting epoch 37/100
+Epoch 045/100 | train_loss=0.7582 | val_pq=0.0046 | threshold=0.440
+Starting epoch 46/100
+Epoch 001/100 | train_loss=1.0028 | val_pq=0.0000 | threshold=0.440 (best)
+Starting epoch 2/100
+Epoch 033/100 | train_loss=0.2956 | val_pq=0.3003 | threshold=0.500
+Starting epoch 34/100
+Epoch 037/100 | train_loss=0.2886 | val_pq=0.3141 | threshold=0.300
+Starting epoch 38/100
+Epoch 046/100 | train_loss=0.7552 | val_pq=0.0055 | threshold=0.440
+Starting epoch 47/100
+Epoch 034/100 | train_loss=0.2966 | val_pq=0.3022 | threshold=0.500
+Starting epoch 35/100
+Epoch 038/100 | train_loss=0.2877 | val_pq=0.3180 | threshold=0.600 (best)
+Starting epoch 39/100
+Epoch 002/100 | train_loss=0.9205 | val_pq=0.0002 | threshold=0.440 (best)
+Starting epoch 3/100
+Epoch 047/100 | train_loss=0.7523 | val_pq=0.0058 | threshold=0.440 (best)
+Starting epoch 48/100
+Epoch 035/100 | train_loss=0.2895 | val_pq=0.3071 | threshold=0.300
+Starting epoch 36/100
+Epoch 039/100 | train_loss=0.3034 | val_pq=0.3003 | threshold=0.500
+Starting epoch 40/100
+Epoch 003/100 | train_loss=0.8818 | val_pq=0.0006 | threshold=0.440 (best)
+Starting epoch 4/100
+Epoch 048/100 | train_loss=0.7491 | val_pq=0.0085 | threshold=0.440 (best)
+Starting epoch 49/100
+Epoch 036/100 | train_loss=0.2839 | val_pq=0.3078 | threshold=0.600
+Starting epoch 37/100
+Epoch 040/100 | train_loss=0.2857 | val_pq=0.3048 | threshold=0.500
+Starting epoch 41/100
+Epoch 004/100 | train_loss=0.8661 | val_pq=0.0008 | threshold=0.440 (best)
+Starting epoch 5/100
+Epoch 049/100 | train_loss=0.7460 | val_pq=0.0105 | threshold=0.440 (best)
+Starting epoch 50/100
+Epoch 037/100 | train_loss=0.2837 | val_pq=0.3047 | threshold=0.300
+Starting epoch 38/100
+Epoch 005/100 | train_loss=0.8534 | val_pq=0.0016 | threshold=0.440 (best)
+Starting epoch 6/100
+Epoch 041/100 | train_loss=0.2896 | val_pq=0.3104 | threshold=0.200
+Starting epoch 42/100
+Epoch 050/100 | train_loss=0.7428 | val_pq=0.0089 | threshold=0.440
+Starting epoch 51/100
+Epoch 038/100 | train_loss=0.2837 | val_pq=0.2953 | threshold=0.600
+Starting epoch 39/100
+Epoch 006/100 | train_loss=0.8473 | val_pq=0.0024 | threshold=0.440 (best)
+Starting epoch 7/100
+Epoch 042/100 | train_loss=0.2817 | val_pq=0.2977 | threshold=0.400
+Starting epoch 43/100
+Epoch 051/100 | train_loss=0.7399 | val_pq=0.0065 | threshold=0.440
+Starting epoch 52/100
+Epoch 007/100 | train_loss=0.8394 | val_pq=0.0036 | threshold=0.440 (best)
+Starting epoch 8/100
+Epoch 039/100 | train_loss=0.2785 | val_pq=0.2947 | threshold=0.400
+Starting epoch 40/100
+Epoch 043/100 | train_loss=0.2792 | val_pq=0.3205 | threshold=0.400 (best)
+Starting epoch 44/100
+Epoch 052/100 | train_loss=0.7366 | val_pq=0.0147 | threshold=0.440 (best)
+Starting epoch 53/100
+Epoch 008/100 | train_loss=0.8343 | val_pq=0.0018 | threshold=0.440
+Starting epoch 9/100
+Epoch 040/100 | train_loss=0.2809 | val_pq=0.3063 | threshold=0.200
+Starting epoch 41/100
+Epoch 044/100 | train_loss=0.2745 | val_pq=0.3136 | threshold=0.300
+Starting epoch 45/100
+Epoch 053/100 | train_loss=0.7331 | val_pq=0.0189 | threshold=0.440 (best)
+Starting epoch 54/100
+Epoch 009/100 | train_loss=0.8348 | val_pq=0.0044 | threshold=0.440 (best)
+Starting epoch 10/100
+Epoch 041/100 | train_loss=0.2764 | val_pq=0.3037 | threshold=0.300
+Starting epoch 42/100
+Epoch 045/100 | train_loss=0.2758 | val_pq=0.2961 | threshold=0.500
+Starting epoch 46/100
+Epoch 054/100 | train_loss=0.7298 | val_pq=0.0198 | threshold=0.440 (best)
+Starting epoch 55/100
+Epoch 010/100 | train_loss=0.8235 | val_pq=0.0049 | threshold=0.440 (best)
+Starting epoch 11/100
+Epoch 042/100 | train_loss=0.2752 | val_pq=0.3047 | threshold=0.500
+Starting epoch 43/100
+Epoch 055/100 | train_loss=0.7267 | val_pq=0.0243 | threshold=0.440 (best)
+Starting epoch 56/100
+Epoch 046/100 | train_loss=0.2722 | val_pq=0.2625 | threshold=0.600
+Starting epoch 47/100
+Epoch 011/100 | train_loss=0.8171 | val_pq=0.0062 | threshold=0.440 (best)
+Starting epoch 12/100
+Epoch 043/100 | train_loss=0.2717 | val_pq=0.3007 | threshold=0.600
+Starting epoch 44/100
+Epoch 056/100 | train_loss=0.7238 | val_pq=0.0320 | threshold=0.440 (best)
+Starting epoch 57/100
+Epoch 047/100 | train_loss=0.2741 | val_pq=0.3028 | threshold=0.300
+Starting epoch 48/100
+Epoch 012/100 | train_loss=0.8129 | val_pq=0.0071 | threshold=0.440 (best)
+Starting epoch 13/100
+Epoch 057/100 | train_loss=0.7206 | val_pq=0.0288 | threshold=0.440
+Starting epoch 58/100
+Epoch 044/100 | train_loss=0.2908 | val_pq=0.2983 | threshold=0.400
+Starting epoch 45/100
+Epoch 048/100 | train_loss=0.2797 | val_pq=0.2945 | threshold=0.200
+Starting epoch 49/100
+Epoch 013/100 | train_loss=0.8087 | val_pq=0.0078 | threshold=0.440 (best)
+Starting epoch 14/100
+Epoch 058/100 | train_loss=0.7178 | val_pq=0.0364 | threshold=0.440 (best)
+Starting epoch 59/100
+Epoch 045/100 | train_loss=0.2747 | val_pq=0.2882 | threshold=0.500
+Starting epoch 46/100
+Epoch 049/100 | train_loss=0.2714 | val_pq=0.2952 | threshold=0.600
+Starting epoch 50/100
+Epoch 014/100 | train_loss=0.8049 | val_pq=0.0099 | threshold=0.440 (best)
+Starting epoch 15/100
+Epoch 059/100 | train_loss=0.7147 | val_pq=0.0343 | threshold=0.440
+Starting epoch 60/100
+Epoch 046/100 | train_loss=0.2671 | val_pq=0.2950 | threshold=0.500
+Starting epoch 47/100
+Epoch 050/100 | train_loss=0.2686 | val_pq=0.3080 | threshold=0.400
+Starting epoch 51/100
+Epoch 015/100 | train_loss=0.8011 | val_pq=0.0096 | threshold=0.440
+Starting epoch 16/100
+Epoch 060/100 | train_loss=0.7119 | val_pq=0.0440 | threshold=0.440 (best)
+Starting epoch 61/100
+Epoch 047/100 | train_loss=0.2645 | val_pq=0.2843 | threshold=0.600
+Starting epoch 48/100
+Epoch 051/100 | train_loss=0.2661 | val_pq=0.3006 | threshold=0.500
+Starting epoch 52/100
+Epoch 016/100 | train_loss=0.7978 | val_pq=0.0136 | threshold=0.440 (best)
+Starting epoch 17/100
+Epoch 061/100 | train_loss=0.7092 | val_pq=0.0376 | threshold=0.440
+Starting epoch 62/100
+Epoch 048/100 | train_loss=0.2659 | val_pq=0.2867 | threshold=0.500
+Starting epoch 49/100
+Epoch 052/100 | train_loss=0.2713 | val_pq=0.2941 | threshold=0.200
+Starting epoch 53/100
+Epoch 017/100 | train_loss=0.7944 | val_pq=0.0155 | threshold=0.440 (best)
+Starting epoch 18/100
+Epoch 062/100 | train_loss=0.7062 | val_pq=0.0460 | threshold=0.440 (best)
+Starting epoch 63/100
+Epoch 049/100 | train_loss=0.2633 | val_pq=0.2940 | threshold=0.600
+Starting epoch 50/100
+Epoch 053/100 | train_loss=0.2707 | val_pq=0.3016 | threshold=0.600
+Starting epoch 54/100
+Epoch 018/100 | train_loss=0.7909 | val_pq=0.0185 | threshold=0.440 (best)
+Starting epoch 19/100
+Epoch 063/100 | train_loss=0.7036 | val_pq=0.0516 | threshold=0.440 (best)
+Starting epoch 64/100
+Epoch 050/100 | train_loss=0.2606 | val_pq=0.3023 | threshold=0.500
+Starting epoch 51/100
+Epoch 054/100 | train_loss=0.2635 | val_pq=0.2989 | threshold=0.600
+Starting epoch 55/100
+Epoch 019/100 | train_loss=0.7888 | val_pq=0.0095 | threshold=0.440
+Starting epoch 20/100
+Epoch 064/100 | train_loss=0.7008 | val_pq=0.0473 | threshold=0.440
+Starting epoch 65/100
+Epoch 051/100 | train_loss=0.2603 | val_pq=0.2893 | threshold=0.300
+Starting epoch 52/100
+Epoch 055/100 | train_loss=0.2727 | val_pq=0.2701 | threshold=0.600
+Starting epoch 56/100
+Epoch 020/100 | train_loss=0.7865 | val_pq=0.0252 | threshold=0.440 (best)
+Starting epoch 21/100
+Epoch 065/100 | train_loss=0.6982 | val_pq=0.0361 | threshold=0.440
+Starting epoch 66/100
+Epoch 052/100 | train_loss=0.2577 | val_pq=0.3068 | threshold=0.200
+Starting epoch 53/100
+Epoch 056/100 | train_loss=0.2672 | val_pq=0.3017 | threshold=0.300
+Starting epoch 57/100
+Epoch 021/100 | train_loss=0.7815 | val_pq=0.0346 | threshold=0.440 (best)
+Starting epoch 22/100
+Epoch 066/100 | train_loss=0.6956 | val_pq=0.0514 | threshold=0.440
+Starting epoch 67/100
+Epoch 053/100 | train_loss=0.2589 | val_pq=0.2950 | threshold=0.500
+Starting epoch 54/100
+Epoch 057/100 | train_loss=0.2589 | val_pq=0.3038 | threshold=0.400
+Starting epoch 58/100
+Epoch 022/100 | train_loss=0.7777 | val_pq=0.0379 | threshold=0.440 (best)
+Starting epoch 23/100
+Epoch 067/100 | train_loss=0.6928 | val_pq=0.0534 | threshold=0.440 (best)
+Starting epoch 68/100
+Epoch 054/100 | train_loss=0.2537 | val_pq=0.3030 | threshold=0.600
+Starting epoch 55/100
+Epoch 058/100 | train_loss=0.2564 | val_pq=0.2818 | threshold=0.300
+Starting epoch 59/100
+Epoch 023/100 | train_loss=0.7746 | val_pq=0.0391 | threshold=0.440 (best)
+Starting epoch 24/100
+Epoch 068/100 | train_loss=0.6902 | val_pq=0.0365 | threshold=0.440
+Starting epoch 69/100
+Epoch 055/100 | train_loss=0.2652 | val_pq=0.2281 | threshold=0.400
+Starting epoch 56/100
+Epoch 059/100 | train_loss=0.2571 | val_pq=0.2959 | threshold=0.200
+Starting epoch 60/100
+Epoch 024/100 | train_loss=0.7716 | val_pq=0.0434 | threshold=0.440 (best)
+Starting epoch 25/100
+Epoch 069/100 | train_loss=0.6875 | val_pq=0.0480 | threshold=0.440
+Starting epoch 70/100
+Epoch 056/100 | train_loss=0.2768 | val_pq=0.2959 | threshold=0.400
+Starting epoch 57/100
+Epoch 025/100 | train_loss=0.7682 | val_pq=0.0458 | threshold=0.440 (best)
+Starting epoch 26/100
+Epoch 060/100 | train_loss=0.2533 | val_pq=0.2902 | threshold=0.500
+Starting epoch 61/100
+Epoch 070/100 | train_loss=0.6848 | val_pq=0.0604 | threshold=0.440 (best)
+Starting epoch 71/100
+Epoch 057/100 | train_loss=0.2544 | val_pq=0.2985 | threshold=0.600
+Starting epoch 58/100
+Epoch 026/100 | train_loss=0.7653 | val_pq=0.0495 | threshold=0.440 (best)
+Starting epoch 27/100
+Epoch 061/100 | train_loss=0.2545 | val_pq=0.3121 | threshold=0.600
+Starting epoch 62/100
+Epoch 071/100 | train_loss=0.6822 | val_pq=0.0609 | threshold=0.440 (best)
+Starting epoch 72/100
+Epoch 027/100 | train_loss=0.7618 | val_pq=0.0520 | threshold=0.440 (best)
+Starting epoch 28/100
+Epoch 058/100 | train_loss=0.2512 | val_pq=0.2839 | threshold=0.600
+Starting epoch 59/100
+Epoch 062/100 | train_loss=0.2541 | val_pq=0.3004 | threshold=0.200
+Starting epoch 63/100
+Epoch 072/100 | train_loss=0.6799 | val_pq=0.0433 | threshold=0.440
+Starting epoch 73/100
+Epoch 028/100 | train_loss=0.7590 | val_pq=0.0515 | threshold=0.440
+Starting epoch 29/100
+Epoch 059/100 | train_loss=0.2505 | val_pq=0.2824 | threshold=0.400
+Starting epoch 60/100
+Epoch 063/100 | train_loss=0.2610 | val_pq=0.2982 | threshold=0.600
+Starting epoch 64/100
+Epoch 073/100 | train_loss=0.6774 | val_pq=0.0509 | threshold=0.440
+Starting epoch 74/100
+Epoch 029/100 | train_loss=0.7560 | val_pq=0.0509 | threshold=0.440
+Starting epoch 30/100
+Epoch 060/100 | train_loss=0.2486 | val_pq=0.2833 | threshold=0.600
+Starting epoch 61/100
+Epoch 064/100 | train_loss=0.2552 | val_pq=0.3152 | threshold=0.200
+Starting epoch 65/100
+Epoch 074/100 | train_loss=0.6745 | val_pq=0.0718 | threshold=0.440 (best)
+Starting epoch 75/100
+Epoch 030/100 | train_loss=0.7527 | val_pq=0.0467 | threshold=0.440
+Starting epoch 31/100
+Epoch 061/100 | train_loss=0.2463 | val_pq=0.2955 | threshold=0.600
+Starting epoch 62/100
+Epoch 075/100 | train_loss=0.6720 | val_pq=0.0719 | threshold=0.440 (best)
+Starting epoch 76/100
+Epoch 065/100 | train_loss=0.2507 | val_pq=0.2949 | threshold=0.600
+Starting epoch 66/100
+Epoch 031/100 | train_loss=0.7501 | val_pq=0.0450 | threshold=0.440
+Starting epoch 32/100
+Epoch 076/100 | train_loss=0.6693 | val_pq=0.0719 | threshold=0.440
+Starting epoch 77/100
+Epoch 062/100 | train_loss=0.2456 | val_pq=0.2920 | threshold=0.500
+Starting epoch 63/100
+Epoch 066/100 | train_loss=0.2507 | val_pq=0.2865 | threshold=0.600
+Starting epoch 67/100
+Epoch 032/100 | train_loss=0.7470 | val_pq=0.0459 | threshold=0.440
+Starting epoch 33/100
+Epoch 077/100 | train_loss=0.6667 | val_pq=0.0734 | threshold=0.440 (best)
+Starting epoch 78/100
+Epoch 063/100 | train_loss=0.2462 | val_pq=0.2778 | threshold=0.600
+Starting epoch 64/100
+Epoch 067/100 | train_loss=0.2512 | val_pq=0.3056 | threshold=0.500
+Starting epoch 68/100
+Epoch 033/100 | train_loss=0.7442 | val_pq=0.0427 | threshold=0.440
+Starting epoch 34/100
+Epoch 078/100 | train_loss=0.6642 | val_pq=0.0653 | threshold=0.440
+Starting epoch 79/100
+Epoch 064/100 | train_loss=0.2761 | val_pq=0.2900 | threshold=0.600
+Starting epoch 65/100
+Epoch 068/100 | train_loss=0.2470 | val_pq=0.3065 | threshold=0.600
+Starting epoch 69/100
+Epoch 034/100 | train_loss=0.7413 | val_pq=0.0443 | threshold=0.440
+Starting epoch 35/100
+Epoch 079/100 | train_loss=0.6616 | val_pq=0.0811 | threshold=0.440 (best)
+Starting epoch 80/100
+Epoch 065/100 | train_loss=0.2530 | val_pq=0.2646 | threshold=0.600
+Starting epoch 66/100
+Epoch 069/100 | train_loss=0.2467 | val_pq=0.3007 | threshold=0.600
+Starting epoch 70/100
+Epoch 035/100 | train_loss=0.7386 | val_pq=0.0343 | threshold=0.440
+Starting epoch 36/100
+Epoch 080/100 | train_loss=0.6591 | val_pq=0.0735 | threshold=0.440
+Starting epoch 81/100
+Epoch 066/100 | train_loss=0.2447 | val_pq=0.2869 | threshold=0.500
+Starting epoch 67/100
+Epoch 070/100 | train_loss=0.2470 | val_pq=0.2801 | threshold=0.500
+Starting epoch 71/100
+Epoch 036/100 | train_loss=0.7365 | val_pq=0.0427 | threshold=0.440
+Starting epoch 37/100
+Epoch 081/100 | train_loss=0.6565 | val_pq=0.0763 | threshold=0.440
+Starting epoch 82/100
+Epoch 067/100 | train_loss=0.2404 | val_pq=0.2937 | threshold=0.600
+Starting epoch 68/100
+Epoch 071/100 | train_loss=0.2449 | val_pq=0.2526 | threshold=0.500
+Starting epoch 72/100
+Epoch 037/100 | train_loss=0.7332 | val_pq=0.0422 | threshold=0.440
+Starting epoch 38/100
+Epoch 082/100 | train_loss=0.6540 | val_pq=0.0601 | threshold=0.440
+Starting epoch 83/100
+Epoch 068/100 | train_loss=0.2413 | val_pq=0.2844 | threshold=0.600
+Starting epoch 69/100
+Epoch 072/100 | train_loss=0.2536 | val_pq=0.2849 | threshold=0.300
+Starting epoch 73/100
+Epoch 038/100 | train_loss=0.7305 | val_pq=0.0416 | threshold=0.440
+Starting epoch 39/100
+Epoch 083/100 | train_loss=0.6514 | val_pq=0.0691 | threshold=0.440
+Starting epoch 84/100
+Epoch 069/100 | train_loss=0.2393 | val_pq=0.2972 | threshold=0.600
+Starting epoch 70/100
+Epoch 073/100 | train_loss=0.2467 | val_pq=0.3047 | threshold=0.200
+Starting epoch 74/100
+Epoch 039/100 | train_loss=0.7274 | val_pq=0.0403 | threshold=0.440
+Starting epoch 40/100
+Epoch 084/100 | train_loss=0.6490 | val_pq=0.0715 | threshold=0.440
+Starting epoch 85/100
+Epoch 070/100 | train_loss=0.2386 | val_pq=0.2705 | threshold=0.500
+Starting epoch 71/100
+Epoch 074/100 | train_loss=0.2454 | val_pq=0.3041 | threshold=0.400
+Starting epoch 75/100
+Epoch 040/100 | train_loss=0.7246 | val_pq=0.0400 | threshold=0.440
+Starting epoch 41/100
+Epoch 085/100 | train_loss=0.6465 | val_pq=0.0858 | threshold=0.440 (best)
+Starting epoch 86/100
+Epoch 071/100 | train_loss=0.2357 | val_pq=0.2836 | threshold=0.500
+Starting epoch 72/100
+Epoch 075/100 | train_loss=0.2499 | val_pq=0.2951 | threshold=0.500
+Starting epoch 76/100
+Epoch 041/100 | train_loss=0.7218 | val_pq=0.0485 | threshold=0.440
+Starting epoch 42/100
+Epoch 086/100 | train_loss=0.6440 | val_pq=0.0622 | threshold=0.440
+Starting epoch 87/100
+Epoch 072/100 | train_loss=0.2345 | val_pq=0.2772 | threshold=0.500
+Starting epoch 73/100
+Epoch 076/100 | train_loss=0.2400 | val_pq=0.3075 | threshold=0.500
+Starting epoch 77/100
+Epoch 042/100 | train_loss=0.7190 | val_pq=0.0392 | threshold=0.440
+Starting epoch 43/100
+Epoch 087/100 | train_loss=0.6416 | val_pq=0.0951 | threshold=0.440 (best)
+Starting epoch 88/100
+Epoch 073/100 | train_loss=0.2385 | val_pq=0.2527 | threshold=0.300
+Starting epoch 74/100
+Epoch 077/100 | train_loss=0.2454 | val_pq=0.2967 | threshold=0.500
+Starting epoch 78/100
+Epoch 043/100 | train_loss=0.7162 | val_pq=0.0374 | threshold=0.440
+Starting epoch 44/100
+Epoch 088/100 | train_loss=0.6390 | val_pq=0.0945 | threshold=0.440
+Starting epoch 89/100
+Epoch 074/100 | train_loss=0.2415 | val_pq=0.2867 | threshold=0.600
+Starting epoch 75/100
+Epoch 078/100 | train_loss=0.2384 | val_pq=0.2919 | threshold=0.600
+Starting epoch 79/100
+Epoch 044/100 | train_loss=0.7135 | val_pq=0.0451 | threshold=0.440
+Starting epoch 45/100
+Epoch 089/100 | train_loss=0.6366 | val_pq=0.0720 | threshold=0.440
+Starting epoch 90/100
+Epoch 075/100 | train_loss=0.2337 | val_pq=0.2835 | threshold=0.600
+Starting epoch 76/100
+Epoch 079/100 | train_loss=0.2349 | val_pq=0.2983 | threshold=0.600
+Starting epoch 80/100
+Epoch 045/100 | train_loss=0.7110 | val_pq=0.0457 | threshold=0.440
+Starting epoch 46/100
+Epoch 090/100 | train_loss=0.6342 | val_pq=0.0858 | threshold=0.440
+Starting epoch 91/100
+Epoch 076/100 | train_loss=0.2342 | val_pq=0.2934 | threshold=0.600
+Starting epoch 77/100
+Epoch 046/100 | train_loss=0.7081 | val_pq=0.0321 | threshold=0.440
+Starting epoch 47/100
+Epoch 080/100 | train_loss=0.2345 | val_pq=0.2950 | threshold=0.600
+Starting epoch 81/100
+Epoch 091/100 | train_loss=0.6316 | val_pq=0.0837 | threshold=0.440
+Starting epoch 92/100
+Epoch 047/100 | train_loss=0.7054 | val_pq=0.0494 | threshold=0.440
+Starting epoch 48/100
+Epoch 077/100 | train_loss=0.2313 | val_pq=0.2868 | threshold=0.600
+Starting epoch 78/100
+Epoch 081/100 | train_loss=0.2343 | val_pq=0.3167 | threshold=0.200
+Starting epoch 82/100
+Epoch 092/100 | train_loss=0.6293 | val_pq=0.0715 | threshold=0.440
+Starting epoch 93/100
+Epoch 048/100 | train_loss=0.7028 | val_pq=0.0393 | threshold=0.440
+Starting epoch 49/100
+Epoch 078/100 | train_loss=0.2307 | val_pq=0.2816 | threshold=0.600
+Starting epoch 79/100
+Epoch 082/100 | train_loss=0.2359 | val_pq=0.2960 | threshold=0.600
+Starting epoch 83/100
+Epoch 093/100 | train_loss=0.6267 | val_pq=0.0948 | threshold=0.440
+Starting epoch 94/100
+Epoch 049/100 | train_loss=0.7001 | val_pq=0.0358 | threshold=0.440
+Starting epoch 50/100
+Epoch 094/100 | train_loss=0.6243 | val_pq=0.0779 | threshold=0.440
+Starting epoch 95/100
+Epoch 079/100 | train_loss=0.2347 | val_pq=0.2887 | threshold=0.600
+Starting epoch 80/100
+Epoch 083/100 | train_loss=0.2334 | val_pq=0.2994 | threshold=0.300
+Starting epoch 84/100
+Epoch 050/100 | train_loss=0.6973 | val_pq=0.0314 | threshold=0.440
+Starting epoch 51/100
+Epoch 095/100 | train_loss=0.6219 | val_pq=0.0889 | threshold=0.440
+Starting epoch 96/100
+Epoch 080/100 | train_loss=0.2307 | val_pq=0.2949 | threshold=0.400
+Starting epoch 81/100
+Epoch 084/100 | train_loss=0.2400 | val_pq=0.3023 | threshold=0.600
+Starting epoch 85/100
+Epoch 051/100 | train_loss=0.6944 | val_pq=0.0446 | threshold=0.440
+Starting epoch 52/100
+Epoch 096/100 | train_loss=0.6195 | val_pq=0.0919 | threshold=0.440
+Starting epoch 97/100
+Epoch 081/100 | train_loss=0.2312 | val_pq=0.2845 | threshold=0.400
+Starting epoch 82/100
+Epoch 085/100 | train_loss=0.2371 | val_pq=0.2932 | threshold=0.600
+Starting epoch 86/100
+Epoch 052/100 | train_loss=0.6916 | val_pq=0.0305 | threshold=0.440
+Starting epoch 53/100
+Epoch 097/100 | train_loss=0.6172 | val_pq=0.0878 | threshold=0.440
+Starting epoch 98/100
+Epoch 082/100 | train_loss=0.2286 | val_pq=0.2768 | threshold=0.500
+Starting epoch 83/100
+Epoch 086/100 | train_loss=0.2433 | val_pq=0.2975 | threshold=0.500
+Starting epoch 87/100
+Epoch 053/100 | train_loss=0.6888 | val_pq=0.0439 | threshold=0.440
+Starting epoch 54/100
+Epoch 098/100 | train_loss=0.6147 | val_pq=0.0768 | threshold=0.440
+Starting epoch 99/100
+Epoch 083/100 | train_loss=0.2270 | val_pq=0.2784 | threshold=0.600
+Starting epoch 84/100
+Epoch 087/100 | train_loss=0.2353 | val_pq=0.2992 | threshold=0.400
+Starting epoch 88/100
+Epoch 054/100 | train_loss=0.6859 | val_pq=0.0552 | threshold=0.440 (best)
+Starting epoch 55/100
+Epoch 099/100 | train_loss=0.6125 | val_pq=0.0689 | threshold=0.440
+Starting epoch 100/100
+Epoch 084/100 | train_loss=0.2263 | val_pq=0.2749 | threshold=0.600
+Starting epoch 85/100
+Epoch 088/100 | train_loss=0.2373 | val_pq=0.2815 | threshold=0.400
+Starting epoch 89/100
+Epoch 055/100 | train_loss=0.6831 | val_pq=0.0338 | threshold=0.440
+Starting epoch 56/100
+Epoch 100/100 | train_loss=0.6101 | val_pq=0.0858 | threshold=0.440
+[worker 2 / TPU core 2 (xla:0)] finished boundary-aware-unet-pyhopper-corrected-data seed=45, best_val_pq=0.095137, best_epoch=87
+Epoch 085/100 | train_loss=0.2269 | val_pq=0.2841 | threshold=0.500
+Starting epoch 86/100
+Epoch 089/100 | train_loss=0.2306 | val_pq=0.2772 | threshold=0.500
+Starting epoch 90/100
