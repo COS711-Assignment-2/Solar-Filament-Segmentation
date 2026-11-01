@@ -157,7 +157,13 @@ specific model and loss settings remain distinct; threshold meanings differ
 between CondInst center confidence and U-Net foreground probability.
 Before training, regenerate prepared data with the command above if it was
 created by an earlier version of this repository; image preprocessing
-previously could overwrite generated images with mask pixels.
+previously could overwrite generated images with mask pixels. The selected
+corrected-data runs use processed inputs regenerated from the raw grayscale
+images on 2026-10-31, followed by retraining. The current prepared inputs have
+normal grayscale intensity ranges and do not have foreground support identical
+to their instance masks. The earlier audit in `outputs/seed43_analysis/`
+describes the pre-regeneration data and historical runs; do not use those
+historical results as the corrected-data comparison.
 
 Training output reports training loss and validation panoptic quality (PQ),
 along with the selected score threshold. For CondInst, thresholds are
@@ -179,16 +185,22 @@ Older `best_model.pt` checkpoints can also be used with `--resume-from`, but
 they contain model weights only, so the optimizer is restarted and the run is
 a warm restart rather than an exact continuation.
 
-Generate a qualitative comparison of the saved seed-43 models on validation
-images using each checkpoint's selected threshold:
+Generate a qualitative comparison of the four selected seed-43 models
+(standard U-Net, CondInst, boundary-aware U-Net, and tuned warm-started
+boundary-aware U-Net) on validation images:
 
 ```bash
 python3 scripts/visualize_predictions.py
 ```
 
-The comparison image is written to
+The foreground-overlap comparison is written to
 `outputs/qualitative/validation_seed43.png`. Green marks correctly predicted
-foreground, red false positives, and blue missed ground truth.
+foreground, red false positives, and blue missed ground truth. An additional
+instance-ID view is written to
+`outputs/qualitative/validation_instances_seed43.png` to inspect predicted
+instance boundaries and connected-filament separation. The script refuses
+to generate model comparison panels if processed images appear target-derived;
+repair the processed data and retrain before interpreting predictions.
 
 Plot the seed-43 training loss trends, validation PQ curves, and best-model
 instance counts (TP/FP/FN):
@@ -199,8 +211,42 @@ python3 scripts/visualize_predictions.py --analysis
 
 Graphs are written under `outputs/analysis/`. Training loss is normalized to
 each model's first logged loss because the model-specific loss functions have
-different scales. CondInst's resumed history begins at epoch 4, so its earlier
-epochs are not present in the curve.
+different scales. CondInst's saved history comes from its resumed run.
+
+Build a shareable seed-43 analysis bundle with the run metrics/configs,
+checkpoints, split manifests, charts, qualitative panels, and both a full and
+short Markdown report:
+
+```bash
+python3 scripts/build_seed43_analysis.py
+```
+
+The bundle is written to `outputs/seed43_analysis/`. It excludes seed 42 and
+the tuned configuration trained from scratch; the four selected comparisons
+are the runs listed above.
+
+Tune boundary-aware U-Net with PyHopper on the fixed validation split. By
+default the search runs for four hours, training each sequential candidate for
+six epochs. It warm-starts each candidate's model weights from the existing
+seed-43 checkpoint while resetting the optimizer and epoch count. The search
+covers learning rate (log scale), boundary-loss weight, batch size, BCE/Dice
+balance, and foreground threshold, and maximizes validation PQ:
+
+```bash
+python3 scripts/tune_boundary_aware_unet.py --device xla
+```
+
+The warm-start checkpoint defaults to
+`runs/boundary_aware_unet/boundary-aware-unet/seed43/best_model.pt`. The search
+checkpoint and trial metrics are saved under
+`runs/boundary_aware_unet/boundary-aware-unet/pyhopper-seed43/`; PyHopper can
+resume from its checkpoint. The script writes `best_params.json` and a
+`best_config.yaml` for the final 100-epoch run, and prints its training
+command. Override `--runtime`, `--trial-epochs`, or `--init-checkpoint` as
+needed. Trials run one at a time to avoid competing for the same TPU; reduce
+`--batch-sizes` if larger candidates exceed TPU memory. Because the validation
+set is used to tune parameters, use a separate untouched test set or
+cross-validation for an unbiased final performance estimate.
 
 ```powershell
 python3 scripts/train.py --experiment unet

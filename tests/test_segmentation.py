@@ -332,6 +332,35 @@ def test_device_selection_supports_cpu_cuda_and_tpu(monkeypatch):
     assert tpu_device == torch.device("xla:0")
     assert tpu_xla is FakeXla
 
+    xla_device, xla_model = train._select_device(
+        "xla",
+        xla_loader=fake_xla_loader,
+        tpu_access_check=lambda: None,
+    )
+    assert xla_device == torch.device("xla:0")
+    assert xla_model is FakeXla
+
+
+def test_device_selection_reuses_initialized_pjrt_worker(monkeypatch):
+    class FakeXla:
+        @staticmethod
+        def xla_device():
+            return torch.device("xla:0")
+
+    def unexpected_call():
+        raise AssertionError("Initialized XLA workers should not be re-probed")
+
+    monkeypatch.setenv("PJRT_DEVICE", "TPU")
+    device, xla_model = train._select_device(
+        "tpu",
+        xla_loader=unexpected_call,
+        tpu_access_check=unexpected_call,
+        initialized_xla_model=FakeXla,
+    )
+
+    assert device == torch.device("xla:0")
+    assert xla_model is FakeXla
+
 
 def test_auto_device_falls_back_when_xla_is_unavailable(monkeypatch):
     monkeypatch.setattr(torch.cuda, "is_available", lambda: False)
@@ -649,6 +678,19 @@ def test_training_stops_after_validation_pq_patience(tmp_path, monkeypatch, caps
     assert resumed["epochs_completed"] == 4
     assert [entry["epoch"] for entry in resumed["history"]] == [1, 2, 3, 4]
 
+    metrics_only = train.train(
+        config,
+        output_tag="metrics-only",
+        max_epochs_override=1,
+        patience_override=0,
+        save_checkpoints=False,
+    )
+    metrics_only_dir = tmp_path / "runs" / "unet" / "early-stop-check" / "metrics-only"
+    assert metrics_only["epochs_completed"] == 1
+    assert (metrics_only_dir / "metrics.json").is_file()
+    assert not (metrics_only_dir / "best_model.pt").exists()
+    assert not (metrics_only_dir / "last_checkpoint.pt").exists()
+
 
 def test_cli_epoch_and_patience_overrides(monkeypatch):
     captured = {}
@@ -664,8 +706,8 @@ def test_cli_epoch_and_patience_overrides(monkeypatch):
     monkeypatch.setattr(
         train,
         "train",
-        lambda config, *args: captured.update(
-            config=config, args=args
+        lambda config, *args, **kwargs: captured.update(
+            config=config, args=args, kwargs=kwargs
         ),
     )
     monkeypatch.setattr(
@@ -695,3 +737,58 @@ def test_cli_epoch_and_patience_overrides(monkeypatch):
         20,
         "runs/condinst/last_checkpoint.pt",
     )
+    assert captured["kwargs"] == {"initialize_from": None}
+
+
+def test_cli_supports_weights_only_initialization(monkeypatch):
+    captured = {}
+    monkeypatch.setattr(
+        train,
+        "load_config",
+        lambda path: {
+            "training": {"max_epochs": 50, "patience": 10},
+            "model": {"name": "boundary_aware_unet"},
+            "experiment": {"name": "test"},
+        },
+    )
+    monkeypatch.setattr(
+        train,
+        "train",
+        lambda config, *args, **kwargs: captured.update(
+            config=config, args=args, kwargs=kwargs
+        ),
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "train.py",
+            "--config",
+            "runs/boundary_aware_unet/boundary-aware-unet/pyhopper-seed43/best_config.yaml",
+            "--max-epochs",
+            "100",
+            "--patience",
+            "0",
+            "--device",
+            "xla",
+            "--initialize-from",
+            "runs/boundary_aware_unet/boundary-aware-unet/seed43/best_model.pt",
+            "--output-tag",
+            "pyhopper-warmstart-seed43",
+        ],
+    )
+
+    train.main()
+
+    assert captured["args"] == (
+        None,
+        "pyhopper-warmstart-seed43",
+        "tpu",
+        100,
+        0,
+        None,
+    )
+    assert captured["kwargs"] == {
+        "initialize_from": (
+            "runs/boundary_aware_unet/boundary-aware-unet/seed43/best_model.pt"
+        )
+    }

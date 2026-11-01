@@ -21,7 +21,8 @@ Solar-Filament-Segmentation/
 │   ├── download_data.py
 │   ├── prepare_data.py
 │   ├── train.py                  # train one named experiment
-│   └── run_all_experiments.py    # repeat each experiment across seeds
+│   ├── run_all_experiments.py    # repeat each experiment across seeds
+│   └── run_parallel_experiments.py # one model family per TPU core
 ├── src/
 │   ├── data/                     # preparation and annotation utilities
 │   ├── models/                   # one module per registered architecture
@@ -144,6 +145,45 @@ python3 scripts/run_all_experiments.py --n-runs 5 --device xla
 By default, seeds start at 42. Change that with `--seed-start`. Run output is
 written to `runs/<model>/<experiment>/<run-tag>/`; for example,
 `runs/unet/unet-baseline/seed42/`.
+
+## Run four model families concurrently on TPU
+
+On a four-core TPU VM, the parallel runner assigns U-Net, CondInst,
+boundary-aware U-Net, and the tuned boundary-aware U-Net to separate XLA cores.
+It schedules individual model/seed runs dynamically: it starts one run for
+each model, prioritizes the remaining CondInst seeds, then queues the other
+runs. A core picks up another run as soon as its current run finishes. By
+default it runs seeds 42-46 for 100 epochs with early stopping disabled.
+Run failures are logged and that worker continues with queued runs; the runner
+reports a nonzero exit status after all workers finish if any run failed. It
+refuses to overwrite output folders, so use a new `--run-suffix` for each
+attempt. The tmux wrapper starts the runner in its own process group and stops
+its PJRT child workers when interrupted. Check the device mapping before
+training:
+
+```bash
+PJRT_DEVICE=TPU python3 scripts/run_parallel_experiments.py --preflight-only
+```
+
+Start the runs in a managed tmux session with:
+
+```bash
+tmux new-session -d -s solar-parallel-training -c "$PWD" \
+  'bash scripts/run_parallel_experiments_tmux.sh corrected-data-dynamic-20261031 runs/parallel-corrected-data-dynamic-20261031.log'
+```
+
+Follow progress with `tail -f runs/parallel-corrected-data-dynamic-20261031.log`.
+Attach with `tmux attach -t solar-parallel-training` and detach with Ctrl-b,
+then d. To stop the run, send Ctrl-C inside tmux; the wrapper terminates the
+runner's process group. If a TPU is already in use, the runner exits without
+terminating another process; verify ownership before stopping it. Use
+`--seeds`, `--max-epochs`, and `--run-suffix` to change the defaults when
+launching the Python runner directly. The default
+tuned configuration is read from
+`runs/boundary_aware_unet/boundary-aware-unet/pyhopper-seed43/best_config.yaml`.
+It starts from random initialization; its parameter search predates the
+corrected-data regeneration, so this run compares those settings but does not
+validate them as tuned on the corrected data.
 
 ## Prepare data and test
 

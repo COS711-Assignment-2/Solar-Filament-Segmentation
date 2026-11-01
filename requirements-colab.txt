@@ -2,6 +2,8 @@
 kagglehub
 matplotlib
 numpy
+pycocotools
+pyhopper>=1.2.3
 Pillow
 PyYAML
 scikit-image

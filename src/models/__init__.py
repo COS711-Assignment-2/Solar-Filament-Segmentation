@@ -8,6 +8,7 @@ from torch import nn
 
 from src.models.boundary_aware_unet import BoundaryAwareUNet
 from src.models.condinst import CondInst
+from src.models.res_unet import ResUNet
 from src.models.unet import UNet
 
 ModelFactory = Callable[..., nn.Module]
@@ -15,6 +16,7 @@ MODEL_REGISTRY: dict[str, ModelFactory] = {
     "condinst": CondInst,
     "unet": UNet,
     "boundary_aware_unet": BoundaryAwareUNet,
+    "res_unet": ResUNet,
 }
 
 
@@ -43,6 +45,7 @@ __all__ = [
     "BoundaryAwareUNet",
     "CondInst",
     "MODEL_REGISTRY",
+    "ResUNet",
     "UNet",
     "create_model",
     "register_model",

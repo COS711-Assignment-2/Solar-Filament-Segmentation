@@ -31,6 +31,10 @@ CHECKPOINTS = {
     "CondInst (seed 43, epoch 100 run)": Path(
         "runs/condinst/condinst-comparison/seed43/best_model.pt"
     ),
+    "Tuned boundary-aware U-Net (seed 43)": Path(
+        "runs/boundary_aware_unet/boundary-aware-unet/"
+        "pyhopper-warmstart-seed43/best_model.pt"
+    ),
 }
 METRICS = {
     "U-Net": Path("runs/unet/unet-baseline/seed43/metrics.json"),
@@ -38,11 +42,16 @@ METRICS = {
         "runs/boundary_aware_unet/boundary-aware-unet/seed43/metrics.json"
     ),
     "CondInst": Path("runs/condinst/condinst-comparison/seed43/metrics.json"),
+    "Tuned boundary-aware U-Net": Path(
+        "runs/boundary_aware_unet/boundary-aware-unet/"
+        "pyhopper-warmstart-seed43/metrics.json"
+    ),
 }
 MODEL_COLORS = {
     "U-Net": "#2563eb",
     "Boundary-aware U-Net": "#059669",
     "CondInst": "#d97706",
+    "Tuned boundary-aware U-Net": "#7c3aed",
 }
 
 PANEL_SIZE = 300
@@ -96,6 +105,39 @@ def _choose_records(
             selected.append(record)
             seen.add(record["image_id"])
     return selected
+
+
+def _mask_derived_input_count(
+    processed_dir: Path,
+    records: list[dict[str, str]],
+) -> int:
+    suspicious = 0
+    for record in records:
+        stem = record_stem(record["image_id"])
+        image_path = processed_dir / "val" / "images" / f"{stem}.png"
+        mask_path = (
+            processed_dir / "val" / "masks" / "instances" / f"{stem}.png"
+        )
+        image = np.asarray(Image.open(image_path).convert("L"))
+        target = np.asarray(Image.open(mask_path))
+        if image.max() <= 5 and np.array_equal(image > 0, target > 0):
+            suspicious += 1
+    return suspicious
+
+
+def _reject_mask_derived_inputs(
+    processed_dir: Path,
+    records: list[dict[str, str]],
+) -> None:
+    suspicious = _mask_derived_input_count(processed_dir, records)
+    if records and suspicious / len(records) >= 0.9:
+        raise RuntimeError(
+            "Refusing to generate model qualitative comparisons: processed "
+            "validation images appear mask-derived (low intensity range and "
+            "foreground support matches target masks). Regenerate processed "
+            "data from raw images with scripts/prepare_data.py --stage process, "
+            "then retrain the models."
+        )
 
 
 def _predict(
@@ -164,6 +206,36 @@ def _overlay(
     return Image.fromarray(pixels)
 
 
+def _overlay_instances(
+    image: Image.Image,
+    labels: np.ndarray,
+) -> Image.Image:
+    base = ImageOps.autocontrast(image.convert("L"), cutoff=1).convert("RGB")
+    pixels = np.asarray(base).copy()
+    instance_ids = np.unique(labels)
+    instance_ids = instance_ids[instance_ids > 0]
+    for instance_id in instance_ids:
+        color = np.array(
+            [
+                40 + (int(instance_id) * 67) % 190,
+                40 + (int(instance_id) * 131) % 190,
+                40 + (int(instance_id) * 191) % 190,
+            ],
+            dtype=np.uint8,
+        )
+        mask = labels == instance_id
+        pixels[mask] = (0.42 * pixels[mask] + 0.58 * color).astype(np.uint8)
+    edges = np.zeros(labels.shape, dtype=bool)
+    vertical = labels[1:, :] != labels[:-1, :]
+    horizontal = labels[:, 1:] != labels[:, :-1]
+    edges[1:, :] |= vertical
+    edges[:-1, :] |= vertical
+    edges[:, 1:] |= horizontal
+    edges[:, :-1] |= horizontal
+    pixels[edges] = (255, 255, 255)
+    return Image.fromarray(pixels)
+
+
 def _font(size: int) -> ImageFont.ImageFont:
     font_path = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     if font_path.is_file():
@@ -171,7 +243,11 @@ def _font(size: int) -> ImageFont.ImageFont:
     return ImageFont.load_default()
 
 
-def create_comparison(output_path: Path, sample_count: int = 3) -> None:
+def create_comparison(
+    output_path: Path,
+    instance_output_path: Path,
+    sample_count: int = 3,
+) -> None:
     loaded_models = {}
     for name, relative_path in CHECKPOINTS.items():
         path = ROOT / relative_path
@@ -182,15 +258,18 @@ def create_comparison(output_path: Path, sample_count: int = 3) -> None:
     first_config = next(iter(loaded_models.values()))[1]
     processed_dir = ROOT / first_config["data"]["processed_dir"]
     records = read_manifest(ROOT / first_config["data"]["splits_dir"] / "val.csv")
+    _reject_mask_derived_inputs(processed_dir, records)
     selected_records = _choose_records(records, processed_dir, sample_count)
     headers = ["Input", "Ground truth"] + list(loaded_models)
     width = MARGIN * 2 + len(headers) * CELL_WIDTH + (len(headers) - 1) * GAP
     height = 125 + len(selected_records) * (CELL_HEIGHT + GAP) + 115
     canvas = Image.new("RGB", (width, height), "white")
+    instance_canvas = Image.new("RGB", (width, height), "white")
     draw = ImageDraw.Draw(canvas)
+    instance_draw = ImageDraw.Draw(instance_canvas)
     draw.text(
         (MARGIN, 22),
-        "Validation qualitative comparison — seed 43",
+        "Validation foreground-overlap comparison — seed 43",
         fill="black",
         font=_font(24),
     )
@@ -200,10 +279,24 @@ def create_comparison(output_path: Path, sample_count: int = 3) -> None:
         fill=(35, 35, 35),
         font=_font(15),
     )
+    instance_draw.text(
+        (MARGIN, 22),
+        "Validation instance separation comparison — seed 43",
+        fill="black",
+        font=_font(24),
+    )
+    instance_draw.text(
+        (MARGIN, 62),
+        "Each predicted/ground-truth instance has its own color; white lines mark instance boundaries",
+        fill=(35, 35, 35),
+        font=_font(15),
+    )
     for column, header in enumerate(headers):
         x = MARGIN + column * (CELL_WIDTH + GAP)
         draw.text((x, 98), header, fill=(20, 20, 20), font=_font(15))
+        instance_draw.text((x, 98), header, fill=(20, 20, 20), font=_font(15))
 
+    sample_score_lines = ["image_id,model,image_pq,target_instances"]
     for row, record in enumerate(selected_records):
         image, target = load_validation_image(
             processed_dir, record, first_config["data"]["resolution"]
@@ -213,10 +306,15 @@ def create_comparison(output_path: Path, sample_count: int = 3) -> None:
             ImageOps.autocontrast(image.convert("L"), cutoff=1).convert("RGB"),
             _overlay(image, target, None),
         ]
+        instance_panels = [
+            ImageOps.autocontrast(image.convert("L"), cutoff=1).convert("RGB"),
+            _overlay_instances(image, target),
+        ]
         scores: list[float | None] = [None, None]
         for model, config, checkpoint in loaded_models.values():
             prediction, pq = _predict(model, config, checkpoint, image, target)
             panels.append(_overlay(image, target, prediction))
+            instance_panels.append(_overlay_instances(image, prediction))
             scores.append(pq)
 
         draw.text(
@@ -230,24 +328,41 @@ def create_comparison(output_path: Path, sample_count: int = 3) -> None:
             x = MARGIN + column * (CELL_WIDTH + GAP)
             panel = panel.resize((PANEL_SIZE, PANEL_SIZE), Image.Resampling.BILINEAR)
             canvas.paste(panel, (x, panel_y))
+            instance_panel = instance_panels[column].resize(
+                (PANEL_SIZE, PANEL_SIZE), Image.Resampling.BILINEAR
+            )
+            instance_canvas.paste(instance_panel, (x, panel_y))
             if column >= 2:
                 score = scores[column]
-                draw.text(
+                score_text = f"Image PQ: {score:.3f}" if score is not None else ""
+                draw.text((x, panel_y + PANEL_SIZE + 5), score_text,
+                          fill=(20, 20, 20), font=_font(13))
+                instance_draw.text(
                     (x, panel_y + PANEL_SIZE + 5),
-                    f"Image PQ: {score:.3f}" if score is not None else "",
+                    score_text,
                     fill=(20, 20, 20),
                     font=_font(13),
                 )
         print(f"{record['image_id']}: {len(np.unique(target[target > 0]))} target instances")
         for name, score in zip(loaded_models, scores[2:]):
             print(f"  {name}: image PQ={score:.4f}")
+            sample_score_lines.append(
+                f"\"{record['image_id']}\",\"{name}\",{score:.8f},"
+                f"{len(np.unique(target[target > 0]))}"
+            )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     canvas.save(output_path)
+    instance_output_path.parent.mkdir(parents=True, exist_ok=True)
+    instance_canvas.save(instance_output_path)
+    (output_path.parent / "sample_scores.txt").write_text(
+        "\n".join(sample_score_lines) + "\n", encoding="utf-8"
+    )
     print(f"Saved qualitative comparison to {output_path}")
+    print(f"Saved instance separation comparison to {instance_output_path}")
 
 
-def create_analysis(output_dir: Path) -> None:
+def create_analysis(output_dir: Path, warning_note: str | None = None) -> None:
     """Plot training trends and best-checkpoint validation metrics for seed 43."""
     import matplotlib
 
@@ -265,6 +380,14 @@ def create_analysis(output_dir: Path) -> None:
         metrics_by_model[model_name] = metrics
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    if warning_note is None:
+        validation_records = read_manifest(ROOT / "data/splits/val.csv")
+        suspicious_count = _mask_derived_input_count(
+            ROOT / "data/processed", validation_records
+        )
+        if validation_records and suspicious_count / len(validation_records) >= 0.9:
+            warning_note = "INVALID INPUTS — mask-like processed images"
+    title_note = f" — {warning_note}" if warning_note else ""
 
     fig, axis = plt.subplots(figsize=(10, 6), constrained_layout=True)
     for name, metrics in metrics_by_model.items():
@@ -281,7 +404,7 @@ def create_analysis(output_dir: Path) -> None:
             label=f"{name} (start = 1)",
         )
     axis.set(
-        title="Seed 43 training-loss trend",
+        title=f"Seed 43 training-loss trend{title_note}",
         xlabel="Epoch",
         ylabel="Training loss / first recorded loss",
     )
@@ -313,7 +436,7 @@ def create_analysis(output_dir: Path) -> None:
             zorder=3,
         )
     axis.set(
-        title="Seed 43 validation Panoptic Quality by epoch",
+        title=f"Seed 43 validation Panoptic Quality by epoch{title_note}",
         xlabel="Epoch",
         ylabel="Validation PQ",
         ylim=(0, 1),
@@ -354,7 +477,7 @@ def create_analysis(output_dir: Path) -> None:
         names, best_pqs, color=[MODEL_COLORS[name] for name in names]
     )
     pq_axis.set(
-        title="Best validation metrics (seed 43)",
+        title=f"Best validation metrics (seed 43){title_note}",
         ylabel="Best validation PQ",
         ylim=(0, 1),
     )
@@ -412,7 +535,13 @@ def main() -> int:
         "--output",
         type=Path,
         default=ROOT / "outputs/qualitative/validation_seed43.png",
-        help="Output PNG path.",
+        help="Foreground-overlap comparison output PNG path.",
+    )
+    parser.add_argument(
+        "--instance-output",
+        type=Path,
+        default=ROOT / "outputs/qualitative/validation_instances_seed43.png",
+        help="Instance-ID visualization output PNG path.",
     )
     parser.add_argument(
         "--samples",
@@ -426,7 +555,7 @@ def main() -> int:
     if args.analysis:
         create_analysis(args.analysis_dir)
         return 0
-    create_comparison(args.output, args.samples)
+    create_comparison(args.output, args.instance_output, args.samples)
     return 0
 
 

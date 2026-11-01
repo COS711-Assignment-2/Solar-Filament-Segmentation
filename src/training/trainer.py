@@ -164,11 +164,20 @@ def _select_device(
     requested: str | None,
     xla_loader: Any = _load_xla_model,
     tpu_access_check: Any = _tpu_device_access_error,
+    initialized_xla_model: Any | None = None,
 ) -> tuple[torch.device, Any | None]:
     """Select CPU, CUDA, or TPU and return XLA helpers for TPU training."""
     requested = requested or "auto"
+    if requested == "xla":
+        requested = "tpu"
     if requested not in ("auto", "cpu", "cuda", "tpu"):
-        raise ValueError("training.device must be auto, cpu, cuda, or tpu")
+        raise ValueError("training.device must be auto, cpu, cuda, tpu, or xla")
+    if initialized_xla_model is not None:
+        if requested != "tpu":
+            raise ValueError("An initialized XLA model requires training.device=tpu")
+        if not _configure_pjrt_device(requested):
+            raise RuntimeError("An initialized XLA model requires PJRT_DEVICE=TPU")
+        return initialized_xla_model.xla_device(), initialized_xla_model
     if requested in ("auto", "tpu"):
         if not _configure_pjrt_device(requested):
             print(
@@ -246,6 +255,8 @@ def _run_epoch(
                 masks,
                 float(loss_config["bce_weight"]),
                 float(loss_config["dice_weight"]),
+                float(loss_config.get("cldice_weight", 0.0)),
+                float(loss_config.get("focal_gamma", 0.0)),
             )
             if boundary is not None:
                 boundary_loss = torch.nn.functional.binary_cross_entropy_with_logits(
@@ -476,6 +487,29 @@ def _save_checkpoint(
             temporary_path.unlink()
 
 
+def _initialize_model_weights(
+    model: torch.nn.Module,
+    checkpoint_path: str | Path,
+    expected_model_name: str,
+) -> None:
+    """Load model weights only, leaving optimizer and epoch state fresh."""
+    path = Path(checkpoint_path)
+    if not path.is_file():
+        raise FileNotFoundError(f"Initialization checkpoint not found: {path}")
+    checkpoint = torch.load(path, map_location="cpu")
+    if not isinstance(checkpoint, dict) or not isinstance(
+        checkpoint.get("model_state_dict"), dict
+    ):
+        raise ValueError(f"Invalid model initialization checkpoint: {path}")
+    checkpoint_model = checkpoint.get("config", {}).get("model", {}).get("name")
+    if checkpoint_model != expected_model_name:
+        raise ValueError(
+            f"Initialization checkpoint model '{checkpoint_model}' does not match "
+            f"configured model '{expected_model_name}'"
+        )
+    model.load_state_dict(checkpoint["model_state_dict"])
+
+
 def train(
     config: dict[str, Any],
     seed_override: int | None = None,
@@ -484,6 +518,9 @@ def train(
     max_epochs_override: int | None = None,
     patience_override: int | None = None,
     resume_from: str | Path | None = None,
+    save_checkpoints: bool = True,
+    initialize_from: str | Path | None = None,
+    initialized_xla_model: Any | None = None,
 ) -> dict[str, Any]:
     """Train the selected architecture, optionally resuming a saved checkpoint."""
     if output_tag and (
@@ -513,7 +550,10 @@ def train(
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
-    device, xla_model = _select_device(config["training"].get("device"))
+    device, xla_model = _select_device(
+        config["training"].get("device"),
+        initialized_xla_model=initialized_xla_model,
+    )
     print(f"Training device: {device}")
     data_config = config["data"]
     processed_dir = Path(data_config["processed_dir"])
@@ -540,6 +580,11 @@ def train(
         key: value for key, value in config["model"].items() if key != "name"
     }
     model = create_model(config["model"]["name"], **model_options).to(device)
+    if initialize_from is not None:
+        _initialize_model_weights(
+            model, initialize_from, config["model"]["name"]
+        )
+        print(f"Initialized model weights from {initialize_from}", flush=True)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=float(config["training"]["learning_rate"])
     )
@@ -639,9 +684,10 @@ def train(
                 "val_pq": val_pq,
                 "threshold": threshold,
             }
-            _save_checkpoint(
-                best_checkpoint, output_dir / "best_model.pt", xla_model
-            )
+            if save_checkpoints:
+                _save_checkpoint(
+                    best_checkpoint, output_dir / "best_model.pt", xla_model
+                )
         else:
             stale_epochs += 1
         last_completed_epoch = epoch
@@ -657,9 +703,10 @@ def train(
             "history": history,
             "rng_state": _capture_rng_state(),
         }
-        _save_checkpoint(
-            resumable_checkpoint, output_dir / "last_checkpoint.pt", xla_model
-        )
+        if save_checkpoints:
+            _save_checkpoint(
+                resumable_checkpoint, output_dir / "last_checkpoint.pt", xla_model
+            )
         best_marker = " (best)" if improved else ""
         instance_counts = ""
         if getattr(model, "is_instance_model", False):
@@ -714,9 +761,14 @@ def main() -> int:
         "--output-tag",
         help="Optional run label; otherwise the output folder is seed<seed>.",
     )
-    parser.add_argument(
+    checkpoint_group = parser.add_mutually_exclusive_group()
+    checkpoint_group.add_argument(
         "--resume-from",
-        help="Resume from a last_checkpoint.pt or warm-start from best_model.pt.",
+        help="Resume training state from a last_checkpoint.pt.",
+    )
+    checkpoint_group.add_argument(
+        "--initialize-from",
+        help="Initialize model weights only from a checkpoint; optimizer and epoch reset.",
     )
     parser.add_argument(
         "--device",
@@ -748,6 +800,7 @@ def main() -> int:
         args.max_epochs,
         args.patience,
         args.resume_from,
+        initialize_from=args.initialize_from,
     )
     return 0
 
