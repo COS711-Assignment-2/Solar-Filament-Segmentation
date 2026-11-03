@@ -1,0 +1,33 @@
+data:
+  processed_dir: data/processed
+  splits_dir: data/splits
+  resolution: tiled
+  tile_size: 1024
+
+model:
+  name: mask2former
+  pretrained_model_name: facebook/mask2former-swin-tiny-coco-instance
+  pretrained: true
+  mask_threshold: 0.5
+
+experiment:
+  name: mask2former-swin-t-native-tiles
+
+loss: {}
+
+training:
+  max_epochs: 50
+  patience: 12
+  batch_size: 1
+  workers: 0
+  learning_rate: 0.00002
+  seed: 42
+  device: tpu
+  augment: true
+  output_dir: runs
+
+evaluation:
+  postprocessing: connected_components
+  thresholds: [0.2, 0.3, 0.4, 0.5, 0.6]
+  min_instance_size: 4
+  watershed_min_distance: 5

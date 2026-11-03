@@ -8,4 +8,5 @@ Pillow
 PyYAML
 scikit-image
 scipy
+transformers>=4.40,<5
 tqdm

@@ -1,0 +1,42 @@
+data:
+  processed_dir: data/processed
+  splits_dir: data/splits
+  resolution: 512
+  tile_size: 512
+
+model:
+  name: embedding_res_unet
+  base_channels: 48
+  embedding_dim: 8
+
+experiment:
+  name: embedding-res-unet
+
+loss:
+  bce_weight: 1.0
+  dice_weight: 1.0
+  cldice_weight: 0.3
+  focal_gamma: 2.0
+  boundary_weight: 0.0
+  embedding_weight: 0.2
+  embedding_pull_margin: 0.5
+  embedding_push_margin: 1.5
+  embedding_sample_count: 256
+
+training:
+  max_epochs: 50
+  patience: 10
+  batch_size: 4
+  workers: 0
+  learning_rate: 0.0001
+  seed: 42
+  device: tpu
+  output_dir: runs
+  augment: true
+
+evaluation:
+  postprocessing: connected_components
+  thresholds: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+  embedding_cluster_radius: 0.75
+  min_instance_size: 4
+  watershed_min_distance: 5

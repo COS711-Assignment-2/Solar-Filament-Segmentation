@@ -16,6 +16,7 @@ from src.models import (
     register_model,
 )
 from src.training import trainer as train
+from src.training.dataset import FilamentDataset
 from src.training.losses import boundary_target, segmentation_loss
 from src.training.metrics import panoptic_quality
 from src.training.postprocessing import postprocess_probability
@@ -43,6 +44,59 @@ def test_preprocessing_keeps_image_separate_from_target_masks(tmp_path):
     assert set(np.asarray(Image.open(instance_path)).ravel()) <= {0, 3}
     assert Image.open(instance_path).size == (4, 4)
     assert Image.open(category_path).size == (4, 4)
+
+
+def test_training_augmentation_keeps_images_and_instances_aligned(tmp_path, monkeypatch):
+    root = tmp_path / "processed" / "train"
+    (root / "images").mkdir(parents=True)
+    (root / "masks" / "instances").mkdir(parents=True)
+    image = np.zeros((16, 16), dtype=np.uint8)
+    image[3:9, 5:12] = 100
+    instances = np.zeros((16, 16), dtype=np.uint8)
+    instances[3:9, 5:12] = 1
+    Image.fromarray(image).save(root / "images" / "sample.png")
+    Image.fromarray(instances).save(root / "masks" / "instances" / "sample.png")
+    monkeypatch.setattr("src.training.dataset.random.randrange", lambda _: 1)
+    monkeypatch.setattr("src.training.dataset.random.random", lambda: 0.0)
+
+    sample = FilamentDataset(
+        tmp_path / "processed",
+        "train",
+        [{"image_id": "sample"}],
+        "tiled",
+        16,
+        augment=True,
+    )[0]
+
+    assert torch.equal(sample["image"][0] > 0, sample["mask"][0].bool())
+
+
+def test_training_augmentation_is_disabled_for_validation(tmp_path, monkeypatch):
+    root = tmp_path / "processed" / "val"
+    (root / "images").mkdir(parents=True)
+    (root / "masks" / "instances").mkdir(parents=True)
+    image = np.zeros((16, 16), dtype=np.uint8)
+    image[3:9, 5:12] = 100
+    instances = (image > 0).astype(np.uint8)
+    Image.fromarray(image).save(root / "images" / "sample.png")
+    Image.fromarray(instances).save(root / "masks" / "instances" / "sample.png")
+    monkeypatch.setattr("src.training.dataset.random.randrange", lambda _: 1)
+    monkeypatch.setattr("src.training.dataset.random.random", lambda: 0.0)
+
+    sample = FilamentDataset(
+        tmp_path / "processed",
+        "val",
+        [{"image_id": "sample"}],
+        "tiled",
+        16,
+        augment=True,
+    )[0]
+
+    assert torch.equal(
+        sample["image"][0],
+        torch.from_numpy(image.astype(np.float32) / 255.0),
+    )
+    assert torch.equal(sample["mask"][0].bool(), torch.from_numpy(instances).bool())
 
 
 def test_panoptic_quality_matches_instances_and_counts_missing_objects():
@@ -248,7 +302,7 @@ def test_validation_threshold_is_selected_by_pq(monkeypatch):
     monkeypatch.setattr(
         train,
         "_predict_image",
-        lambda *args: (probability, target),
+        lambda *args: (probability, target, None, None),
     )
     config = {
         "evaluation": {

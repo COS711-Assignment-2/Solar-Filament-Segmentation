@@ -6,14 +6,20 @@ from typing import Callable
 
 from torch import nn
 
+from src.models.affinity_res_unet import AffinityResUNet
 from src.models.boundary_aware_unet import BoundaryAwareUNet
 from src.models.condinst import CondInst
+from src.models.embedding_res_unet import EmbeddingResUNet
+from src.models.mask2former import Mask2Former
 from src.models.res_unet import ResUNet
 from src.models.unet import UNet
 
 ModelFactory = Callable[..., nn.Module]
 MODEL_REGISTRY: dict[str, ModelFactory] = {
+    "affinity_res_unet": AffinityResUNet,
     "condinst": CondInst,
+    "embedding_res_unet": EmbeddingResUNet,
+    "mask2former": Mask2Former,
     "unet": UNet,
     "boundary_aware_unet": BoundaryAwareUNet,
     "res_unet": ResUNet,
@@ -42,9 +48,12 @@ def create_model(name: str, **kwargs: object) -> nn.Module:
 
 
 __all__ = [
+    "AffinityResUNet",
     "BoundaryAwareUNet",
     "CondInst",
+    "EmbeddingResUNet",
     "MODEL_REGISTRY",
+    "Mask2Former",
     "ResUNet",
     "UNet",
     "create_model",

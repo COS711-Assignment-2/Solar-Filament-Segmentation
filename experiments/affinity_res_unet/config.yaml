@@ -1,0 +1,38 @@
+data:
+  processed_dir: data/processed
+  splits_dir: data/splits
+  resolution: 512
+  tile_size: 512
+
+model:
+  name: affinity_res_unet
+  base_channels: 48
+
+experiment:
+  name: affinity-res-unet
+
+loss:
+  bce_weight: 1.0
+  dice_weight: 1.0
+  cldice_weight: 0.3
+  focal_gamma: 2.0
+  boundary_weight: 0.0
+  affinity_weight: 0.5
+
+training:
+  max_epochs: 50
+  patience: 10
+  batch_size: 4
+  workers: 0
+  learning_rate: 0.0001
+  seed: 42
+  device: tpu
+  output_dir: runs
+  augment: true
+
+evaluation:
+  postprocessing: connected_components
+  thresholds: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+  affinity_threshold: 0.5
+  min_instance_size: 4
+  watershed_min_distance: 5

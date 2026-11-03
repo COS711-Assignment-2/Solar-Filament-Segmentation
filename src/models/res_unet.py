@@ -142,7 +142,7 @@ class ResUNet(nn.Module):
         merged = torch.cat((gated_skip, inputs), dim=1)
         return decoder(merged)
 
-    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
+    def forward_features(self, inputs: torch.Tensor) -> torch.Tensor:
         # Encoder
         s1 = self.encoder1(inputs)
         s2 = self.encoder2(self.pool(s1))
@@ -157,5 +157,7 @@ class ResUNet(nn.Module):
         d3 = self._up_cat(d4, s3, self.att3, self.decoder3)
         d2 = self._up_cat(d3, s2, self.att2, self.decoder2)
         d1 = self._up_cat(d2, s1, self.att1, self.decoder1)
+        return d1
 
-        return self.segmentation_head(d1)
+    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
+        return self.segmentation_head(self.forward_features(inputs))

@@ -9,4 +9,5 @@ pytest
 scikit-image
 scipy
 torch
+transformers>=4.40,<5
 tqdm

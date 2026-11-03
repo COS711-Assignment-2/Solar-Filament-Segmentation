@@ -85,12 +85,14 @@ class FilamentDataset(Dataset):
         records: list[dict[str, str]],
         resolution: int | str,
         tile_size: int,
+        augment: bool = False,
     ) -> None:
         self.processed_dir = Path(processed_dir)
         self.split = split
         self.records = records
         self.resolution = resolution
         self.tile_size = tile_size
+        self.augment = augment and split == "train"
         self.samples: list[tuple[int, int, int]] = []
         self.samples_by_record: list[list[int]] = []
         self._cached_record_index = -1
@@ -132,6 +134,14 @@ class FilamentDataset(Dataset):
         if self.resolution == "tiled":
             image = crop_tile(image, x, y, self.tile_size)
             instances = crop_tile(instances, x, y, self.tile_size)
+        if self.augment:
+            rotations = random.randrange(4)
+            if rotations:
+                image = np.rot90(image, rotations)
+                instances = np.rot90(instances, rotations)
+            if random.random() < 0.5:
+                image = np.flip(image, axis=1)
+                instances = np.flip(instances, axis=1)
         binary = instances > 0
         return {
             "image": torch.from_numpy(image.copy()).float().unsqueeze(0),

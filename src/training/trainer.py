@@ -26,7 +26,14 @@ from src.training.dataset import (
     read_manifest,
     tile_origins,
 )
-from src.training.losses import boundary_target, segmentation_loss
+from src.training.affinity_postprocessing import postprocess_affinity
+from src.training.embedding_postprocessing import postprocess_embedding
+from src.training.losses import (
+    boundary_target,
+    instance_affinity_loss,
+    instance_embedding_loss,
+    segmentation_loss,
+)
 from src.training.metrics import PQCounts, panoptic_quality
 from src.training.postprocessing import postprocess_probability
 
@@ -88,6 +95,9 @@ def load_config(path: str | Path) -> dict[str, Any]:
     resolution = config["data"].get("resolution")
     if resolution not in (512, 1024, "tiled"):
         raise ValueError("data.resolution must be 512, 1024, or tiled")
+    augment = config["training"].get("augment", False)
+    if not isinstance(augment, bool):
+        raise ValueError("training.augment must be a boolean")
     if config["evaluation"].get("postprocessing") not in (
         "connected_components",
         "watershed",
@@ -107,6 +117,16 @@ def load_config(path: str | Path) -> dict[str, Any]:
     thresholds = config["evaluation"].get("thresholds", [])
     if not thresholds or any(not 0 < float(value) < 1 for value in thresholds):
         raise ValueError("evaluation.thresholds must contain values strictly between 0 and 1")
+    if model_name == "affinity_res_unet":
+        affinity_threshold = config["evaluation"].get("affinity_threshold")
+        if affinity_threshold is None or not 0 < float(affinity_threshold) < 1:
+            raise ValueError(
+                "evaluation.affinity_threshold must be strictly between 0 and 1"
+            )
+    if model_name == "embedding_res_unet":
+        cluster_radius = config["evaluation"].get("embedding_cluster_radius")
+        if cluster_radius is None or float(cluster_radius) <= 0:
+            raise ValueError("evaluation.embedding_cluster_radius must be positive")
     return config
 
 
@@ -220,10 +240,20 @@ def _select_device(
 
 def _model_output(
     output: torch.Tensor | dict[str, torch.Tensor],
-) -> tuple[torch.Tensor, torch.Tensor | None]:
+) -> tuple[
+    torch.Tensor,
+    torch.Tensor | None,
+    torch.Tensor | None,
+    torch.Tensor | None,
+]:
     if isinstance(output, dict):
-        return output["segmentation"], output["boundary"]
-    return output, None
+        return (
+            output["segmentation"],
+            output.get("boundary"),
+            output.get("affinity"),
+            output.get("embedding"),
+        )
+    return output, None, None, None
 
 
 def _run_epoch(
@@ -249,7 +279,7 @@ def _run_epoch(
         else:
             masks = batch["mask"].to(device)
             instances = instances.to(device)
-            segmentation, boundary = _model_output(model(images))
+            segmentation, boundary, affinity, embedding = _model_output(model(images))
             loss = segmentation_loss(
                 segmentation,
                 masks,
@@ -263,6 +293,20 @@ def _run_epoch(
                     boundary, boundary_target(instances)
                 )
                 loss = loss + float(loss_config["boundary_weight"]) * boundary_loss
+            if affinity is not None:
+                loss = loss + float(loss_config["affinity_weight"]) * (
+                    instance_affinity_loss(affinity, instances)
+                )
+            if embedding is not None:
+                loss = loss + float(loss_config["embedding_weight"]) * (
+                    instance_embedding_loss(
+                        embedding,
+                        instances,
+                        float(loss_config.get("embedding_pull_margin", 0.5)),
+                        float(loss_config.get("embedding_push_margin", 1.5)),
+                        int(loss_config.get("embedding_sample_count", 256)),
+                    )
+                )
         loss.backward()
         if xla_model is None:
             optimizer.step()
@@ -282,7 +326,12 @@ def _predict_image(
     config: dict[str, Any],
     device: torch.device,
     xla_model: Any | None = None,
-) -> tuple[np.ndarray, np.ndarray]:
+) -> tuple[
+    np.ndarray,
+    np.ndarray,
+    np.ndarray | None,
+    np.ndarray | None,
+]:
     resolution = config["data"]["resolution"]
     image, target = load_validation_image(processed_dir, record, resolution)
     image_array = np.asarray(image, dtype=np.float32) / 255.0
@@ -294,6 +343,19 @@ def _predict_image(
         origins = [(0, 0)]
     batch_size = int(config["training"]["batch_size"])
     probability = np.zeros(target.shape, dtype=np.float32)
+    affinity_probability = (
+        np.zeros((2, *target.shape), dtype=np.float32)
+        if getattr(model, "is_affinity_model", False)
+        else None
+    )
+    embedding_map = (
+        np.zeros(
+            (int(model.embedding_dim), *target.shape),
+            dtype=np.float32,
+        )
+        if getattr(model, "is_embedding_model", False)
+        else None
+    )
     for start in range(0, len(origins), batch_size):
         batch_origins = origins[start:start + batch_size]
         tiles = np.stack([
@@ -301,15 +363,31 @@ def _predict_image(
         ])
         inputs = torch.from_numpy(tiles).unsqueeze(1).to(device)
         with torch.no_grad():
-            segmentation, _ = _model_output(model(inputs))
+            segmentation, _, affinity, embedding = _model_output(model(inputs))
             if xla_model is not None:
                 xla_model.mark_step()
             batch_probability = torch.sigmoid(segmentation).squeeze(1).cpu().numpy()
-        for (x, y), tile_probability in zip(batch_origins, batch_probability):
+            batch_affinity = (
+                torch.sigmoid(affinity).cpu().numpy() if affinity is not None else None
+            )
+            batch_embedding = (
+                embedding.cpu().numpy() if embedding is not None else None
+            )
+        for batch_index, ((x, y), tile_probability) in enumerate(
+            zip(batch_origins, batch_probability)
+        ):
             height = min(tile_size, target.shape[0] - y)
             width = min(tile_size, target.shape[1] - x)
             probability[y:y + height, x:x + width] = tile_probability[:height, :width]
-    return probability, target
+            if affinity_probability is not None and batch_affinity is not None:
+                affinity_probability[:, y:y + height, x:x + width] = (
+                    batch_affinity[batch_index, :, :height, :width]
+                )
+            if embedding_map is not None and batch_embedding is not None:
+                embedding_map[:, y:y + height, x:x + width] = (
+                    batch_embedding[batch_index, :, :height, :width]
+                )
+    return probability, target, affinity_probability, embedding_map
 
 
 def _predict_instance_image(
@@ -409,17 +487,34 @@ def evaluate_thresholds(
                 )
                 aggregate.add(panoptic_quality(target, prediction))
         else:
-            probability, target = _predict_image(
+            probability, target, affinity, embeddings = _predict_image(
                 model, processed_dir, record, config, device, xla_model
             )
             for threshold, aggregate in counts.items():
-                prediction = postprocess_probability(
-                    probability,
-                    threshold,
-                    config["evaluation"]["postprocessing"],
-                    int(config["evaluation"]["min_instance_size"]),
-                    int(config["evaluation"]["watershed_min_distance"]),
-                )
+                if embeddings is not None:
+                    prediction = postprocess_embedding(
+                        probability,
+                        embeddings,
+                        threshold,
+                        float(config["evaluation"]["embedding_cluster_radius"]),
+                        int(config["evaluation"]["min_instance_size"]),
+                    )
+                elif affinity is not None:
+                    prediction = postprocess_affinity(
+                        probability,
+                        affinity,
+                        threshold,
+                        float(config["evaluation"]["affinity_threshold"]),
+                        int(config["evaluation"]["min_instance_size"]),
+                    )
+                else:
+                    prediction = postprocess_probability(
+                        probability,
+                        threshold,
+                        config["evaluation"]["postprocessing"],
+                        int(config["evaluation"]["min_instance_size"]),
+                        int(config["evaluation"]["watershed_min_distance"]),
+                    )
                 aggregate.add(panoptic_quality(target, prediction))
     details = {
         str(threshold): {
@@ -502,6 +597,27 @@ def _initialize_model_weights(
     ):
         raise ValueError(f"Invalid model initialization checkpoint: {path}")
     checkpoint_model = checkpoint.get("config", {}).get("model", {}).get("name")
+    if checkpoint_model == "res_unet" and expected_model_name in (
+        "affinity_res_unet",
+        "embedding_res_unet",
+    ):
+        incompatible = model.load_state_dict(
+            checkpoint["model_state_dict"], strict=False
+        )
+        missing_head = (
+            {"affinity_head.weight", "affinity_head.bias"}
+            if expected_model_name == "affinity_res_unet"
+            else {"embedding_head.weight", "embedding_head.bias"}
+        )
+        if (
+            set(incompatible.missing_keys)
+            != missing_head
+            or incompatible.unexpected_keys
+        ):
+            raise ValueError(
+                f"Checkpoint weights are not compatible with {expected_model_name}: {path}"
+            )
+        return
     if checkpoint_model != expected_model_name:
         raise ValueError(
             f"Initialization checkpoint model '{checkpoint_model}' does not match "
@@ -567,6 +683,7 @@ def train(
         train_records,
         data_config["resolution"],
         int(data_config["tile_size"]),
+        augment=bool(config["training"].get("augment", False)),
     )
     train_loader = DataLoader(
         train_data,

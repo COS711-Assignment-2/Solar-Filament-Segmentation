@@ -145,16 +145,17 @@ python scripts/prepare_data.py --stage process `
 
 ## Model training and experiments
 
-The standard U-Net is the project's sole baseline. CondInst is a compact
+The standard U-Net is the project's baseline. CondInst is a compact
 anchor-free instance-segmentation comparison model with a shared multi-scale
 feature map and per-instance dynamic mask heads. It trains directly from the
 generated instance-ID masks and uses the project's validation PQ selection
-loop. Boundary-aware U-Net is also a comparison experiment, not a baseline.
-The three experiment configs use the same 512-pixel resolution, batch size,
-learning rate, seed, epoch limit, early-stopping patience, validation split,
-and threshold candidates for a controlled starting comparison. Architecture-
-specific model and loss settings remain distinct; threshold meanings differ
-between CondInst center confidence and U-Net foreground probability.
+loop. Boundary-aware U-Net and ResUNet are also comparison architectures, not
+baselines. The experiments use different resolutions and architecture-specific
+model and loss settings; threshold meanings differ between CondInst
+center-confidence scores and U-Net foreground probabilities. Affinity ResUNet
+adds learned same-instance links between neighboring foreground pixels and
+uses the original ResUNet weights to initialize its shared backbone and
+foreground head.
 Before training, regenerate prepared data with the command above if it was
 created by an earlier version of this repository; image preprocessing
 previously could overwrite generated images with mask pixels. The selected
@@ -263,6 +264,84 @@ python3 scripts/train.py --experiment condinst
 python3 scripts/train.py --experiment boundary_aware_unet
 ```
 
+For a native-resolution ResUNet comparison, train on 512x512 crops from the
+original 2048x2048 images instead of resizing each full image to 512x512:
+
+```bash
+python3 scripts/train.py --experiment res_unet_native_tiles --device auto
+```
+
+Each image contributes 16 non-overlapping tiles per epoch, and validation
+stitches tile predictions back together to score the full-resolution image.
+This keeps model inputs manageable while preserving original pixel scale; it
+does not pass full 2048×2048 images through the network at once.
+
+For query-based instance segmentation, the Mask2Former + Swin-T experiment
+uses COCO-pretrained weights and trains on native-resolution 1024x1024 tiles:
+
+```bash
+PJRT_DEVICE=TPU python3 scripts/train.py --experiment mask2former_swin_t --device tpu
+```
+
+Install `transformers>=4.40,<5` from the requirements file first. The initial
+run downloads `facebook/mask2former-swin-tiny-coco-instance`; set
+`model.pretrained_model_name` to a local compatible checkpoint path to run
+without downloading model weights. This experiment uses batch size 1 because
+of the model and tile memory requirements. Install a `torch_xla` version
+compatible with the PyTorch version supplied by your TPU runtime; do not
+replace the runtime's PyTorch/XLA packages with versions from an unrelated
+environment. The pretrained COCO class head is adapted to the single filament
+class, while its query masks and Swin-T backbone are reused. If 1024x1024 tiles
+exceed TPU memory, reduce `data.tile_size` in the experiment config to 512.
+PQ≥0.5 is an experimental goal, not a guaranteed outcome.
+
+For a native-resolution fine-tuning run, the augmented ResUNet config applies
+the same random quarter-turn rotations and horizontal flips to each training
+image tile and its mask. Validation remains unchanged. Initialize it from the
+best resized-image ResUNet checkpoint to reuse its learned weights:
+
+```bash
+python3 scripts/train.py --experiment res_unet_native_finetune --device xla \
+  --initialize-from runs/res_unet/res-unet/seed42/best_model.pt
+```
+
+This run uses a lower learning rate, early stopping, and a wider probability
+threshold sweep. The native-tile and resized-image validation PQ scores are
+computed at different spatial resolutions, so compare them only after
+evaluating both predictions and targets at the same resolution.
+
+For an instance-aware ResUNet comparison at the same 512x512 validation
+resolution as the original ResUNet run, use the affinity model. It predicts
+foreground and whether adjacent foreground pixels belong to the same annotated
+filament, then forms instances from the learned local connections:
+
+```bash
+python3 scripts/train.py --experiment affinity_res_unet --device xla \
+  --initialize-from runs/res_unet/res-unet/seed42/best_model.pt
+```
+
+The original ResUNet checkpoint initializes the shared backbone and foreground
+head; the affinity head is trained from the instance masks. This changes
+instance separation while keeping the validation resolution comparable to
+the 0.3472 run. The target PQ remains an empirical goal, not a guaranteed
+result.
+
+For an instance-embedding comparison, Affinity ResUNet is an optional earlier
+experiment; the embedding ResUNet learns per-pixel features that group pixels
+from the same instance and separate pixels from different instances. Train it
+at 512x512 and initialize its shared backbone and foreground head from the
+same ResUNet checkpoint:
+
+```bash
+python3 scripts/train.py --experiment embedding_res_unet --device xla \
+  --initialize-from runs/res_unet/res-unet/seed42/best_model.pt
+```
+
+The embedding objective samples a fixed number of foreground pixels per image
+for pairwise pull/push supervision. Validation clusters foreground pixels in
+embedding space and selects the foreground threshold by PQ; adjust
+`evaluation.embedding_cluster_radius` only using validation results.
+
 Override maximum epochs and early-stopping patience for a run:
 
 ```bash
@@ -274,11 +353,17 @@ epoch count.
 
 Configuration options:
 
-- `model.name`: a registered architecture (`condinst`, `unet`, or
-  `boundary_aware_unet`). CondInst uses `center_weight`, `mask_bce_weight`,
-  and `mask_dice_weight`; its thresholds are candidate-center confidence
-  scores and it predicts instance masks directly without connected-component
-  or watershed postprocessing.
+- `model.name`: a registered architecture (`affinity_res_unet`,
+  `embedding_res_unet`, `mask2former`, `condinst`, `res_unet`, `unet`, or
+  `boundary_aware_unet`). Mask2Former is an instance model requiring the
+  `transformers` dependency; use its experiment configuration for a
+  COCO-pretrained Swin-T backbone and native-resolution tiles. CondInst uses
+  `center_weight`, `mask_bce_weight`, and `mask_dice_weight`; its thresholds
+  are candidate-center confidence scores and it predicts instance masks
+  directly without connected-component or watershed postprocessing. Affinity
+  ResUNet also uses `loss.affinity_weight` and
+  `evaluation.affinity_threshold`; Embedding ResUNet uses
+  `loss.embedding_weight` and `evaluation.embedding_cluster_radius`.
   Each architecture has its own module under `src/models/`; register future
   architectures with `register_model` in `src/models/__init__.py`. The trainer
   depends on the model registry, not on model-specific imports or conditionals.
@@ -290,8 +375,10 @@ Configuration options:
   `tiled` with `data.tile_size` for fixed-size non-overlapping crops.
 - `loss.bce_weight` and `loss.dice_weight`: independently weight BCE and soft
   Dice loss for the U-Net models; `loss.boundary_weight` controls the
-  boundary-aware U-Net auxiliary loss. CondInst instead uses the three loss
-  weights described above.
+  boundary-aware U-Net auxiliary loss; `loss.affinity_weight` weights the
+  same-instance neighbor-link loss used by Affinity ResUNet; `loss.embedding_*`
+  settings configure the embedding pull/push objective. CondInst instead uses
+  the three loss weights described above.
 - `evaluation.postprocessing`: `connected_components` or `watershed`.
 - `evaluation.thresholds`: candidate foreground thresholds. Each epoch scores
   every candidate using instance-level validation PQ and records the best one
